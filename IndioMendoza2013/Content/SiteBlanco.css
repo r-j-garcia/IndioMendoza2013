@@ -1,0 +1,20 @@
+﻿body 
+{
+    background-color:Gray;
+}
+
+#main 
+{
+    background-color:White; 
+    color: Black;
+    text-align: left;
+    margin-left: auto ;
+    margin-right: auto ;
+}
+
+.banner-header 
+{
+    background-image: url('/Content/img/Indio-Mendoza2013-Header-Blanco.png');
+    background-repeat: no-repeat;
+    height: 110px;
+}

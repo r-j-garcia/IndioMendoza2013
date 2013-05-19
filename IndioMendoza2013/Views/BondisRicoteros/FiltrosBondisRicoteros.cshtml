@@ -1,0 +1,45 @@
+﻿@using IndioMendoza2013.Modelos
+@model FiltroBondisRicoteros
+@{
+    ViewBag.Title = "FiltrosBondisRicoteros";
+}
+
+<script type="text/javascript">
+
+    $(function() {
+        $('#id_provincia').change(function () {
+            var idProvincia = $(this).val();
+            if (idProvincia != null && idProvincia != '') {
+                $.getJSON('@Url.Action("GetZonas")', { idProvincia: idProvincia }, function (zonas) {
+                    var cboZonas = $('#id_zona');
+                    cboZonas.empty();
+                    cboZonas.removeAttr("disabled");
+                    $.each(zonas, function (index, zona) {
+                        cboZonas.append($('<option/>', {
+                            value: zona.id,
+                            text: zona.descripcion
+                        }));
+                    });
+                });
+            }
+        });
+    });
+
+    function btnSubmit_click() {
+        $("#frmBondisRicoteros").submit();
+    }
+</script>
+<fieldset>
+<legend>Búsqueda</legend>
+    <table width="100%" border="0">
+    <tr>
+        <td width="5%">Nombre:</td>
+        <td width="25%">@Html.TextBoxFor(x => x.Nombre, new { style = "width: 250px" })</td>
+        <td width="5%">Provincia:</td>
+        <td width="15%">@Html.DropDownListFor(x => x.id_provincia, new SelectList(ViewBag.ListProvincias, "id", "descripcion"),string.Empty, new { style = "width: 175px" })</td>
+        <td width="5%">Zona:</td>
+        <td width="15%">@Html.DropDownListFor(x => x.id_zona, new SelectList(ViewBag.ListZonas, "id", "descripcion"), string.Empty, new { style = "width: 175px", disabled = "disabled" })</td>
+        <td width="30%"><input class="buttonSearch" id="btnSubmit" type="button" value="Buscar" onclick="javascript: return btnSubmit_click();" /></td>
+    </tr>
+    </table>
+</fieldset>

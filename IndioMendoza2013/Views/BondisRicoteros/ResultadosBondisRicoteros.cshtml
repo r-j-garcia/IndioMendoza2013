@@ -1,0 +1,40 @@
+﻿@using IndioMendoza2013.Modelos
+@model IEnumerable<modBondiRicotero>
+@{
+    ViewBag.Title = "ResultadosBondisRicoteros";
+}
+<script language="javascript" type="text/javascript">
+
+    function CompartirBondiRicotero(nombre, zona, descripcion) {
+        FB.ui(
+          {
+              method: 'feed',
+              name: nombre,
+              caption: zona,
+              description: descripcion,
+              link: '@Request.Url',
+              picture: 'http://a11.t26.net/avatares/1/1/4/7/120_11474658.jpg'
+          },
+          function (response) {
+              if (response && response.post_id) {
+                  alert('Post was published.');
+                  self.close();
+              } else {
+                  alert('Post was not published.');
+              }
+          }
+        );
+    }
+
+</script>
+<hr />
+@foreach (var item in Model)
+{
+    <div>
+    <b>@item.Nombre</b><br />
+    Zona: @item.Des_Zona, @item.Des_Provincia<br /><br />
+    @item.Descripcion<br /><br />
+    <a href="javascript:CompartirBondiRicotero('@item.Nombre', '@item.Des_Zona, @item.Des_Provincia', '@item.Descripcion');">Compartir</a>
+    <hr />
+    </div>
+}

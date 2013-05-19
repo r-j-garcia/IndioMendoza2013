@@ -1,0 +1,290 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="IndioMendoza2013Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="IndioMendoza2013ModelStoreContainer">
+          <EntitySet Name="BondiRicotero" EntityType="IndioMendoza2013Model.Store.BondiRicotero" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Noticias" EntityType="IndioMendoza2013Model.Store.Noticias" store:Type="Tables" store:Schema="dbo" store:Name="Noticias">
+            <DefiningQuery>SELECT 
+      [Noticias].[id] AS [id], 
+      [Noticias].[titulo] AS [titulo], 
+      [Noticias].[contenido] AS [contenido], 
+      [Noticias].[link] AS [link]
+      FROM [dbo].[Noticias] AS [Noticias]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="PosicionRicotera" EntityType="IndioMendoza2013Model.Store.PosicionRicotera" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Provincia" EntityType="IndioMendoza2013Model.Store.Provincia" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Zona" EntityType="IndioMendoza2013Model.Store.Zona" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_BondiRicotero_Zona" Association="IndioMendoza2013Model.Store.FK_BondiRicotero_Zona">
+            <End Role="Zona" EntitySet="Zona" />
+            <End Role="BondiRicotero" EntitySet="BondiRicotero" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zona_Provincia" Association="IndioMendoza2013Model.Store.FK_Zona_Provincia">
+            <End Role="Provincia" EntitySet="Provincia" />
+            <End Role="Zona" EntitySet="Zona" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="BondiRicotero">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="descripcion" Type="varchar" MaxLength="1000" />
+          <Property Name="id_zona" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Se encontraron errores durante la generación:
+      advertencia 6002: La tabla o vista 'IndioMendoza2013.dbo.Noticias' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      -->
+        <EntityType Name="Noticias">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="titulo" />
+            <PropertyRef Name="contenido" />
+            <PropertyRef Name="link" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="titulo" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="contenido" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="link" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="PosicionRicotera">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="latitude" Type="float" Nullable="false" />
+          <Property Name="longitude" Type="float" Nullable="false" />
+          <Property Name="comentarios" Type="varchar" MaxLength="200" />
+          <Property Name="ip" Type="varchar" MaxLength="24" />
+        </EntityType>
+        <EntityType Name="Provincia">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Zona">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id_provincia" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_BondiRicotero_Zona">
+          <End Role="Zona" Type="IndioMendoza2013Model.Store.Zona" Multiplicity="1" />
+          <End Role="BondiRicotero" Type="IndioMendoza2013Model.Store.BondiRicotero" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zona">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="BondiRicotero">
+              <PropertyRef Name="id_zona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zona_Provincia">
+          <End Role="Provincia" Type="IndioMendoza2013Model.Store.Provincia" Multiplicity="1" />
+          <End Role="Zona" Type="IndioMendoza2013Model.Store.Zona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provincia">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Zona">
+              <PropertyRef Name="id_provincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="IndioMendoza2013Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="IndioMendoza2013Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="PosicionRicotera" EntityType="IndioMendoza2013Model.PosicionRicotera" />
+          <EntitySet Name="Noticias" EntityType="IndioMendoza2013Model.Noticias" />
+          <EntitySet Name="Provincia" EntityType="IndioMendoza2013Model.Provincia" />
+          <EntitySet Name="Zona" EntityType="IndioMendoza2013Model.Zona" />
+          <AssociationSet Name="FK_Zona_Provincia" Association="IndioMendoza2013Model.FK_Zona_Provincia">
+            <End Role="Provincia" EntitySet="Provincia" />
+            <End Role="Zona" EntitySet="Zona" />
+          </AssociationSet>
+          <EntitySet Name="BondiRicotero" EntityType="IndioMendoza2013Model.BondiRicotero" />
+          <AssociationSet Name="FK_BondiRicotero_Zona" Association="IndioMendoza2013Model.FK_BondiRicotero_Zona">
+            <End Role="Zona" EntitySet="Zona" />
+            <End Role="BondiRicotero" EntitySet="BondiRicotero" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="PosicionRicotera">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="latitude" Nullable="false" />
+          <Property Type="Double" Name="longitude" Nullable="false" />
+          <Property Type="String" Name="comentarios" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ip" MaxLength="24" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Noticias">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="titulo" />
+            <PropertyRef Name="contenido" />
+            <PropertyRef Name="link" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="titulo" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="contenido" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="link" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Provincia">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="descripcion" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Zona" Relationship="IndioMendoza2013Model.FK_Zona_Provincia" FromRole="Provincia" ToRole="Zona" />
+        </EntityType>
+        <EntityType Name="Zona">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="id_provincia" Nullable="false" />
+          <Property Type="String" Name="descripcion" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Provincia" Relationship="IndioMendoza2013Model.FK_Zona_Provincia" FromRole="Zona" ToRole="Provincia" />
+          <NavigationProperty Name="BondiRicotero" Relationship="IndioMendoza2013Model.FK_BondiRicotero_Zona" FromRole="Zona" ToRole="BondiRicotero" />
+        </EntityType>
+        <Association Name="FK_Zona_Provincia">
+          <End Type="IndioMendoza2013Model.Provincia" Role="Provincia" Multiplicity="1" />
+          <End Type="IndioMendoza2013Model.Zona" Role="Zona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provincia">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Zona">
+              <PropertyRef Name="id_provincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="BondiRicotero">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="descripcion" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="id_zona" Nullable="false" />
+          <NavigationProperty Name="Zona" Relationship="IndioMendoza2013Model.FK_BondiRicotero_Zona" FromRole="BondiRicotero" ToRole="Zona" />
+        </EntityType>
+        <Association Name="FK_BondiRicotero_Zona">
+          <End Type="IndioMendoza2013Model.Zona" Role="Zona" Multiplicity="1" />
+          <End Type="IndioMendoza2013Model.BondiRicotero" Role="BondiRicotero" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zona">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="BondiRicotero">
+              <PropertyRef Name="id_zona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="IndioMendoza2013ModelStoreContainer" CdmEntityContainer="IndioMendoza2013Entities">
+          <EntitySetMapping Name="PosicionRicotera">
+            <EntityTypeMapping TypeName="IndioMendoza2013Model.PosicionRicotera">
+              <MappingFragment StoreEntitySet="PosicionRicotera">
+                <ScalarProperty Name="ip" ColumnName="ip" />
+                <ScalarProperty Name="comentarios" ColumnName="comentarios" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Noticias">
+            <EntityTypeMapping TypeName="IndioMendoza2013Model.Noticias">
+              <MappingFragment StoreEntitySet="Noticias">
+                <ScalarProperty Name="link" ColumnName="link" />
+                <ScalarProperty Name="contenido" ColumnName="contenido" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Provincia">
+            <EntityTypeMapping TypeName="IndioMendoza2013Model.Provincia">
+              <MappingFragment StoreEntitySet="Provincia">
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zona">
+            <EntityTypeMapping TypeName="IndioMendoza2013Model.Zona">
+              <MappingFragment StoreEntitySet="Zona">
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="id_provincia" ColumnName="id_provincia" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BondiRicotero">
+            <EntityTypeMapping TypeName="IndioMendoza2013Model.BondiRicotero">
+              <MappingFragment StoreEntitySet="BondiRicotero">
+                <ScalarProperty Name="id_zona" ColumnName="id_zona" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="IndioMendoza2013">
+        <EntityTypeShape EntityType="IndioMendoza2013Model.PosicionRicotera" Width="1.5" PointX="0.75" PointY="0.75" Height="2.1725878906249996" />
+        <EntityTypeShape EntityType="IndioMendoza2013Model.Noticias" Width="1.5" PointX="3.375" PointY="0.75" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="IndioMendoza2013Model.Provincia" Width="1.5" PointX="0.75" PointY="4.25" Height="1.5956835937499996" />
+        <EntityTypeShape EntityType="IndioMendoza2013Model.Zona" Width="1.5" PointX="3" PointY="4" Height="1.9802864583333317" />
+        <AssociationConnector Association="IndioMendoza2013Model.FK_Zona_Provincia" >
+          <ConnectorPoint PointX="2.25" PointY="5.047841796875" />
+          <ConnectorPoint PointX="3" PointY="5.047841796875" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="IndioMendoza2013Model.BondiRicotero" Width="1.5" PointX="5.25" PointY="4" Height="1.9802864583333317" />
+        <AssociationConnector Association="IndioMendoza2013Model.FK_BondiRicotero_Zona" >
+          <ConnectorPoint PointX="4.5" PointY="4.9901432291666659" />
+          <ConnectorPoint PointX="5.25" PointY="4.9901432291666659" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

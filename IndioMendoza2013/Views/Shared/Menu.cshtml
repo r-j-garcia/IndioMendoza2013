@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "Menu";
+}
+<style type="text/css">
+
+.menu-horizontal li
+{
+    display: inline;
+    list-style-type: none;
+    padding-right: 20px;
+    color: White;
+}
+</style>
+<script type="text/javascript" language="javascript">
+    window.fbAsyncInit = function () {
+        FB.Event.subscribe('auth.authResponseChange', function (response) {
+            if (response.status === 'connected') {
+                SetConnectionData(response.authResponse.accessToken);
+            } else if (response.status === 'not_authorized') {
+                alert('NO AUTORIZADO');
+            } else {
+                alert('NO LOGGUEADO');
+            }
+        });
+    };
+
+    function SetConnectionData(acccessToken) {
+        $.ajax({
+            type: "POST",
+            data: { Token: acccessToken },
+            dataType: "json",
+            url: "Home/SaveFacebookToken",
+            success: function (data) {
+                $("#divFacebookInfo").load("/Home/FacebookInfo/");
+            }
+        })
+    }
+</script>
+<table width="100%" border="0">
+<tr>
+    <td width="100%" class="banner-header">
+        <div style="text-align: right; vertical-align: top;" id="divFacebookInfo">
+            @Html.Action("FacebookInfo", "Home")
+        </div>
+    </td>
+</tr>
+<tr>
+    <td colspan="2">
+        <ul class="menu-horizontal">
+            <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+            <li>@Html.ActionLink("¿Dónde es?", "DondeEs", "Info")</li>
+            <li>@Html.ActionLink("¿Cómo llegar?", "ComoLlegar", "Info")</li>
+            <li>@Html.ActionLink("¿Dónde comprar?", "DondeComprar", "Info")</li>
+            <li>@Html.ActionLink("Mapa Ricotero", "Index", "MapaRicotero")</li>
+            <li>@Html.ActionLink("Bondis Ricoteros", "Index", "BondisRicoteros")</li>
+            <li>@Html.ActionLink("Contactos", "Index", "Contacto")</li>
+        </ul>
+    </td>
+</tr>
+</table>
+<hr />

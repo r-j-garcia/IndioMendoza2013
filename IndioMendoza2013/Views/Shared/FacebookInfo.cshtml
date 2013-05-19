@@ -1,0 +1,19 @@
+﻿@model ModelosIndioMendoza2013.Modelos.modFacebookInfo
+@{
+    ViewBag.Title = "FacebookInfo";
+}
+<script language="javascript" type="text/javascript">
+
+    $(function () {
+        FB.XFBML.parse();
+    });
+
+</script>
+<div>
+    @if(Model == null){
+        <div id="fb-root"></div>
+        <fb:login-button id="facLoginButton" width="200" max-rows="1"></fb:login-button>     
+    }else{
+        <a class="facebookLink" href="@Model.Link" target="_blank"><b><img width="12px" src="http://localhost:36364/Content/img/facebookLink.png" />@Model.Nombre</b></a>
+    }   
+</div>

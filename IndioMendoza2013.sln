@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndioMendoza2013", "IndioMendoza2013\IndioMendoza2013.csproj", "{C7924ECA-4546-4C06-A0E6-9AF9DBC86AB1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F7440096-3A1D-45DF-A454-6543B6FA5E2B} = {F7440096-3A1D-45DF-A454-6543B6FA5E2B}
+		{2B5175C4-7595-4B57-9DCF-EDE33B2750A9} = {2B5175C4-7595-4B57-9DCF-EDE33B2750A9}
+		{F3BE9CD1-3123-45E1-A35B-EF3B7D32D740} = {F3BE9CD1-3123-45E1-A35B-EF3B7D32D740}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelosIndioMendoza2013", "ModelosIndioMendoza2013\ModelosIndioMendoza2013.csproj", "{F7440096-3A1D-45DF-A454-6543B6FA5E2B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F3BE9CD1-3123-45E1-A35B-EF3B7D32D740} = {F3BE9CD1-3123-45E1-A35B-EF3B7D32D740}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatosIndioMendoza2013", "DatosIndioMendoza2013\DatosIndioMendoza2013.csproj", "{2B5175C4-7595-4B57-9DCF-EDE33B2750A9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F3BE9CD1-3123-45E1-A35B-EF3B7D32D740} = {F3BE9CD1-3123-45E1-A35B-EF3B7D32D740}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrigenesDeDatosIndioMendoza2013", "OrigenesDeDatosIndioMendoza2013\OrigenesDeDatosIndioMendoza2013.csproj", "{F3BE9CD1-3123-45E1-A35B-EF3B7D32D740}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C7924ECA-4546-4C06-A0E6-9AF9DBC86AB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7924ECA-4546-4C06-A0E6-9AF9DBC86AB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7924ECA-4546-4C06-A0E6-9AF9DBC86AB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7924ECA-4546-4C06-A0E6-9AF9DBC86AB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7440096-3A1D-45DF-A454-6543B6FA5E2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7440096-3A1D-45DF-A454-6543B6FA5E2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7440096-3A1D-45DF-A454-6543B6FA5E2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7440096-3A1D-45DF-A454-6543B6FA5E2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B5175C4-7595-4B57-9DCF-EDE33B2750A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B5175C4-7595-4B57-9DCF-EDE33B2750A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B5175C4-7595-4B57-9DCF-EDE33B2750A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B5175C4-7595-4B57-9DCF-EDE33B2750A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3BE9CD1-3123-45E1-A35B-EF3B7D32D740}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3BE9CD1-3123-45E1-A35B-EF3B7D32D740}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3BE9CD1-3123-45E1-A35B-EF3B7D32D740}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3BE9CD1-3123-45E1-A35B-EF3B7D32D740}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

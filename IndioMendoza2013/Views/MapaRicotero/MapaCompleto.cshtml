@@ -1,0 +1,88 @@
+﻿@{
+    ViewBag.Title = "MapaCompleto";
+}
+<style type="text/css">
+    
+#mapArgentinaGeneral img { max-width:none; }
+
+#imgAgregarPartida .hover
+{
+    ba
+}
+
+
+</style>
+<script language="javascript" type="text/javascript">
+
+    var map = null;
+
+    function initialize() {
+        var myLatlng = new google.maps.LatLng(-34.598489887510254, -58.42017665505409);
+        var myOptions = {
+            zoom: 4,
+            center: myLatlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+
+        map = new google.maps.Map(document.getElementById("mapArgentinaGeneral"), myOptions);
+    }
+
+    $(function () {
+        initialize();
+
+        var pointMendoza = new google.maps.LatLng(-32.88978615468326, -68.88005018234253);
+
+        var infoWindow = new google.maps.InfoWindow({ content: "Cargando..." });
+
+        $.ajax({
+            type: "POST",
+            url: "Home/GetPosiciones",
+            success: function (data) {
+                $.each(data, function (index, data) {
+                    var point = new google.maps.LatLng(data.Latitud, data.Longitud);
+
+                    var marker = new google.maps.Marker({
+                        position: point,
+                        map: map,
+                        html: "<div style='color: black'><b>" + data.Nombre + "</b>" + "<br>" + data.Comentarios + "</div>"
+                    });
+
+                    var line = new google.maps.Polyline({
+                        path: [point, pointMendoza],
+                        strokeColor: "#FF0000",
+                        strokeOpacity: 1.0,
+                        strokeWeight: 1,
+                        geodesic: true,
+                        map: map
+                    });
+
+                    google.maps.event.addListener(marker, "click", function () {
+                        infoWindow.setContent(this.html);
+                        infoWindow.open(map, marker);
+                    });
+                });
+            },
+            error: function (error) {
+                alert(error);
+            }
+        });
+
+    });
+
+</script>
+<div style="width:100%; height:100%; min-height: 800px;">
+<table border="0" style="width:100%; height:100%;">
+<tr>
+    <td rowspan="4" width="75%" >
+        <div id="mapArgentinaGeneral" style="width:100%; height:600px"></div>
+    </td>
+    <td width="25%" nowrap="nowrap" style="vertical-align: top">
+        <a href="@Url.Action("AgregaTuPuntoDePartida", "MapaRicotero")">
+                <img src="/Content/img/BotonAgregarPartida.png" 
+                onmouseover="this.src='/Content/img/BotonAgregarPartida_Hover.png'" 
+                onmouseout="this.src='/Content/img/BotonAgregarPartida.png'" 
+                id="imgAgregarPartida" style="cursor:pointer;" />
+        </a></td>
+</tr>
+</table>
+</div>

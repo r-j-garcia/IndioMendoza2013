@@ -1,0 +1,95 @@
+﻿@using IndioMendoza2013.Modelos;
+@model modPosicionRicotera
+           
+<script language="javascript" type="text/javascript">
+
+    function frmPosicionRicotera_success() {
+        alert("Se agrego tu punto de partida!!");
+        window.location.href = "/MapaRicotero";
+    }
+
+    function frmPosicionRicotera_failure(error) {
+        alert($(error.response)[1].innerHTML);
+    }
+
+
+    function btnSubmit_click() {
+        if (marker != null) {
+            $("#frmPosicionRicotera #Latitud").val(parseFloat(marker.position.kb));
+            $("#frmPosicionRicotera #Longitud").val(parseFloat(marker.position.lb));
+            $("#frmPosicionRicotera").submit();
+        }
+        else {
+            alert('Debe seleccionar una posición.');
+        }
+        return false;
+    }
+
+    var map = null;
+    var marker = null;
+
+    // Clear all overlays, reset the array of points, and hide the chart
+    function reset() {
+        if (marker)
+            marker.setMap(null);
+    }
+
+    // Add a marker and trigger recalculation of the path and elevation
+    function addMarker(latlng) {
+        reset();
+        marker = new google.maps.Marker({
+            position: latlng,
+            map: map,
+            draggable: true
+        })
+    }
+
+    // Set a callback to run when the Google Visualization API is loaded.
+    google.setOnLoadCallback(initialize);
+
+    function initialize() {
+        var myLatlng = new google.maps.LatLng(-34.598489887510254, -58.42017665505409);
+        var myOptions = {
+            zoom: 4,
+            center: myLatlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+
+        map = new google.maps.Map(document.getElementById("mapArgentinaGeneral"), myOptions);
+
+        google.maps.event.addListener(map, 'click', function (event) {
+            addMarker(event.latLng);
+        });
+    }
+
+    $(function () {
+        initialize();
+    });
+
+</script>
+
+@using (Ajax.BeginForm("Guardar", "Home", new AjaxOptions {
+    UpdateTargetId = "divResult",
+    InsertionMode = System.Web.Mvc.Ajax.InsertionMode.InsertAfter,
+    OnSuccess = "frmPosicionRicotera_success",
+    OnFailure = "frmPosicionRicotera_failure"
+}, 
+new { id = "frmPosicionRicotera" }))
+{
+    <table border="0" style="width:100%; height:100%; min-height: 800px;">
+    <tr>
+        <td rowspan="4" width="75%" >
+            @Html.HiddenFor(x => x.Latitud)
+            @Html.HiddenFor(x => x.Longitud)
+
+            <div id="mapArgentinaGeneral" style="width:100%; height:600px"></div>
+        </td>
+        <td width="25%" nowrap="nowrap">Nombre:<br />@Html.TextBoxFor(x => x.Nombre, new { style = "width:95%;" })</td>
+    </tr>
+    <tr><td>Comentarios:<br />@Html.TextAreaFor(x => x.Comentarios, new { style = "width:95%;" })</td></tr>
+    <tr><td style="text-align: right;"><input id="btnSubmit" type="button" value="Agregar" onclick="javascript: return btnSubmit_click();" /></td></tr>
+    <tr><td><div style="height:400px">@Html.ValidationSummary("")</div></td></tr>
+    </table>
+    <div id="divResult"></div>
+}
+
