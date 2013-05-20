@@ -308,6 +308,30 @@ namespace IndioMendoza2013.OrigenesDeDatos
         /// <summary>
         /// No hay documentación de metadatos disponible.
         /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String detalle
+        {
+            get
+            {
+                return _detalle;
+            }
+            set
+            {
+                OndetalleChanging(value);
+                ReportPropertyChanging("detalle");
+                _detalle = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("detalle");
+                OndetalleChanged();
+            }
+        }
+        private global::System.String _detalle;
+        partial void OndetalleChanging(global::System.String value);
+        partial void OndetalleChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Int32 id_zona

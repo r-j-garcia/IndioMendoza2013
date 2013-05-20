@@ -26,6 +26,15 @@
         );
     }
 
+    function MostrarDetalleBondiRicotero(id) {
+
+        $("#modalDetalleBondi").dialog({
+            title: 'aaaaaaaaaa',
+            resizable: false,
+            height: 160,
+            modal: true
+        });
+    }
 </script>
 <hr />
 @foreach (var item in Model)
@@ -35,6 +44,8 @@
     Zona: @item.Des_Zona, @item.Des_Provincia<br /><br />
     @item.Descripcion<br /><br />
     <a href="javascript:CompartirBondiRicotero('@item.Nombre', '@item.Des_Zona, @item.Des_Provincia', '@item.Descripcion');">Compartir</a>
+    <a href="javascript:MostrarDetalleBondiRicotero(@item.ID);">Detalle</a>
     <hr />
     </div>
 }
+<div id="modalDetalleBondi">asdasdasd</div>

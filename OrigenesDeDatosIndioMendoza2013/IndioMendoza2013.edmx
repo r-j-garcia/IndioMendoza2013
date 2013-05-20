@@ -33,7 +33,8 @@
           </Key>
           <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="descripcion" Type="varchar" MaxLength="1000" />
+          <Property Name="descripcion" Type="varchar" MaxLength="200" />
+          <Property Name="detalle" Type="varchar" MaxLength="1000" />
           <Property Name="id_zona" Type="int" Nullable="false" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
@@ -179,7 +180,8 @@
           </Key>
           <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="nombre" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="descripcion" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="descripcion" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="detalle" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="id_zona" Nullable="false" />
           <NavigationProperty Name="Zona" Relationship="IndioMendoza2013Model.FK_BondiRicotero_Zona" FromRole="BondiRicotero" ToRole="Zona" />
         </EntityType>
@@ -244,6 +246,7 @@
             <EntityTypeMapping TypeName="IndioMendoza2013Model.BondiRicotero">
               <MappingFragment StoreEntitySet="BondiRicotero">
                 <ScalarProperty Name="id_zona" ColumnName="id_zona" />
+                <ScalarProperty Name="detalle" ColumnName="detalle" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="id" ColumnName="id" />
@@ -279,7 +282,7 @@
           <ConnectorPoint PointX="2.25" PointY="5.047841796875" />
           <ConnectorPoint PointX="3" PointY="5.047841796875" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="IndioMendoza2013Model.BondiRicotero" Width="1.5" PointX="5.25" PointY="4" Height="1.9802864583333317" />
+        <EntityTypeShape EntityType="IndioMendoza2013Model.BondiRicotero" Width="1.5" PointX="5.25" PointY="3.875" Height="2.1725878906249996" />
         <AssociationConnector Association="IndioMendoza2013Model.FK_BondiRicotero_Zona" >
           <ConnectorPoint PointX="4.5" PointY="4.9901432291666659" />
           <ConnectorPoint PointX="5.25" PointY="4.9901432291666659" />

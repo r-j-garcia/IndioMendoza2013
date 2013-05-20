@@ -38,6 +38,12 @@ namespace IndioMendoza2013.Modelos
             set { this.bondiRicoteroDB.descripcion = value; }
         }
 
+        public string Detalle
+        {
+            get { return this.bondiRicoteroDB.detalle; }
+            set { this.bondiRicoteroDB.detalle = value; }
+        }
+
         public int Id_Zona
         {
             get { return this.bondiRicoteroDB.id_zona; }
