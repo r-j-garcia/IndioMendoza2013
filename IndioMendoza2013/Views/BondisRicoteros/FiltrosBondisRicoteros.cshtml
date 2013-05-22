@@ -14,6 +14,10 @@
                     var cboZonas = $('#id_zona');
                     cboZonas.empty();
                     cboZonas.removeAttr("disabled");
+                    cboZonas.append($('<option/>', {
+                        value: null,
+                        text: null
+                    }));
                     $.each(zonas, function (index, zona) {
                         cboZonas.append($('<option/>', {
                             value: zona.id,

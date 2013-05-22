@@ -17,10 +17,7 @@
           },
           function (response) {
               if (response && response.post_id) {
-                  alert('Post was published.');
                   self.close();
-              } else {
-                  alert('Post was not published.');
               }
           }
         );
@@ -28,12 +25,16 @@
 
     function MostrarDetalleBondiRicotero(id) {
 
-        $("#modalDetalleBondi").dialog({
-            title: 'aaaaaaaaaa',
-            resizable: false,
-            height: 160,
-            modal: true
+        $('#modalDetalleBondi').load('BondisRicoteros/DetalleBondi/' + id, function () {
+            $("#modalDetalleBondi").dialog({
+                title: 'Bondi Ricotero',
+                resizable: false,
+                height: 400,
+                width: 600,
+                modal: true
+            });
         });
+
     }
 </script>
 <hr />
@@ -48,4 +49,4 @@
     <hr />
     </div>
 }
-<div id="modalDetalleBondi">asdasdasd</div>
+<div id="modalDetalleBondi"></div>

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using IndioMendoza2013.Modelos;
 using System.Configuration;
 using IndioMendoza2013.Datos;
+using Facebook;
 
 namespace IndioMendoza2013.Controllers
 {
@@ -45,6 +46,54 @@ namespace IndioMendoza2013.Controllers
             var result = serv.GetBondisRicoteros(filtro);
 
             return PartialView("ResultadosBondisRicoteros", result);
+        }
+
+        public ActionResult Agregar()
+        {
+            if (Session["AccessToken"] != null)
+            {
+                var accessToken = Session["AccessToken"].ToString();
+                var client = new FacebookClient(accessToken);
+                dynamic result = client.Get("me", new { fields = "id" });
+
+                if (result.id == "100002979715059")
+                {
+                    var servUbicaciones = new UbicacionesService(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+
+                    var listaProvincias = new List<ParDeValores>(); // { new ParDeValores() { id = 0, descripcion = "Seleccionar.." } };
+                    listaProvincias.AddRange(servUbicaciones.GetProvincias().Select(x => new ParDeValores() { id = x.ID, descripcion = x.Descripcion }));
+
+                    ViewBag.ListProvincias = listaProvincias;
+                    ViewBag.ListZonas = new List<ParDeValores>(); // { new ParDeValores() { id = 0, descripcion = "Seleccionar.." } }
+
+                    return View();
+                }
+            }
+            return new EmptyResult();
+        }
+
+        public void AgregarBondi(modBondiRicotero bondi)
+        {
+            if (Session["AccessToken"] != null)
+            {
+                var accessToken = Session["AccessToken"].ToString();
+                var client = new FacebookClient(accessToken);
+                dynamic result = client.Get("me", new { fields = "id" });
+
+                if (result.id == "100002979715059")
+                {
+                    var serv = new BondisRicoterosService(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+                    serv.AgregarBondi(bondi);
+                }
+            }
+        }
+
+        public ActionResult DetalleBondi(int id)
+        {
+            var serv = new BondisRicoterosService(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+
+            var bondi = serv.GetBondiRicotero(id);
+            return PartialView(bondi);
         }
 
     }

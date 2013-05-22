@@ -52,5 +52,36 @@ namespace IndioMendoza2013.Datos
             }) ;
         }
 
+
+        public void AgregarBondi(modBondiRicotero bondi)
+        {
+            bd.AddToBondiRicotero(bondi.bondiRicoteroDB);
+            bd.SaveChanges();
+        }
+
+        public modBondiRicotero GetBondiRicotero(int id)
+        {
+            modBondiRicotero bondi = null;
+
+            var busqueda = (from br in bd.BondiRicotero
+                           join zona in bd.Zona on br.id_zona equals zona.id
+                           join provincia in bd.Provincia on zona.id_provincia equals provincia.id
+                           where br.id == id
+                           select new
+                           {
+                               entity = br,
+                               zona = zona,
+                               provincia = provincia
+                           }).FirstOrDefault();
+
+            if (busqueda != null)
+            {
+                bondi = new modBondiRicotero(busqueda.entity);
+                bondi.Des_Provincia = busqueda.provincia.descripcion;
+                bondi.Des_Zona = busqueda.zona.descripcion;
+            }
+
+            return bondi;
+        }
     }
 }
