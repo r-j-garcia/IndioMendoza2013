@@ -1,7 +1,50 @@
-﻿@{
+@{
     ViewBag.Title = "Index";
 }
+<script language="javascript" type="text/javascript">
 
-<div style="width:100%; min-height: 800px;">
+    function btnSubmit_click() {
 
-</div>
+    }
+
+    function frmContacto_success() {
+
+    }
+
+    function frmContacto_failure() {
+
+    }
+
+</script>
+@using (Ajax.BeginForm("Enviar", "Contacto", new AjaxOptions
+{
+    UpdateTargetId = "divResultados",
+    InsertionMode = System.Web.Mvc.Ajax.InsertionMode.Replace,
+    OnSuccess = "frmContacto_success",
+    OnFailure = "frmContacto_failure"
+},
+new { id = "frmContacto" }))
+{
+    <div style="width:100%; min-height: 800px;">
+    <table>
+    <tr>
+        <td>Nombre:</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Contacto:</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Consulta:</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>
+            <input id="btnSubmit" type="button" style="font-size:large; font-weight:bold;" value="Agregar" onclick="javascript: return btnSubmit_click();" />
+        </td>
+    </tr>
+    </table>
+    </div>
+    <div id="divResultados"></div>
+}

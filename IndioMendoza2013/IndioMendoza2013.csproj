@@ -75,6 +75,11 @@
   <ItemGroup>
     <Content Include="Content\images\bx_loader.gif" />
     <Content Include="Content\images\controls.png" />
+    <Content Include="Content\img\botones\add_button.jpg" />
+    <Content Include="Content\img\botones\Botonera-Completa-hover.png" />
+    <Content Include="Content\img\botones\Botonera-Completa.png" />
+    <Content Include="Content\img\botones\btnInicio1.png" />
+    <Content Include="Content\img\botones\btnInicio2.png" />
     <Content Include="Content\img\flyer indio mendoza 2013 2.jpg" />
     <Content Include="Content\img\flyer indio mendoza 2013.jpg" />
     <Content Include="Content\img\Banner-MapaRicotero.png" />
@@ -90,6 +95,7 @@
     <Content Include="Content\img\Indio-Misa-Ricotera.jpg" />
     <Content Include="Content\img\IndioMendozaSeptiembre2013.jpg" />
     <Content Include="Content\img\PR-ICON.png" />
+    <Content Include="Content\img\fondo-entradas.png" />
     <Content Include="Content\img\search.png" />
     <Content Include="Content\SiteBlanco.css" />
     <Content Include="Content\SiteNegro.css" />
@@ -204,6 +210,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\BondisRicoteros\DetalleBondi.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\BondisRicoteros\AgregarProvincia.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\BondisRicoteros\AgregarZona.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

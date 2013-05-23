@@ -1,6 +1,7 @@
 ﻿body 
 {
     background-color:Gray;
+    background-image: url('/Content/img/fondo-entradas.png');
 }
 
 #main 
@@ -23,4 +24,63 @@
     background-image: url('/Content/img/Indio-Mendoza2013-Header-Blanco.png');
     background-repeat: no-repeat;
     height: 110px;
+}
+
+/* Buttons */
+.botonera 
+{
+    margin-left:-40px;
+}
+.botonera a
+{
+    background: url('/Content/img/botones/Botonera-Completa.png') no-repeat top left;
+    display: block;
+    text-indent: -9999px; /* hides the link text */
+}
+.botonera a:hover
+{
+    background: url('/Content/img/botones/Botonera-Completa-hover.png') no-repeat top left;
+    text-indent: -9999px; /* hides the link text */
+}
+.botonInicio
+{
+    background-position: 0px 0px;
+    width: 65px;
+    height: 40px;
+}
+.botonDondeEs
+{
+    background-position: -68px 0px !important;
+    width: 127px;
+    height: 40px;
+}
+.botonComoLlegar
+{
+    background-position: -197px 0px !important;
+    width: 155px;
+    height: 40px;
+}
+.botonDondeComprar
+{
+    background-position: -356px 0px !important;
+    width: 190px;
+    height: 40px;
+}
+.botonMapaRicotero
+{
+    background-position: -546px 0px !important;
+    width: 164px;
+    height: 40px;
+}
+.botonBondisRicoteros
+{
+    background-position: -712px 0px !important;
+    width: 178px;
+    height: 40px;
+}
+.botonContacto
+{
+    background-position: -890px 0px !important;
+    width: 104px;
+    height: 40px;
 }

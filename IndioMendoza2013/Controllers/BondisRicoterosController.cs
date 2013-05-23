@@ -96,5 +96,15 @@ namespace IndioMendoza2013.Controllers
             return PartialView(bondi);
         }
 
+        public ActionResult AgregarProvincia()
+        {
+            return PartialView();
+        }
+
+        public ActionResult AgregarZona()
+        {
+            return PartialView();
+        }
+
     }
 }

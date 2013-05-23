@@ -39,6 +39,30 @@
         });
     });
 
+    function AgregarProvincia() {
+        $('#modalAgregarProvincia').load('BondisRicoteros/AgregarProvincia/', function () {
+            $("#modalAgregarProvincia").dialog({
+                title: 'Agregar Provincia',
+                resizable: false,
+                height: 400,
+                width: 600,
+                modal: true
+            });
+        });
+    }
+
+    function AgregarZona() {
+        $('#modalAgregarZona').load('BondisRicoteros/AgregarZona/', function () {
+            $("#modalAgregarZona").dialog({
+                title: 'Agregar Zona',
+                resizable: false,
+                height: 400,
+                width: 600,
+                modal: true
+            });
+        });
+    }
+
 </script>
 
      
@@ -66,7 +90,7 @@ new { id = "frmAgregarBondisRicoteros" }))
             Provincia:
         </td>
         <td>
-            @Html.DropDownList("id_provincia", new SelectList(ViewBag.ListProvincias, "id", "descripcion"), string.Empty, new { style = "width: 300px" })
+            @Html.DropDownList("id_provincia", new SelectList(ViewBag.ListProvincias, "id", "descripcion"), string.Empty, new { style = "width: 300px" }) <img onclick="javascript:AgregarProvincia();" style="cursor:pointer;" src="/Content/img/botones/add_button.jpg" width="16px"/>
         </td>
     </tr>
     <tr>
@@ -74,8 +98,9 @@ new { id = "frmAgregarBondisRicoteros" }))
             Zona:
         </td>
         <td>
-            @Html.DropDownListFor(x => x.Id_Zona, new SelectList(ViewBag.ListZonas, "id", "descripcion"), string.Empty, new { style = "width: 300px", disabled = "disabled" })
+            @Html.DropDownListFor(x => x.Id_Zona, new SelectList(ViewBag.ListZonas, "id", "descripcion"), string.Empty, new { style = "width: 300px", disabled = "disabled" }) <img onclick="javascript:AgregarZona();" style="cursor:pointer;" src="/Content/img/botones/add_button.jpg" width="16px"/>
         </td>
+        
     </tr>
     <tr>
         <td>
@@ -102,3 +127,10 @@ new { id = "frmAgregarBondisRicoteros" }))
     </div>
     <div id="divResultados"></div>
 }
+<div id="modalAgregarProvincia">
+
+</div>
+
+<div id="modalAgregarZona">
+
+</div>

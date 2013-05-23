@@ -7,8 +7,8 @@
 {
     display: inline;
     list-style-type: none;
-    padding-right: 20px;
     color: White;
+    float: left;
 }
 </style>
 <script type="text/javascript" language="javascript">
@@ -46,14 +46,14 @@
 </tr>
 <tr>
     <td colspan="2">
-        <ul class="menu-horizontal">
-            <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-            <li>@Html.ActionLink("¿Dónde es?", "DondeEs", "Info")</li>
-            <li>@Html.ActionLink("¿Cómo llegar?", "ComoLlegar", "Info")</li>
-            <li>@Html.ActionLink("¿Dónde comprar?", "DondeComprar", "Info")</li>
-            <li>@Html.ActionLink("Mapa Ricotero", "Index", "MapaRicotero")</li>
-            <li>@Html.ActionLink("Bondis Ricoteros", "Index", "BondisRicoteros")</li>
-            <li>@Html.ActionLink("Contactos", "Index", "Contacto")</li>
+        <ul class="menu-horizontal botonera">
+            <li>@Html.ActionLink("Inicio", "Index", "Home",null, new { @class = "botonInicio" })</li>
+            <li>@Html.ActionLink("¿Dónde es?", "DondeEs", "Info",null, new { @class = "botonDondeEs" })</li>
+            <li>@Html.ActionLink("¿Cómo llegar?", "ComoLlegar", "Info",null, new { @class = "botonComoLlegar" })</li>
+            <li>@Html.ActionLink("¿Dónde comprar?", "DondeComprar", "Info",null, new { @class = "botonDondeComprar" })</li>
+            <li>@Html.ActionLink("Mapa Ricotero", "Index", "MapaRicotero",null, new { @class = "botonMapaRicotero" })</li>
+            <li>@Html.ActionLink("Bondis Ricoteros", "Index", "BondisRicoteros",null, new { @class = "botonBondisRicoteros" })</li>
+            <li>@Html.ActionLink("Contactos", "Index", "Contacto",null, new { @class = "botonContacto" })</li>
         </ul>
     </td>
 </tr>
