@@ -1,0 +1,25 @@
+﻿@using IndioMendoza2013.Modelos
+@model IEnumerable<modContacto>
+
+<table>
+@foreach (var item in Model)
+{
+
+    <tr>
+        <td width="5%" rowspan="3">
+            @Html.CheckBox("chkLeido_" + item.ID, new { @class = "chkContactos" })
+        </td>
+        <td width="95%"><b>@item.Nombre</b></td>
+    </tr>
+    <tr>
+        <td><i>@item.Contacto</i></td>
+    </tr>
+    <tr>
+        <td><b>Consulta:</b>@item.Consulta <hr /></td>
+    </tr>
+    
+}
+    </table>
+<div>
+    <input id="btnSubmit" type="button" style="font-size:large; font-weight:bold;" value="Marcar como leidas" onclick="javascript: return marcarComoLeidos();" />
+</div>

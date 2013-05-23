@@ -1,18 +1,21 @@
+@using IndioMendoza2013.Modelos
+@model modContacto
 @{
     ViewBag.Title = "Index";
 }
 <script language="javascript" type="text/javascript">
 
     function btnSubmit_click() {
-
+        $("#frmContacto").submit();
     }
 
     function frmContacto_success() {
-
+        alert('Su consulta ha sido enviada.');
+        document.location = '@Url.Action( "Index", "Contacto" )';
     }
 
-    function frmContacto_failure() {
-
+    function frmContacto_failure(error) {
+        alert($(error.response)[1].innerHTML);
     }
 
 </script>
@@ -29,19 +32,19 @@ new { id = "frmContacto" }))
     <table>
     <tr>
         <td>Nombre:</td>
-        <td></td>
+        <td>@Html.TextBoxFor(x => x.Nombre, new { style = "width: 600px;" })</td>
     </tr>
     <tr>
         <td>Contacto:</td>
-        <td></td>
+        <td>@Html.TextBoxFor(x => x.Contacto, new { style = "width: 600px;" })</td>
     </tr>
     <tr>
         <td>Consulta:</td>
-        <td></td>
+        <td>@Html.TextAreaFor(x => x.Consulta, new { style = "width: 600px; height: 100px;" })</td>
     </tr>
     <tr>
-        <td>
-            <input id="btnSubmit" type="button" style="font-size:large; font-weight:bold;" value="Agregar" onclick="javascript: return btnSubmit_click();" />
+        <td colspan="2" style="text-align:center;">
+            <input id="btnSubmit" type="button" style="font-size:large; font-weight:bold;" value="Enviar" onclick="javascript: return btnSubmit_click();" />
         </td>
     </tr>
     </table>

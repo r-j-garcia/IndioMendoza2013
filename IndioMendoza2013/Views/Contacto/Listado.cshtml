@@ -1,0 +1,61 @@
+﻿@using IndioMendoza2013.Modelos
+@model FiltroContacto
+@{
+    ViewBag.Title = "Index";
+}
+<script language="javascript" type="text/javascript">
+
+    function frmListadoContactos_success() {
+
+    }
+
+    function frmListadoContactos_failure(error) {
+        alert($(error.response)[1].innerHTML);
+    }
+
+    function marcarComoLeidos() {
+        var lstIds = new Array();
+        var index = 0;
+        $.each($(".chkContactos:checked"), function (id, item) {
+            lstIds[index++] = parseInt($(item).attr("id").substring(9));
+        });
+        $.ajax({
+            type: "POST",
+            data: { lst: lstIds },
+            datatype: "json",
+            traditional: true,
+            url: "/Contacto/MarcarComoLeidos",
+            success: function (data) {
+                document.location = '@Url.Action( "Listado", "Contacto" )';
+            }
+        })
+    }
+
+</script>
+
+@using (Ajax.BeginForm("ResultadoContacto", "Contacto", new AjaxOptions
+{
+    UpdateTargetId = "divResultados",
+    InsertionMode = System.Web.Mvc.Ajax.InsertionMode.Replace,
+    OnSuccess = "frmListadoContactos_success",
+    OnFailure = "frmListadoContactos_failure"
+},
+new { id = "frmListadoContactos" }))
+{
+    <div style="width:100%; height:100%; min-height: 800px;">
+    <table width="100%" cellpadding="5px">
+    <tr>
+        <td>
+            <div id="divFiltrosBondisRicoteros">
+                @Html.Partial("FiltroContacto", Model)
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div id="divResultados">@Html.Action("ResultadoContacto", "Contacto", Model)</div>
+        </td>
+    </tr>
+    </table>
+    </div>
+}

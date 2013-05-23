@@ -17,6 +17,7 @@ namespace IndioMendoza2013.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.MenuSeleccionado = "BONDI";
             //Falta instanciar el servicio correctamente
             var servUbicaciones = new UbicacionesService(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
 
@@ -50,6 +51,11 @@ namespace IndioMendoza2013.Controllers
 
         public ActionResult Agregar()
         {
+            bool permiteAcceso = false;
+            Boolean debug = Boolean.Parse(ConfigurationManager.AppSettings["debug"]);
+
+            permiteAcceso = debug;
+
             if (Session["AccessToken"] != null)
             {
                 var accessToken = Session["AccessToken"].ToString();
@@ -58,16 +64,21 @@ namespace IndioMendoza2013.Controllers
 
                 if (result.id == "100002979715059")
                 {
-                    var servUbicaciones = new UbicacionesService(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
-
-                    var listaProvincias = new List<ParDeValores>(); // { new ParDeValores() { id = 0, descripcion = "Seleccionar.." } };
-                    listaProvincias.AddRange(servUbicaciones.GetProvincias().Select(x => new ParDeValores() { id = x.ID, descripcion = x.Descripcion }));
-
-                    ViewBag.ListProvincias = listaProvincias;
-                    ViewBag.ListZonas = new List<ParDeValores>(); // { new ParDeValores() { id = 0, descripcion = "Seleccionar.." } }
-
-                    return View();
+                    permiteAcceso = true;
                 }
+            }
+
+            if (permiteAcceso)
+            {
+                var servUbicaciones = new UbicacionesService(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+
+                var listaProvincias = new List<ParDeValores>(); // { new ParDeValores() { id = 0, descripcion = "Seleccionar.." } };
+                listaProvincias.AddRange(servUbicaciones.GetProvincias().Select(x => new ParDeValores() { id = x.ID, descripcion = x.Descripcion }));
+
+                ViewBag.ListProvincias = listaProvincias;
+                ViewBag.ListZonas = new List<ParDeValores>(); // { new ParDeValores() { id = 0, descripcion = "Seleccionar.." } }
+
+                return View();
             }
             return new EmptyResult();
         }
@@ -101,9 +112,27 @@ namespace IndioMendoza2013.Controllers
             return PartialView();
         }
 
+        public void GuardarProvincia(modProvincia model)
+        {
+            var servUbicaciones = new UbicacionesService(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            servUbicaciones.AddProvincia(model);
+        }
+
         public ActionResult AgregarZona()
         {
+            var servUbicaciones = new UbicacionesService(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            var listaProvincias = new List<ParDeValores>(); 
+            listaProvincias.AddRange(servUbicaciones.GetProvincias().Select(x => new ParDeValores() { id = x.ID, descripcion = x.Descripcion }));
+
+            ViewBag.ListProvincias = listaProvincias;
+
             return PartialView();
+        }
+
+        public void GuardarZona(modZona model)
+        {
+            var servUbicaciones = new UbicacionesService(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            servUbicaciones.AddZona(model);
         }
 
     }

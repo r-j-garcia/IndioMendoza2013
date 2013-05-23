@@ -13,16 +13,19 @@ namespace IndioMendoza2013.Controllers
 
         public ActionResult DondeEs()
         {
+            ViewBag.MenuSeleccionado = "DONDEES";
             return View();
         }
 
         public ActionResult ComoLlegar()
         {
+            ViewBag.MenuSeleccionado = "COMOLLEGAR";
             return View();
         }
 
         public ActionResult DondeComprar()
         {
+            ViewBag.MenuSeleccionado = "DONDECOMPRAR";
             return View();
         }
 

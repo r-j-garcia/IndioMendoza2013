@@ -150,6 +150,22 @@ namespace IndioMendoza2013.OrigenesDeDatos
             }
         }
         private ObjectSet<BondiRicotero> _BondiRicotero;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        public ObjectSet<Contacto> Contacto
+        {
+            get
+            {
+                if ((_Contacto == null))
+                {
+                    _Contacto = base.CreateObjectSet<Contacto>("Contacto");
+                }
+                return _Contacto;
+            }
+        }
+        private ObjectSet<Contacto> _Contacto;
 
         #endregion
         #region Métodos AddTo
@@ -192,6 +208,14 @@ namespace IndioMendoza2013.OrigenesDeDatos
         public void AddToBondiRicotero(BondiRicotero bondiRicotero)
         {
             base.AddObject("BondiRicotero", bondiRicotero);
+        }
+    
+        /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet Contacto. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToContacto(Contacto contacto)
+        {
+            base.AddObject("Contacto", contacto);
         }
 
         #endregion
@@ -396,6 +420,165 @@ namespace IndioMendoza2013.OrigenesDeDatos
         }
 
         #endregion
+    }
+    
+    /// <summary>
+    /// No hay documentación de metadatos disponible.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="IndioMendoza2013Model", Name="Contacto")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Contacto : EntityObject
+    {
+        #region Método de generador
+    
+        /// <summary>
+        /// Crear un nuevo objeto Contacto.
+        /// </summary>
+        /// <param name="id">Valor inicial de la propiedad id.</param>
+        /// <param name="nombre">Valor inicial de la propiedad nombre.</param>
+        /// <param name="contacto1">Valor inicial de la propiedad contacto1.</param>
+        /// <param name="consulta">Valor inicial de la propiedad consulta.</param>
+        /// <param name="leido">Valor inicial de la propiedad leido.</param>
+        public static Contacto CreateContacto(global::System.Int32 id, global::System.String nombre, global::System.String contacto1, global::System.String consulta, global::System.Boolean leido)
+        {
+            Contacto contacto = new Contacto();
+            contacto.id = id;
+            contacto.nombre = nombre;
+            contacto.contacto1 = contacto1;
+            contacto.consulta = consulta;
+            contacto.leido = leido;
+            return contacto;
+        }
+
+        #endregion
+        #region Propiedades primitivas
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (_id != value)
+                {
+                    OnidChanging(value);
+                    ReportPropertyChanging("id");
+                    _id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("id");
+                    OnidChanged();
+                }
+            }
+        }
+        private global::System.Int32 _id;
+        partial void OnidChanging(global::System.Int32 value);
+        partial void OnidChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String nombre
+        {
+            get
+            {
+                return _nombre;
+            }
+            set
+            {
+                OnnombreChanging(value);
+                ReportPropertyChanging("nombre");
+                _nombre = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("nombre");
+                OnnombreChanged();
+            }
+        }
+        private global::System.String _nombre;
+        partial void OnnombreChanging(global::System.String value);
+        partial void OnnombreChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String contacto1
+        {
+            get
+            {
+                return _contacto1;
+            }
+            set
+            {
+                Oncontacto1Changing(value);
+                ReportPropertyChanging("contacto1");
+                _contacto1 = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("contacto1");
+                Oncontacto1Changed();
+            }
+        }
+        private global::System.String _contacto1;
+        partial void Oncontacto1Changing(global::System.String value);
+        partial void Oncontacto1Changed();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String consulta
+        {
+            get
+            {
+                return _consulta;
+            }
+            set
+            {
+                OnconsultaChanging(value);
+                ReportPropertyChanging("consulta");
+                _consulta = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("consulta");
+                OnconsultaChanged();
+            }
+        }
+        private global::System.String _consulta;
+        partial void OnconsultaChanging(global::System.String value);
+        partial void OnconsultaChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean leido
+        {
+            get
+            {
+                return _leido;
+            }
+            set
+            {
+                OnleidoChanging(value);
+                ReportPropertyChanging("leido");
+                _leido = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("leido");
+                OnleidoChanged();
+            }
+        }
+        private global::System.Boolean _leido;
+        partial void OnleidoChanging(global::System.Boolean value);
+        partial void OnleidoChanged();
+
+        #endregion
+    
     }
     
     /// <summary>

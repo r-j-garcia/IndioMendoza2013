@@ -1,6 +1,41 @@
-﻿@{
-    ViewBag.Title = "AgregarProvincia";
+﻿@using IndioMendoza2013.Modelos
+@model modProvincia
+
+<script language="javascript" type="text/javascript">
+
+    function btnSubmit_click() {
+        $("#frmProvincia").submit();
+    }
+
+    function frmProvincia_success() {
+        alert('Provincia Agregada Correctamente');
+        document.location = '@Url.Action( "Agregar", "BondisRicoteros" )';
+    }
+
+    function frmProvincia_failure(error) {
+        alert($(error.response)[1].innerHTML);
+    }
+
+</script>
+@using (Ajax.BeginForm("GuardarProvincia", "BondisRicoteros", new AjaxOptions
+{
+    UpdateTargetId = "divResultados",
+    InsertionMode = System.Web.Mvc.Ajax.InsertionMode.Replace,
+    OnSuccess = "frmProvincia_success",
+    OnFailure = "frmProvincia_failure"
+},
+new { id = "frmProvincia" }))
+{
+    <table width="100%">
+    <tr>
+        <td>Nombre:</td>
+        <td>@Html.TextBoxFor(x => x.Descripcion)</td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <input id="btnSubmit" type="button" style="font-size:large; font-weight:bold;" value="Enviar" onclick="javascript: return btnSubmit_click();" />
+        </td>
+    </tr>
+    </table>
+    <div id="divResultados"></div>
 }
-
-<h2>AgregarProvincia</h2>
-

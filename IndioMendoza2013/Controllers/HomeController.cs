@@ -7,7 +7,6 @@ using IndioMendoza2013.Datos;
 using System.Configuration;
 using IndioMendoza2013.Modelos;
 using Facebook;
-using ModelosIndioMendoza2013.Modelos;
 
 namespace IndioMendoza2013.Controllers
 {
@@ -18,6 +17,7 @@ namespace IndioMendoza2013.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.MenuSeleccionado = "HOME";
             return View();
         }
 

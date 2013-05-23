@@ -1,0 +1,23 @@
+﻿@using IndioMendoza2013.Modelos
+@model FiltroContacto
+
+<script type="text/javascript">
+
+    function btnSubmit_click() {
+        $("#frmListadoContactos").submit();
+    }
+</script>
+<fieldset>
+<legend>Búsqueda</legend>
+    <table width="100%" border="0">
+    <tr>
+        <td width="5%">Nombre:</td>
+        <td width="25%">@Html.TextBoxFor(x => x.Nombre, new { style = "width: 250px" })</td>
+        <td width="5%">Contacto:</td>
+        <td width="25%">@Html.TextBoxFor(x => x.Contacto, new { style = "width: 250px" })</td>
+        <td width="5%">Leido:</td>
+        <td width="25%">@Html.EditorFor(x => x.Leido)</td>
+        <td width="30%"><input class="buttonSearch" id="btnSubmit" type="button" value="Buscar" onclick="javascript: return btnSubmit_click();" /></td>
+    </tr>
+    </table>
+</fieldset>

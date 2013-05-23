@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BondisRicoterosService.cs" />
+    <Compile Include="ContactoService.cs" />
     <Compile Include="NoticiasService.cs" />
     <Compile Include="PosicionesRicoterasService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

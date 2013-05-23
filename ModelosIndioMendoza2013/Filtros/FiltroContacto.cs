@@ -5,9 +5,10 @@ using System.Text;
 
 namespace IndioMendoza2013.Modelos
 {
-    public class modFacebookInfo
+    public class FiltroContacto
     {
         public string Nombre { get; set; }
-        public string Link { get; set; }
+        public string Contacto { get; set; }
+        public Boolean? Leido { get; set; }
     }
 }

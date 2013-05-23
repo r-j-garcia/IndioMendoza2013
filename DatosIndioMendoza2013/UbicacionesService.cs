@@ -31,5 +31,37 @@ namespace IndioMendoza2013.Datos
 
             return busqueda;
         }
+
+        public IEnumerable<modZona> GetZonas()
+        {
+            var busqueda = from z in bd.Zona
+                           select new modZona() { zonaDB = z }
+                           ;
+
+            return busqueda;
+        }
+
+        public void AddProvincia(modProvincia model)
+        {
+            var id = (from z in bd.Provincia
+                     orderby z.id descending
+                     select z.id + 1).FirstOrDefault();
+
+            model.ID = id;
+
+            bd.AddToProvincia(model.provinciaDB);
+            bd.SaveChanges();
+        }
+
+        public void AddZona(modZona model)
+        {
+            var id = (from z in bd.Zona
+                      orderby z.id descending
+                      select z.id + 1).FirstOrDefault();
+
+            model.ID = id;
+            bd.AddToZona(model.zonaDB);
+            bd.SaveChanges();
+        }
     }
 }

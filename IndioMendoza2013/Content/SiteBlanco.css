@@ -42,6 +42,13 @@
     background: url('/Content/img/botones/Botonera-Completa-hover.png') no-repeat top left;
     text-indent: -9999px; /* hides the link text */
 }
+
+.botoneraSelected
+{
+    background: url('/Content/img/botones/Botonera-Completa-Selected.PNG') no-repeat top left !important;
+    text-indent: -9999px; /* hides the link text */
+}
+
 .botonInicio
 {
     background-position: 0px 0px;

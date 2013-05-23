@@ -18,6 +18,7 @@ namespace IndioMendoza2013.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.MenuSeleccionado = "MAPA";
             return View("MapaCompleto");
         }
 
