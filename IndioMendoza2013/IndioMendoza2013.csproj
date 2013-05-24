@@ -75,6 +75,9 @@
   <ItemGroup>
     <Content Include="Content\images\bx_loader.gif" />
     <Content Include="Content\images\controls.png" />
+    <Content Include="Content\img\AerolineasArgentinasLogo.png" />
+    <Content Include="Content\img\Boton-AerolineasArgentinas.png" />
+    <Content Include="Content\img\Boton-Plataforma10.png" />
     <Content Include="Content\img\botones\add_button.jpg" />
     <Content Include="Content\img\botones\Botonera-Completa-hover.jpg" />
     <Content Include="Content\img\botones\Botonera-Completa-Selected.jpg" />
@@ -96,8 +99,10 @@
     <Content Include="Content\img\Indio-Mendoza2013-Header-Negro.png" />
     <Content Include="Content\img\Indio-Misa-Ricotera.jpg" />
     <Content Include="Content\img\IndioMendozaSeptiembre2013.jpg" />
+    <Content Include="Content\img\NoLeQuieroHacerPublicadAPlataforma10.png" />
     <Content Include="Content\img\PR-ICON.png" />
     <Content Include="Content\img\fondo-entradas.png" />
+    <Content Include="Content\img\PropagandaAerolineasArgentinas.jpg" />
     <Content Include="Content\img\search.png" />
     <Content Include="Content\SiteBlanco.css" />
     <Content Include="Content\SiteNegro.css" />
@@ -118,6 +123,7 @@
     <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
     <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Content\jquery.bxslider.css" />
+    <Content Include="Scripts\bsn.AutoSuggest_c_2.0.js" />
     <Content Include="Scripts\jquery.bxslider.js" />
     <Content Include="Scripts\jquery.bxslider.min.js" />
     <Content Include="Scripts\plugins\jquery.easing.1.3.js" />

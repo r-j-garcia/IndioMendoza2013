@@ -1,19 +1,100 @@
 ﻿@{
     ViewBag.Title = "ComoLlegar";
 }
+<script language="javascript" type="text/javascript">
 
+    function frmRuta0_submit() {
+        $("#frmRuta0").submit();
+    }
+</script>
 <div style="width:100%; height:100%; min-height: 800px;">
-    <table>
-    <tr>
-        <td style="padding-left:15px;">
-            <div style="font-size: medium; font-weight: bold">Proximamente...</div>
-        </td>
-    </tr>
-    <tr>
-        <td style="text-align:center">
-            <hr />
-            <div class="fb-comments" data-href="http://localhost:36364/Info/ComoLlegar" data-width="950" data-num-posts="10"></div>
-        </td>
-    </tr>
-    </table>
+    <div  style="padding-left:15px;padding-right:30px;">
+        <table width="100%">
+        <tr>
+            <td width="10%">
+                 <b>Dirección:</b>
+            </td>
+            <td width="90%">
+                San Francisco De Asis y Boulogne<br />
+                Mendoza<br />
+                Mendoza, Argentina<br /><br /><br />
+            </td>
+        </tr>
+        <tr>
+            <td style="border-bottom: 1px solid #B4B5B0; background-color: #EEEEEE; font-size:medium;" colspan="2"><b>EN AUTO</b></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <table width="100%">
+                <tr>
+                    <td width="40%">
+                        Ponés la localidad de partida, la de llegada y listo! Ruta0 te muestra distancias totales, parciales, rutas alternativas, <a href="estaciones_gnc.aspx">estaciones de GNC</a>, costo de los peajes y fotos y recomendaciones para tu próximo viaje.
+                    </td>
+                    <td width="20%"><img src="http://ruta0.biz/pix/la-mejor-ruta.gif" alt="BUSCADOR DE RUTAS ARGENTINAS" width="194" height="75" border="0"></td>
+                    <td width="20%">
+	                    <form target="_blank" id="frmRuta0" class="asholder" name="fla" action="http://www.ruta0.com/rutas_argentinas.aspx">
+		                    <input name="d1" type="text" id="d1" value="Desde" size="25" style="width:192px;" onclick="if(this.value=='Desde')this.value='';" onblur="if(this.value=='')this.value='Desde';" autocomplete="off">
+		                    <input readonly="readonly" value="Mendoza" name="h1" type="text" id="h1" value="Hasta" size="25" style="width:192px;" onclick="if(this.value=='Hasta')this.value='';" onblur="if(this.value=='')this.value='Hasta';" autocomplete="off">
+		                    <select name="tipo" style="width:192px;">
+		                    <option value="1">Ruta recomendada (prefiere autopistas y caminos en buen estado)</option>
+		                    <option value="2">Ruta mas corta en km (aunque pase por ripio y caminos en mal estado)</option>
+		                    <option value="3">Optimizar para GNC (prefiere atraversar ciudades que cuenten con expendio de GNC)</option></select>
+                            <input type="hidden" name="desde" id="desde"><input type="hidden" value="66" name="hasta" id="hasta">
+		                    <input type="hidden" name="tipoq" value="1">
+                        </form>
+                    </td>
+                    <td width="20%">
+                        <input type="button" onclick="frmRuta0_submit();" value="Buscar rutas">
+                    </td>
+                </tr>
+                </table>
+                <br /><br />
+            </td>
+        </tr>
+        <tr>
+            <td style="border-bottom: 1px solid #B4B5B0;background-color: #EEEEEE;font-size:medium;" colspan="2"><b>EN COLECTIVO</b></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <table width="100%">
+                <tr>
+                    <td width="50%">
+                        <img src="/Content/img/NoLeQuieroHacerPublicadAPlataforma10.png" />
+                    </td>
+                    <td width="50%" style="vertical-align: middle;">
+                        <a target="_blank" href="http://www.plataforma10.com/Servicios#buscar/_/315/_/0"><img src="/Content/img/Boton-Plataforma10.png" /></a>
+                    </td>
+                </tr>
+                </table>
+                <br /><br />
+            </td>
+        </tr>
+        <tr>
+            <td style="border-bottom: 1px solid #B4B5B0;background-color: #EEEEEE;font-size:medium;" colspan="2"><b>EN AVIÓN</b></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <table width="100%">
+                <tr>
+                    <td width="30%">
+                        <img src="/Content/img/AerolineasArgentinasLogo.png" />
+                    </td>
+                    <td width="30%">
+                        <img src="/Content/img/PropagandaAerolineasArgentinas.jpg" />
+                    </td>
+                    <td width="40%" style="vertical-align: middle;">
+                        <a target="_blank" href="http://www.aerolineas.com.ar/arg/main.asp?idSitio=AR&idPagina=110&idIdioma=es&destino=MDZ"><img src="/Content/img/Boton-AerolineasArgentinas.png" /></a>
+                    </td>
+                </tr>
+                </table>
+                <br /><br />
+            </td>
+        </tr>
+        </table>
+    </div>
+    <br /><br /><br /><br />
+    <hr />
+    <div style="text-align:center;">
+        <div class="fb-comments" data-href="http://localhost:36364/Info/ComoLlegar" data-width="950" data-num-posts="10"></div>
+    </div>
 </div>
