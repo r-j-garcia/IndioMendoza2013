@@ -76,9 +76,9 @@
     <Content Include="Content\images\bx_loader.gif" />
     <Content Include="Content\images\controls.png" />
     <Content Include="Content\img\botones\add_button.jpg" />
-    <Content Include="Content\img\botones\Botonera-Completa-hover.png" />
-    <Content Include="Content\img\botones\Botonera-Completa-Selected.PNG" />
-    <Content Include="Content\img\botones\Botonera-Completa.png" />
+    <Content Include="Content\img\botones\Botonera-Completa-hover.jpg" />
+    <Content Include="Content\img\botones\Botonera-Completa-Selected.jpg" />
+    <Content Include="Content\img\botones\Botonera-Completa.jpg" />
     <Content Include="Content\img\botones\btnInicio1.png" />
     <Content Include="Content\img\botones\btnInicio2.png" />
     <Content Include="Content\img\flyer indio mendoza 2013 2.jpg" />
