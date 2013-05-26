@@ -99,10 +99,14 @@
     <Content Include="Content\img\Indio-Mendoza2013-Header-Negro.png" />
     <Content Include="Content\img\Indio-Misa-Ricotera.jpg" />
     <Content Include="Content\img\IndioMendozaSeptiembre2013.jpg" />
+    <Content Include="Content\img\Mapa-Ricotero.jpg" />
     <Content Include="Content\img\NoLeQuieroHacerPublicadAPlataforma10.png" />
     <Content Include="Content\img\PR-ICON.png" />
     <Content Include="Content\img\fondo-entradas.png" />
     <Content Include="Content\img\PropagandaAerolineasArgentinas.jpg" />
+    <Content Include="Content\img\Noticia1.png" />
+    <Content Include="Content\img\Noticia2.png" />
+    <Content Include="Content\img\Noticia3.png" />
     <Content Include="Content\img\search.png" />
     <Content Include="Content\SiteBlanco.css" />
     <Content Include="Content\SiteNegro.css" />
