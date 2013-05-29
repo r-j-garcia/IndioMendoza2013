@@ -15,8 +15,8 @@
 
     function btnSubmit_click() {
         if (marker != null) {
-            $("#frmPosicionRicotera #Latitud").val(parseFloat(marker.position.kb));
-            $("#frmPosicionRicotera #Longitud").val(parseFloat(marker.position.lb));
+            $("#frmPosicionRicotera #Latitud").val(parseFloat(marker.position.lat()));
+            $("#frmPosicionRicotera #Longitud").val(parseFloat(marker.position.lng()));
             $("#frmPosicionRicotera").submit();
         }
         else {
