@@ -25,22 +25,29 @@
 },
 new { id = "frmContacto" }))
 {
-    <div style="width:100%; min-height: 800px;">
-    <table>
+    <div style="width:100%; min-height: 640px;" id="contactoContent">
+    <table width="100%">
     <tr>
-        <td>Nombre:</td>
-        <td>@Html.TextBoxFor(x => x.Nombre, new { style = "width: 600px;" })</td>
+        <td style="height: 100px;">&nbsp;</td>
+    </tr>
+    
+    <tr>
+        <th rowspan="5" style="width: 50%;">&nbsp;</th>
     </tr>
     <tr>
-        <td>Contacto:</td>
-        <td>@Html.TextBoxFor(x => x.Contacto, new { style = "width: 600px;" })</td>
+        <td style="width: 10%;">Nombre:</td>
+        <td style="width: 40%;">@Html.TextBoxFor(x => x.Nombre, new { style = "width: 400px;" })</td>
     </tr>
     <tr>
-        <td>Consulta:</td>
-        <td>@Html.TextAreaFor(x => x.Consulta, new { style = "width: 600px; height: 100px;" })</td>
+        <td style="width: 10%;">Contacto:</td>
+        <td style="width: 40%;">@Html.TextBoxFor(x => x.Contacto, new { style = "width: 400px;" })</td>
     </tr>
     <tr>
-        <td colspan="2" style="text-align:center;">
+        <td style="width: 10%;">Consulta:</td>
+        <td style="width: 40%;">@Html.TextAreaFor(x => x.Consulta, new { style = "width: 400px; height: 100px;" })</td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align:center; width: 50%;">
             <input id="btnSubmit" type="button" style="font-size:large; font-weight:bold;" value="Enviar" onclick="javascript: return btnSubmit_click();" />
         </td>
     </tr>
