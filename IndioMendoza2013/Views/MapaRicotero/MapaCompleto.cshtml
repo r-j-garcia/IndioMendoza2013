@@ -38,7 +38,7 @@
 
         $.ajax({
             type: "POST",
-            url: "Home/GetPosiciones",
+            url: "/Home/GetPosiciones",
             success: function (data) {
                 $.each(data, function (index, data) {
                     var point = new google.maps.LatLng(data.Latitud, data.Longitud);
@@ -77,16 +77,33 @@
 <div>
 <table border="0" style="width:100%; height:100%;">
 <tr>
-    <td>
+    <td rowspan="3">
         <div id="mapArgentinaGeneral" style="width:700px; height:600px"></div>
     </td>
-    <td nowrap="nowrap" style="vertical-align: top">
+    <td style="height:75px">
+        <div style="text-align: center; font-size:medium;">
+            <b>Agregá en el mapa tu punto de partida. Mostremos lo que significa una movilización ricotera.</b>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td nowrap="nowrap" style="vertical-align: top; text-align:center; height:125px;">
+        
         <a href="@Url.Action("AgregaTuPuntoDePartida", "MapaRicotero")">
                 <img src="/Content/img/BotonAgregarPartida.png" 
                 onmouseover="this.src='/Content/img/BotonAgregarPartida_Hover.png'" 
                 onmouseout="this.src='/Content/img/BotonAgregarPartida.png'" 
                 id="imgAgregarPartida" style="cursor:pointer;" width="250px" />
         </a></td>
+</tr>
+<tr>
+    <td style="vertical-align: top">
+        <b><u>Instrucciones</u></b><br /><br />
+        1) Presioná el botón "agregar"<br /><br />
+        2) En el mapa, buscá tu punto de partida (te aconsejamos utilizar el zoom) y hacé click una vez que lo encuentres.<br /><br />
+        3) Completá los campos con tu nombre y algún comentario adicional.<br /><br />
+        4) Presioná "enviar".<br />
+    </td>
 </tr>
 </table>
 </div>

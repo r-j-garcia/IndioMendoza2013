@@ -11,6 +11,17 @@
         alert($(error.response)[1].innerHTML);
     }
 
+    $(function () {
+        $('#modalMensajeEnConstruccion').load('/BondisRicoteros/MensajeTemporalEnConstruccion', function () {
+            $("#modalMensajeEnConstruccion").dialog({
+                title: 'En construcción',
+                resizable: false,
+                height: 160,
+                width: 600,
+                modal: true
+            });
+        });
+    });
 </script>
 
 @using (Ajax.BeginForm("Buscar", "BondisRicoteros", new AjaxOptions
@@ -26,7 +37,7 @@ new { id = "frmBondisRicoteros" }))
     <table width="100%" cellpadding="5px">
     <tr>
         <td>
-            <div id="divFiltrosBondisRicoteros">
+            <div id="divFiltrosBondisRicoteros" style="height:75px;">
                 @Html.Partial("FiltrosBondisRicoteros", Model)
             </div>
         </td>
@@ -39,3 +50,7 @@ new { id = "frmBondisRicoteros" }))
     </table>
     </div>
 }
+
+<div id="modalMensajeEnConstruccion">
+
+</div>

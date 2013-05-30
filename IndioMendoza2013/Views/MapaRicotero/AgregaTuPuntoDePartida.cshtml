@@ -4,8 +4,21 @@
 <script language="javascript" type="text/javascript">
 
     function frmPosicionRicotera_success() {
-        alert("Se agrego tu punto de partida!!");
-        window.location.href = "/MapaRicotero";
+        alert("Gracias por participar. Contale a tus amigos y conocidos sobre esta movida.. ¡llenemos todos el mapa ricotero!");
+
+        FB.ui(
+          {
+              method: 'feed',
+              name: 'Yo ya me anoté ¿qué esperas?',
+              caption: 'Mapa Ricotero',
+              description: 'Agregá tu punto de partida y mostremos lo que significa una movilización ricotera.',
+              link: '@(System.Configuration.ConfigurationManager.AppSettings["URLPag"])/MapaRicotero',
+              picture: 'http://2.bp.blogspot.com/-BfvOBB2mhk8/UaaJpU6-URI/AAAAAAAAHwg/eEr4y1-S3v8/s320/MapaRicotero_Facebook.png'
+          },
+          function (response) {
+              window.location.href = "/MapaRicotero";
+          }
+        );
     }
 
     function frmPosicionRicotera_failure(error) {
@@ -65,6 +78,7 @@
 
     $(function () {
         initialize();
+        $("#btnSubmit").button();
     });
 
 </script>
@@ -79,17 +93,25 @@ new { id = "frmPosicionRicotera" }))
 {
     <table border="0" style="width:100%; height:100%; min-height: 800px;">
     <tr>
-        <td rowspan="4" width="75%" >
+        <td rowspan="5">
             @Html.HiddenFor(x => x.Latitud)
             @Html.HiddenFor(x => x.Longitud)
 
             <div id="mapArgentinaGeneral" style="width:700px; height:600px"></div>
         </td>
-        <td width="25%" nowrap="nowrap">Nombre:<br />@Html.TextBoxFor(x => x.Nombre, new { style = "width:95%;" })</td>
+        <td style="height: 45px" nowrap="nowrap">Nombre:<br />@Html.TextBoxFor(x => x.Nombre, new { style = "width:95%;" })</td>
     </tr>
-    <tr><td>Comentarios:<br />@Html.TextAreaFor(x => x.Comentarios, new { style = "width:95%;" })</td></tr>
-    <tr><td style="text-align: right;"><input id="btnSubmit" type="button" value="Agregar" onclick="javascript: return btnSubmit_click();" /></td></tr>
-    <tr><td><div style="height:400px">@Html.ValidationSummary("")</div></td></tr>
+    <tr><td style="height: 105px" >Comentarios:<br />@Html.TextAreaFor(x => x.Comentarios, new { style = "width:95%;" })</td></tr>
+    <tr><td style="text-align: right;height: 30px;"><input id="btnSubmit" type="button" value="Enviar" onclick="javascript: return btnSubmit_click();" /></td></tr>
+    <tr><td style="height:50px"><div >@Html.ValidationSummary("")</div></td></tr>
+    <tr>
+        <td style="vertical-align: top">
+            <b><u>Instrucciones</u></b><br /><br />
+            1) En el mapa, buscá tu punto de partida (te aconsejamos utilizar el zoom) y hacé click una vez que lo encuentres.<br /><br />
+            2) Completá los campos con tu nombre y algún comentario adicional.<br /><br />
+            3) Presioná "enviar".<br /><br />
+        </td>
+    </tr>
     </table>
     <div id="divResult"></div>
 }

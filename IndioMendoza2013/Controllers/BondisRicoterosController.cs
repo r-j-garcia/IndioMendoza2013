@@ -135,5 +135,9 @@ namespace IndioMendoza2013.Controllers
             servUbicaciones.AddZona(model);
         }
 
+        public ActionResult MensajeTemporalEnConstruccion()
+        {
+            return PartialView();
+        }
     }
 }

@@ -1,11 +1,27 @@
 ﻿@using IndioMendoza2013.Modelos
 @model modBondiRicotero
+<script language="javascript" type="text/javascript">
 
+    function CerrarVentanaModal() {
+        $("#modalDetalleBondi").dialog('close');
+    }
+
+    $(function () {
+        $("#divDetalleBondi #btnCerrarModal, #divDetalleBondi .fbButton").button();
+    });
+
+</script>
+<div id="divDetalleBondi">
 <table border="0" width="100%">
 <tr>
-    <td style="text-align: center;"><h2>@Model.Nombre</h2></td>
+    <td style="text-align: center;"><div><h2>@Model.Nombre</h2></div><div><i>Zona: @Model.Des_Zona, @Model.Des_Provincia</i></div></td>
 </tr>
 <tr>
-    <td>@Model.Detalle</td>
+    <td>@Html.Raw(Model.Detalle)</td>
 </tr>
+<tr><td style="text-align: right">
+<a style="width: 110px;" class="fbButton" href="javascript:CompartirBondiRicotero('@Model.Nombre', '@Model.Des_Zona, @Model.Des_Provincia', '@Model.Descripcion');"><img width="12px" src="http://localhost:36364/Content/img/facebookLink.png" /> Compartir</a>
+<button id="btnCerrarModal" onclick="javascript:CerrarVentanaModal();">Cerrar</button>
+</td></tr>
 </table>
+</div>

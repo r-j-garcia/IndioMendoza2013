@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Web.Mvc;
 using IndioMendoza2013.OrigenesDeDatos;
 
 namespace IndioMendoza2013.Modelos
@@ -38,6 +39,7 @@ namespace IndioMendoza2013.Modelos
             set { this.bondiRicoteroDB.descripcion = value; }
         }
 
+        [AllowHtml()]
         public string Detalle
         {
             get { return this.bondiRicoteroDB.detalle; }

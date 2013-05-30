@@ -90,22 +90,6 @@ namespace IndioMendoza2013.OrigenesDeDatos
         /// <summary>
         /// No hay documentación de metadatos disponible.
         /// </summary>
-        public ObjectSet<Noticias> Noticias
-        {
-            get
-            {
-                if ((_Noticias == null))
-                {
-                    _Noticias = base.CreateObjectSet<Noticias>("Noticias");
-                }
-                return _Noticias;
-            }
-        }
-        private ObjectSet<Noticias> _Noticias;
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
         public ObjectSet<Provincia> Provincia
         {
             get
@@ -176,14 +160,6 @@ namespace IndioMendoza2013.OrigenesDeDatos
         public void AddToPosicionRicotera(PosicionRicotera posicionRicotera)
         {
             base.AddObject("PosicionRicotera", posicionRicotera);
-        }
-    
-        /// <summary>
-        /// Método desusado para agregar un nuevo objeto al EntitySet Noticias. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
-        /// </summary>
-        public void AddToNoticias(Noticias noticias)
-        {
-            base.AddObject("Noticias", noticias);
         }
     
         /// <summary>
@@ -576,148 +552,6 @@ namespace IndioMendoza2013.OrigenesDeDatos
         private global::System.Boolean _leido;
         partial void OnleidoChanging(global::System.Boolean value);
         partial void OnleidoChanged();
-
-        #endregion
-    
-    }
-    
-    /// <summary>
-    /// No hay documentación de metadatos disponible.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="IndioMendoza2013Model", Name="Noticias")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class Noticias : EntityObject
-    {
-        #region Método de generador
-    
-        /// <summary>
-        /// Crear un nuevo objeto Noticias.
-        /// </summary>
-        /// <param name="id">Valor inicial de la propiedad id.</param>
-        /// <param name="titulo">Valor inicial de la propiedad titulo.</param>
-        /// <param name="contenido">Valor inicial de la propiedad contenido.</param>
-        /// <param name="link">Valor inicial de la propiedad link.</param>
-        public static Noticias CreateNoticias(global::System.Int32 id, global::System.String titulo, global::System.String contenido, global::System.String link)
-        {
-            Noticias noticias = new Noticias();
-            noticias.id = id;
-            noticias.titulo = titulo;
-            noticias.contenido = contenido;
-            noticias.link = link;
-            return noticias;
-        }
-
-        #endregion
-        #region Propiedades primitivas
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 id
-        {
-            get
-            {
-                return _id;
-            }
-            set
-            {
-                if (_id != value)
-                {
-                    OnidChanging(value);
-                    ReportPropertyChanging("id");
-                    _id = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("id");
-                    OnidChanged();
-                }
-            }
-        }
-        private global::System.Int32 _id;
-        partial void OnidChanging(global::System.Int32 value);
-        partial void OnidChanged();
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String titulo
-        {
-            get
-            {
-                return _titulo;
-            }
-            set
-            {
-                if (_titulo != value)
-                {
-                    OntituloChanging(value);
-                    ReportPropertyChanging("titulo");
-                    _titulo = StructuralObject.SetValidValue(value, false);
-                    ReportPropertyChanged("titulo");
-                    OntituloChanged();
-                }
-            }
-        }
-        private global::System.String _titulo;
-        partial void OntituloChanging(global::System.String value);
-        partial void OntituloChanged();
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String contenido
-        {
-            get
-            {
-                return _contenido;
-            }
-            set
-            {
-                if (_contenido != value)
-                {
-                    OncontenidoChanging(value);
-                    ReportPropertyChanging("contenido");
-                    _contenido = StructuralObject.SetValidValue(value, false);
-                    ReportPropertyChanged("contenido");
-                    OncontenidoChanged();
-                }
-            }
-        }
-        private global::System.String _contenido;
-        partial void OncontenidoChanging(global::System.String value);
-        partial void OncontenidoChanged();
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String link
-        {
-            get
-            {
-                return _link;
-            }
-            set
-            {
-                if (_link != value)
-                {
-                    OnlinkChanging(value);
-                    ReportPropertyChanging("link");
-                    _link = StructuralObject.SetValidValue(value, false);
-                    ReportPropertyChanged("link");
-                    OnlinkChanged();
-                }
-            }
-        }
-        private global::System.String _link;
-        partial void OnlinkChanging(global::System.String value);
-        partial void OnlinkChanged();
 
         #endregion
     

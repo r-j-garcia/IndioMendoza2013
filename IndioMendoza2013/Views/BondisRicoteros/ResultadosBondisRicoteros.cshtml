@@ -6,11 +6,11 @@
         FB.ui(
           {
               method: 'feed',
-              name: nombre,
+              name: 'Bondi Ricotero a Mendoza: ' + nombre,
               caption: zona,
               description: descripcion,
-              link: '@Request.Url',
-              picture: 'http://a11.t26.net/avatares/1/1/4/7/120_11474658.jpg'
+              link: '@(System.Configuration.ConfigurationManager.AppSettings["URLPag"])/BondisRicoteros',
+              picture: 'http://3.bp.blogspot.com/-P9x_PtQGHso/UaaFm5TwRaI/AAAAAAAAHwM/yRNI2SFkFZo/s320/BondiRicotero_2.png'
           },
           function (response) {
               if (response && response.post_id) {
@@ -26,24 +26,34 @@
             $("#modalDetalleBondi").dialog({
                 title: 'Bondi Ricotero',
                 resizable: false,
-                height: 400,
+                height: 600,
                 width: 600,
                 modal: true
             });
         });
 
     }
+
+    $(function () {
+        $(".fbButton, .DetalleBondi").button();
+    });
 </script>
-<hr />
+
+<table>
+    <tr><td colspan="2"><hr /></td></tr>
 @foreach (var item in Model)
 {
-    <div>
-    <b>@item.Nombre</b><br />
-    Zona: @item.Des_Zona, @item.Des_Provincia<br /><br />
-    @item.Descripcion<br /><br />
-    <a href="javascript:CompartirBondiRicotero('@item.Nombre', '@item.Des_Zona, @item.Des_Provincia', '@item.Descripcion');">Compartir</a>
-    <a href="javascript:MostrarDetalleBondiRicotero(@item.ID);">Detalle</a>
-    <hr />
-    </div>
+    <tr >
+       <td style="width: 875px">
+            <b style="font-size:medium;">@item.Nombre</b><br />
+            <i>Zona: @item.Des_Zona, @item.Des_Provincia</i><br /><br />
+            @item.Descripcion<br /><br />
+            <a style="width: 110px;" class="DetalleBondi" href="javascript:MostrarDetalleBondiRicotero(@item.ID);"><img width="16px" src="/Content/img/lupa.gif"  /> Detalle</a> <a style="width: 110px;" class="fbButton" href="javascript:CompartirBondiRicotero('@item.Nombre', '@item.Des_Zona, @item.Des_Provincia', '@item.Descripcion');"><img width="12px" src="http://localhost:36364/Content/img/facebookLink.png" /> Compartir</a><br >
+        </td>
+    </tr>
+    <tr><td colspan="2">
+        <hr />
+    </td></tr>
 }
+
 <div id="modalDetalleBondi"></div>

@@ -8,14 +8,6 @@
         <EntityContainer Name="IndioMendoza2013ModelStoreContainer">
           <EntitySet Name="BondiRicotero" EntityType="IndioMendoza2013Model.Store.BondiRicotero" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Contacto" EntityType="IndioMendoza2013Model.Store.Contacto" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Noticias" EntityType="IndioMendoza2013Model.Store.Noticias" store:Type="Tables" store:Schema="dbo" store:Name="Noticias">
-            <DefiningQuery>SELECT 
-      [Noticias].[id] AS [id], 
-      [Noticias].[titulo] AS [titulo], 
-      [Noticias].[contenido] AS [contenido], 
-      [Noticias].[link] AS [link]
-      FROM [dbo].[Noticias] AS [Noticias]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="PosicionRicotera" EntityType="IndioMendoza2013Model.Store.PosicionRicotera" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Provincia" EntityType="IndioMendoza2013Model.Store.Provincia" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Zona" EntityType="IndioMendoza2013Model.Store.Zona" store:Type="Tables" Schema="dbo" />
@@ -51,18 +43,6 @@
         <!--Se encontraron errores durante la generación:
       advertencia 6002: La tabla o vista 'IndioMendoza2013.dbo.Noticias' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
-        <EntityType Name="Noticias">
-          <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="titulo" />
-            <PropertyRef Name="contenido" />
-            <PropertyRef Name="link" />
-          </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="titulo" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="contenido" Type="varchar" Nullable="false" MaxLength="500" />
-          <Property Name="link" Type="varchar" Nullable="false" MaxLength="100" />
-        </EntityType>
         <EntityType Name="PosicionRicotera">
           <Key>
             <PropertyRef Name="id" />
@@ -119,7 +99,6 @@
       <Schema Namespace="IndioMendoza2013Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="IndioMendoza2013Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="PosicionRicotera" EntityType="IndioMendoza2013Model.PosicionRicotera" />
-          <EntitySet Name="Noticias" EntityType="IndioMendoza2013Model.Noticias" />
           <EntitySet Name="Provincia" EntityType="IndioMendoza2013Model.Provincia" />
           <EntitySet Name="Zona" EntityType="IndioMendoza2013Model.Zona" />
           <AssociationSet Name="FK_Zona_Provincia" Association="IndioMendoza2013Model.FK_Zona_Provincia">
@@ -143,18 +122,6 @@
           <Property Type="Double" Name="longitude" Nullable="false" />
           <Property Type="String" Name="comentarios" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="ip" MaxLength="24" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="Noticias">
-          <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="titulo" />
-            <PropertyRef Name="contenido" />
-            <PropertyRef Name="link" />
-          </Key>
-          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="titulo" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="contenido" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="link" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Provincia">
           <Key>
@@ -237,16 +204,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Noticias">
-            <EntityTypeMapping TypeName="IndioMendoza2013Model.Noticias">
-              <MappingFragment StoreEntitySet="Noticias">
-                <ScalarProperty Name="link" ColumnName="link" />
-                <ScalarProperty Name="contenido" ColumnName="contenido" />
-                <ScalarProperty Name="titulo" ColumnName="titulo" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Provincia">
             <EntityTypeMapping TypeName="IndioMendoza2013Model.Provincia">
               <MappingFragment StoreEntitySet="Provincia">
@@ -308,7 +265,6 @@
     <Diagrams>
       <Diagram Name="IndioMendoza2013">
         <EntityTypeShape EntityType="IndioMendoza2013Model.PosicionRicotera" Width="1.5" PointX="0.75" PointY="0.75" Height="2.1725878906249996" />
-        <EntityTypeShape EntityType="IndioMendoza2013Model.Noticias" Width="1.5" PointX="3.375" PointY="0.75" Height="1.7879850260416674" />
         <EntityTypeShape EntityType="IndioMendoza2013Model.Provincia" Width="1.5" PointX="0.75" PointY="4.25" Height="1.5956835937499996" />
         <EntityTypeShape EntityType="IndioMendoza2013Model.Zona" Width="1.5" PointX="3" PointY="4" Height="1.9802864583333317" />
         <AssociationConnector Association="IndioMendoza2013Model.FK_Zona_Provincia" >
