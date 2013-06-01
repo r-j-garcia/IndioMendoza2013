@@ -3,22 +3,18 @@
            
 <script language="javascript" type="text/javascript">
 
-    function frmPosicionRicotera_success() {
-        alert("Gracias por participar. Contale a tus amigos y conocidos sobre esta movida.. ¡llenemos todos el mapa ricotero!");
-
-        FB.ui(
-          {
-              method: 'feed',
-              name: 'Yo ya me anoté ¿qué esperas?',
-              caption: 'Mapa Ricotero',
-              description: 'Agregá tu punto de partida y mostremos lo que significa una movilización ricotera.',
-              link: '@(System.Configuration.ConfigurationManager.AppSettings["URLPag"])/MapaRicotero',
-              picture: 'http://2.bp.blogspot.com/-BfvOBB2mhk8/UaaJpU6-URI/AAAAAAAAHwg/eEr4y1-S3v8/s320/MapaRicotero_Facebook.png'
-          },
-          function (response) {
-              window.location.href = "/MapaRicotero";
-          }
-        );
+    function frmPosicionRicotera_success() 
+    {
+        $('#modalCompartirPartida').load('/BondisRicoteros/GraciasPorParticipar/', function () {
+            $("#modalCompartirPartida").dialog({
+                title: 'Gracias por participar',
+                resizable: false,
+                height: 175,
+                width: 600,
+                modal: true,
+                close: function (event, ui) { window.location.href = "/MapaRicotero/"; }
+            });
+        });
     }
 
     function frmPosicionRicotera_failure(error) {
@@ -116,3 +112,4 @@ new { id = "frmPosicionRicotera" }))
     <div id="divResult"></div>
 }
 
+<div id="modalCompartirPartida"></div>

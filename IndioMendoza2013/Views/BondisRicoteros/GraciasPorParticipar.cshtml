@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "GraciasPorParticipar";
+}
+<script language="javascript" type="text/javascript">
+
+    function CompartirViajeEnFacebook() {
+        FB.ui(
+          {
+              method: 'feed',
+              name: 'Yo ya me anoté ¿qué esperas?',
+              caption: 'Mapa Ricotero',
+              description: 'Agregá tu punto de partida y mostremos lo que significa una movilización ricotera.',
+              link: '@(System.Configuration.ConfigurationManager.AppSettings["URLPag"])/MapaRicotero',
+              picture: 'http://2.bp.blogspot.com/-BfvOBB2mhk8/UaaJpU6-URI/AAAAAAAAHwg/eEr4y1-S3v8/s320/MapaRicotero_Facebook.png'
+          },
+          function (response) {
+              $("#modalCompartirPartida").dialog("close");
+          }
+        );
+    }
+
+    $(function () {
+        $(".fbButton").button();
+    });
+
+</script>
+<div style="font-size: medium;">
+Gracias por participar. Contale a tus amigos y conocidos sobre esta movida.. ¡llenemos todos el mapa ricotero!
+</div>
+<br />
+<div style="text-align: right;">
+    <a style="width: 110px;" class="fbButton" href="javascript:CompartirViajeEnFacebook();"><img width="12px" src="http://localhost:36364/Content/img/facebookLink.png" /> Compartir</a>
+</div>

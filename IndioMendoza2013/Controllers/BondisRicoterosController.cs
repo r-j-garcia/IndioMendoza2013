@@ -139,5 +139,10 @@ namespace IndioMendoza2013.Controllers
         {
             return PartialView();
         }
+
+        public ActionResult GraciasPorParticipar()
+        {
+            return PartialView();
+        }
     }
 }
