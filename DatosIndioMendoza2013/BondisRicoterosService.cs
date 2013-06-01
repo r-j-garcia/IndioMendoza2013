@@ -13,6 +13,11 @@ namespace IndioMendoza2013.Datos
         {
         }
 
+        public BondisRicoterosService()
+            : base()
+        {
+        }
+
         public IEnumerable<modBondiRicotero> GetBondisRicoteros(FiltroBondisRicoteros fbr)
         {
             var busqueda = from br in bd.BondiRicotero

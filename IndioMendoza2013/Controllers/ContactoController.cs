@@ -24,7 +24,7 @@ namespace IndioMendoza2013.Controllers
 
         public void Enviar(modContacto model)
         {
-            var servContacto = new ContactoService(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            var servContacto = new ContactoService();
             model.Leido = false;
             servContacto.AddContacto(model);
         }
@@ -69,7 +69,7 @@ namespace IndioMendoza2013.Controllers
 
             if (permiteAcceso)
             {
-                var servContacto = new ContactoService(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+                var servContacto = new ContactoService();
                 var list = servContacto.GetContactos(filtro);
                 return PartialView(list);
             }
@@ -79,7 +79,7 @@ namespace IndioMendoza2013.Controllers
 
         public void MarcarComoLeidos(IEnumerable<int> lst)
         {
-            var servContacto = new ContactoService(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            var servContacto = new ContactoService();
             servContacto.MarcarComoLeidos(lst);
         }
 

@@ -15,6 +15,11 @@ namespace IndioMendoza2013.Datos
         {
         }
 
+        public PosicionesRicoterasService()
+            : base()
+        {
+        }
+
         public IEnumerable<modPosicionRicotera> GetPosicionesRicoteras()
         {
             var busqueda = from pr in bd.PosicionRicotera

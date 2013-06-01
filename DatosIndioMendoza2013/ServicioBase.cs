@@ -18,5 +18,10 @@ namespace IndioMendoza2013.Datos
             bd = new IndioMendoza2013Entities(strConexion);
         }
 
+        public ServicioBase()
+        {
+            bd = new IndioMendoza2013Entities();
+        }
+
     }
 }

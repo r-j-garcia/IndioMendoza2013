@@ -13,6 +13,11 @@ namespace IndioMendoza2013.Datos
         {
         }
 
+        public UbicacionesService()
+            : base()
+        {
+        }
+
         public IEnumerable<modProvincia> GetProvincias()
         {
             var busqueda = from pr in bd.Provincia

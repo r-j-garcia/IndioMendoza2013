@@ -24,7 +24,7 @@ namespace IndioMendoza2013.Controllers
         public JsonResult GetPosiciones()
         {
             //Falta instanciar el servicio correctamente
-            var serv = new PosicionesRicoterasService(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            var serv = new PosicionesRicoterasService();
 
             var lista = serv.GetPosicionesRicoteras();
 

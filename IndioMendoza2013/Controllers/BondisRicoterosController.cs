@@ -19,7 +19,7 @@ namespace IndioMendoza2013.Controllers
         {
             ViewBag.MenuSeleccionado = "BONDI";
             //Falta instanciar el servicio correctamente
-            var servUbicaciones = new UbicacionesService(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            var servUbicaciones = new UbicacionesService();
 
             var listaProvincias =  new List<ParDeValores>(); // { new ParDeValores() { id = 0, descripcion = "Seleccionar.." } };
             listaProvincias.AddRange(servUbicaciones.GetProvincias().Select(x => new ParDeValores() { id = x.ID, descripcion = x.Descripcion }));
@@ -32,7 +32,7 @@ namespace IndioMendoza2013.Controllers
 
         public ActionResult GetZonas(int idProvincia)
         {
-            var servUbicaciones = new UbicacionesService(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            var servUbicaciones = new UbicacionesService();
             var listaZonas = new List<ParDeValores>();// { new ParDeValores() { id = 0, descripcion = "Seleccionar.." } };
 
             listaZonas.AddRange(servUbicaciones.GetZonas(idProvincia).Select(x => new ParDeValores() { id = x.ID, descripcion = x.Descripcion }));
@@ -43,7 +43,7 @@ namespace IndioMendoza2013.Controllers
 
         public ActionResult Buscar(FiltroBondisRicoteros filtro)
         {
-            var serv = new BondisRicoterosService(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            var serv = new BondisRicoterosService();
             var result = serv.GetBondisRicoteros(filtro);
 
             return PartialView("ResultadosBondisRicoteros", result);
@@ -70,7 +70,7 @@ namespace IndioMendoza2013.Controllers
 
             if (permiteAcceso)
             {
-                var servUbicaciones = new UbicacionesService(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+                var servUbicaciones = new UbicacionesService();
 
                 var listaProvincias = new List<ParDeValores>(); // { new ParDeValores() { id = 0, descripcion = "Seleccionar.." } };
                 listaProvincias.AddRange(servUbicaciones.GetProvincias().Select(x => new ParDeValores() { id = x.ID, descripcion = x.Descripcion }));
@@ -93,7 +93,7 @@ namespace IndioMendoza2013.Controllers
 
                 if (result.id == "100002979715059")
                 {
-                    var serv = new BondisRicoterosService(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+                    var serv = new BondisRicoterosService();
                     serv.AgregarBondi(bondi);
                 }
             }
@@ -101,7 +101,7 @@ namespace IndioMendoza2013.Controllers
 
         public ActionResult DetalleBondi(int id)
         {
-            var serv = new BondisRicoterosService(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            var serv = new BondisRicoterosService();
 
             var bondi = serv.GetBondiRicotero(id);
             return PartialView(bondi);
@@ -114,13 +114,13 @@ namespace IndioMendoza2013.Controllers
 
         public void GuardarProvincia(modProvincia model)
         {
-            var servUbicaciones = new UbicacionesService(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            var servUbicaciones = new UbicacionesService();
             servUbicaciones.AddProvincia(model);
         }
 
         public ActionResult AgregarZona()
         {
-            var servUbicaciones = new UbicacionesService(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            var servUbicaciones = new UbicacionesService();
             var listaProvincias = new List<ParDeValores>(); 
             listaProvincias.AddRange(servUbicaciones.GetProvincias().Select(x => new ParDeValores() { id = x.ID, descripcion = x.Descripcion }));
 
@@ -131,7 +131,7 @@ namespace IndioMendoza2013.Controllers
 
         public void GuardarZona(modZona model)
         {
-            var servUbicaciones = new UbicacionesService(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            var servUbicaciones = new UbicacionesService();
             servUbicaciones.AddZona(model);
         }
 

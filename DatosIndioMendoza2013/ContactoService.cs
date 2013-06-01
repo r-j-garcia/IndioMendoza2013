@@ -14,6 +14,10 @@ namespace DatosIndioMendoza2013
         {
         }
 
+        public ContactoService()
+            : base()
+        {
+        }
 
         public void AddContacto(modContacto model)
         {

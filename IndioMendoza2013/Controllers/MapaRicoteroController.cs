@@ -42,7 +42,7 @@ namespace IndioMendoza2013.Controllers
         {
             try
             {
-                var serv = new PosicionesRicoterasService(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+                var serv = new PosicionesRicoterasService();
 
                 model.Latitud = Double.Parse(Request.Params["Latitud"], CultureInfo.InvariantCulture);
                 model.Longitud = Double.Parse(Request.Params["Longitud"], CultureInfo.InvariantCulture);
