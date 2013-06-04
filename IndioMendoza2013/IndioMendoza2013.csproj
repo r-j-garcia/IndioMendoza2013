@@ -65,6 +65,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InfoController.cs" />
     <Compile Include="Controllers\MapaRicoteroController.cs" />
+    <Compile Include="Controllers\NoticiasController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -75,6 +76,7 @@
     <Content Include="Content\images\bx_loader.gif" />
     <Content Include="Content\images\controls.png" />
     <Content Include="Content\img\AerolineasArgentinasLogo.png" />
+    <Content Include="Content\img\Bancos.jpg" />
     <Content Include="Content\img\Boton-AerolineasArgentinas.png" />
     <Content Include="Content\img\Boton-Plataforma10.png" />
     <Content Include="Content\img\botones\add_button.jpg" />
@@ -111,8 +113,8 @@
     <Content Include="Content\img\logosbondis\Logo_Transporte_Sendas.gif" />
     <Content Include="Content\img\logosbondis\Logo_Via_Bariloche.gif" />
     <Content Include="Content\img\logosbondis\Logo_Via_Tac.gif" />
-    <Content Include="Content\img\lupa.gif" />
     <Content Include="Content\img\Mapa-Ricotero.jpg" />
+    <Content Include="Content\img\Mercado-Pago.png" />
     <Content Include="Content\img\NoLeQuieroHacerPublicadAPlataforma10.png" />
     <Content Include="Content\img\PR-ICON.png" />
     <Content Include="Content\img\fondo-entradas.png" />
@@ -120,6 +122,8 @@
     <Content Include="Content\img\Noticia1.png" />
     <Content Include="Content\img\Noticia2.png" />
     <Content Include="Content\img\Noticia3.png" />
+    <Content Include="Content\img\search.png" />
+    <Content Include="Content\img\Separador.jpg" />
     <Content Include="Content\SiteBlanco.css" />
     <Content Include="Content\SiteNegro.css" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
@@ -260,12 +264,6 @@
     <Content Include="Views\Contacto\FiltroContacto.cshtml" />
     <Content Include="Views\Contacto\Listado.cshtml" />
     <Content Include="Views\Contacto\ResultadoContacto.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\BondisRicoteros\MensajeTemporalEnConstruccion.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\BondisRicoteros\GraciasPorParticipar.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
