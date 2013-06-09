@@ -16,6 +16,14 @@
         });
     };
 
+    function after_login_button() {
+        FB.getLoginStatus(function (response) {
+            if (response.status == "connected") {
+                SaveLoginToken(response);
+            }
+        }, true);
+    }
+
     function SaveLoginToken(response) {
         if (response.status === 'connected') {
             SetConnectionData(response.authResponse.accessToken);
@@ -38,11 +46,9 @@
         })
     }
 </script>
-
-</script>
 <div>
     @if(Model == null){
-        <fb:login-button id="facLoginButton" width="200" max-rows="1"></fb:login-button>     
+        <fb:login-button onlogin="after_login_button()" id="facLoginButton" width="200" max-rows="1"></fb:login-button>     
     }else{
         <a class="facebookLink" href="@Model.Link" target="_blank"><b><img width="12px" src="/Content/img/facebookLink.png" />@Model.Nombre</b></a>
     }   
