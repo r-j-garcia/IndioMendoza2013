@@ -14,7 +14,10 @@
               picture: 'http://2.bp.blogspot.com/-BfvOBB2mhk8/UaaJpU6-URI/AAAAAAAAHwg/eEr4y1-S3v8/s320/MapaRicotero_Facebook.png'
           },
           function (response) {
-              $("#modalCompartirPartida").dialog("close");
+              if (response && response.post_id) {
+                  alert('Gracias por compartir y participar.');
+                  $("#modalCompartirPartida").dialog("close");
+              }
           }
         );
     }
