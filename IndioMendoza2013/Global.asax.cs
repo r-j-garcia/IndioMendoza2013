@@ -35,6 +35,40 @@ namespace IndioMendoza2013
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
+
+        }
+
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            Exception exception = Server.GetLastError();
+            Response.Clear();
+
+            HttpException httpException = exception as HttpException;
+
+            if (httpException != null)
+            {
+                string action;
+
+                switch (httpException.GetHttpCode())
+                {
+                    case 404:
+                        // page not found
+                        action = "HttpError404";
+                        break;
+                    case 500:
+                        // server error
+                        action = "HttpError500";
+                        break;
+                    default:
+                        action = "General";
+                        break;
+                }
+
+                // clear error on server
+                Server.ClearError();
+
+                Response.Redirect(String.Format("~/Error/General/?message={1}", action, exception.Message));
+            }
         }
     }
 }

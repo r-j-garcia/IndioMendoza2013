@@ -9,31 +9,6 @@
     float: left;
 }
 </style>
-<script type="text/javascript" language="javascript">
-    window.fbAsyncInit = function () {
-        FB.Event.subscribe('auth.authResponseChange', function (response) {
-            if (response.status === 'connected') {
-                SetConnectionData(response.authResponse.accessToken);
-            } else if (response.status === 'not_authorized') {
-                alert('NO AUTORIZADO');
-            } else {
-                alert('NO LOGGUEADO');
-            }
-        });
-    };
-
-    function SetConnectionData(acccessToken) {
-        $.ajax({
-            type: "POST",
-            data: { Token: acccessToken },
-            dataType: "json",
-            url: "/Home/SaveFacebookToken",
-            success: function (data) {
-                $("#divFacebookInfo").load("/Home/FacebookInfo/");
-            }
-        })
-    }
-</script>
 <table width="100%" border="0">
 <tr>
     <td width="100%" class="banner-header">
