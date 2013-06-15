@@ -48,7 +48,7 @@
        <td style="width: 875px">
             <b style="font-size:medium;">@item.Nombre</b><br />
             <i>Zonas: @item.ZonasStr<br /><br />
-            @item.Descripcion<br /><br />
+            @Html.Raw(item.Descripcion)<br /><br />
             <a style="width: 110px;" class="DetalleBondi" href="javascript:MostrarDetalleBondiRicotero(@item.ID);"><img width="16px" src="/Content/img/lupa.gif"  /> Detalle</a> <a style="width: 110px;" class="fbButton" href="javascript:CompartirBondiRicotero('@item.Nombre', '@item.ZonasStr', '@item.Descripcion');"><img width="12px" src="/Content/img/facebookLink.png" /> Compartir</a><br >
         </td>
     </tr>
