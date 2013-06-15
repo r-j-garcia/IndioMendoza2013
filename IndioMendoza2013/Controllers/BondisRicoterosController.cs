@@ -21,7 +21,7 @@ namespace IndioMendoza2013.Controllers
             //Falta instanciar el servicio correctamente
             var servUbicaciones = new UbicacionesService();
 
-            var listaProvincias =  new List<ParDeValores>(); // { new ParDeValores() { id = 0, descripcion = "Seleccionar.." } };
+            var listaProvincias = new List<ParDeValores>(); // { new ParDeValores() { id = 0, descripcion = "Seleccionar.." } };
             listaProvincias.AddRange(servUbicaciones.GetProvincias().Select(x => new ParDeValores() { id = x.ID, descripcion = x.Descripcion }));
 
             ViewBag.ListProvincias = listaProvincias;
@@ -30,7 +30,7 @@ namespace IndioMendoza2013.Controllers
             return View();
         }
 
-        public ActionResult GetZonas(int idProvincia)
+        public ActionResult GetZonasByID(int idProvincia)
         {
             var servUbicaciones = new UbicacionesService();
             var listaZonas = new List<ParDeValores>();// { new ParDeValores() { id = 0, descripcion = "Seleccionar.." } };
@@ -39,6 +39,18 @@ namespace IndioMendoza2013.Controllers
             return Json(
                 listaZonas, JsonRequestBehavior.AllowGet
             );
+        }
+
+        public ActionResult GetZonas(IEnumerable<int> idProvincias)
+        {
+            var servUbicaciones = new UbicacionesService();
+            var listaZonas = new List<ParDeValores>();// { new ParDeValores() { id = 0, descripcion = "Seleccionar.." } };
+
+            listaZonas.AddRange(servUbicaciones.GetZonas(idProvincias).Select(x => new ParDeValores() { id = x.ID, descripcion = x.Descripcion }));
+
+            ViewBag.ListZonas = listaZonas;
+
+            return PartialView("ComboZonas", new modBondiRicotero());
         }
 
         public ActionResult Buscar(FiltroBondisRicoteros filtro)
@@ -85,6 +97,11 @@ namespace IndioMendoza2013.Controllers
 
         public void AgregarBondi(modBondiRicotero bondi)
         {
+            bool permiteAcceso = false;
+            Boolean debug = Boolean.Parse(ConfigurationManager.AppSettings["debug"]);
+
+            permiteAcceso = debug;
+
             if (Session["AccessToken"] != null)
             {
                 var accessToken = Session["AccessToken"].ToString();
@@ -93,9 +110,14 @@ namespace IndioMendoza2013.Controllers
 
                 if (result.id == "100002979715059")
                 {
-                    var serv = new BondisRicoterosService();
-                    serv.AgregarBondi(bondi);
+                    permiteAcceso = true;
                 }
+            }
+            if (permiteAcceso)
+            {
+                var serv = new BondisRicoterosService();
+                bondi.LstIdZonas = bondi.LstIdZonasStr.Split(',').Select(x => int.Parse(x)).ToList();
+                serv.AgregarBondi(bondi);
             }
         }
 
@@ -114,14 +136,33 @@ namespace IndioMendoza2013.Controllers
 
         public void GuardarProvincia(modProvincia model)
         {
-            var servUbicaciones = new UbicacionesService();
-            servUbicaciones.AddProvincia(model);
+            bool permiteAcceso = false;
+            Boolean debug = Boolean.Parse(ConfigurationManager.AppSettings["debug"]);
+
+            permiteAcceso = debug;
+
+            if (Session["AccessToken"] != null)
+            {
+                var accessToken = Session["AccessToken"].ToString();
+                var client = new FacebookClient(accessToken);
+                dynamic result = client.Get("me", new { fields = "id" });
+
+                if (result.id == "100002979715059")
+                {
+                    permiteAcceso = true;
+                }
+            }
+            if (permiteAcceso)
+            {
+                var servUbicaciones = new UbicacionesService();
+                servUbicaciones.AddProvincia(model);
+            }
         }
 
         public ActionResult AgregarZona()
         {
             var servUbicaciones = new UbicacionesService();
-            var listaProvincias = new List<ParDeValores>(); 
+            var listaProvincias = new List<ParDeValores>();
             listaProvincias.AddRange(servUbicaciones.GetProvincias().Select(x => new ParDeValores() { id = x.ID, descripcion = x.Descripcion }));
 
             ViewBag.ListProvincias = listaProvincias;
@@ -131,8 +172,27 @@ namespace IndioMendoza2013.Controllers
 
         public void GuardarZona(modZona model)
         {
-            var servUbicaciones = new UbicacionesService();
-            servUbicaciones.AddZona(model);
+            bool permiteAcceso = false;
+            Boolean debug = Boolean.Parse(ConfigurationManager.AppSettings["debug"]);
+
+            permiteAcceso = debug;
+
+            if (Session["AccessToken"] != null)
+            {
+                var accessToken = Session["AccessToken"].ToString();
+                var client = new FacebookClient(accessToken);
+                dynamic result = client.Get("me", new { fields = "id" });
+
+                if (result.id == "100002979715059")
+                {
+                    permiteAcceso = true;
+                }
+            }
+            if (permiteAcceso)
+            {
+                var servUbicaciones = new UbicacionesService();
+                servUbicaciones.AddZona(model);
+            }
         }
 
         public ActionResult MensajeTemporalEnConstruccion()

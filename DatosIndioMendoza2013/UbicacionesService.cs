@@ -37,6 +37,16 @@ namespace IndioMendoza2013.Datos
             return busqueda;
         }
 
+        public IEnumerable<modZona> GetZonas(IEnumerable<int> idProvincias)
+        {
+            var busqueda = from z in bd.Zona
+                           where idProvincias.Contains(z.id_provincia)
+                           select new modZona() { zonaDB = z }
+                           ;
+
+            return busqueda;
+        }
+
         public IEnumerable<modZona> GetZonas()
         {
             var busqueda = from z in bd.Zona
@@ -49,8 +59,8 @@ namespace IndioMendoza2013.Datos
         public void AddProvincia(modProvincia model)
         {
             var id = (from z in bd.Provincia
-                     orderby z.id descending
-                     select z.id + 1).FirstOrDefault();
+                      orderby z.id descending
+                      select z.id + 1).FirstOrDefault();
 
             model.ID = id;
 

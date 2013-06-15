@@ -16,27 +16,63 @@
         alert($(error.response)[1].innerHTML);
     }
 
-    $(function () {
-        $('#id_provincia').change(function () {
-            var idProvincia = $(this).val();
-            if (idProvincia != null && idProvincia != '') {
-                $.getJSON('@Url.Action("GetZonas")', { idProvincia: idProvincia }, function (zonas) {
-                    var cboZonas = $('#Id_Zona');
-                    cboZonas.empty();
-                    cboZonas.removeAttr("disabled");
-                    cboZonas.append($('<option/>', {
-                        value: null,
-                        text: null
-                    }));
-                    $.each(zonas, function (index, zona) {
-                        cboZonas.append($('<option/>', {
-                            value: zona.id,
-                            text: zona.descripcion
-                        }));
-                    });
-                });
-            }
+    function GetLstIdMultiselect(cboMulti) {
+        var idProvincias = $('#frmAgregarBondisRicoteros #' + cboMulti).multiselect("getChecked")
+        var lstID = new Array();
+        var equis = 0;
+        idProvincias.each(function (idx, el) {
+            lstID[equis++] = parseInt($(el).val());
         });
+        return lstID;
+    }
+
+    $(function () {
+        $("#frmAgregarBondisRicoteros").submit(
+            function () {
+                $("#frmAgregarBondisRicoteros #LstIdZonasStr").val(GetLstIdMultiselect('Zonas').join(','));
+            }
+        );
+
+        $('#frmAgregarBondisRicoteros #id_provincia').multiselect(
+                {
+                    selectedText: "# seleccionados",
+                    checkAllText: "Marcar todos",
+                    uncheckAllText: "Desmarcar todos",
+                    noneSelectedText: "Seleccione una Opción",
+                    close: function () {
+                        var lstID = GetLstIdMultiselect('id_provincia');
+
+                        if (lstID.length > 0) {
+                            $.ajax({
+                                type: "POST",
+                                data: { idProvincias: lstID },
+                                datatype: "json",
+                                traditional: true,
+                                url: '@Url.Action("GetZonas")',
+                                success: function (vista) {
+                                    $("#divComboZonas").html(vista);
+                                    $('#frmAgregarBondisRicoteros #Zonas').multiselect("enable");
+                                }
+                            });
+                        }
+                        else {
+                            $('#frmAgregarBondisRicoteros #Zonas').multiselect("uncheckAll");
+                            $('#frmAgregarBondisRicoteros #Zonas').multiselect("disable");
+                        }
+                    }
+                }
+            );
+        $('#frmAgregarBondisRicoteros #id_provincia').multiselect("uncheckAll");
+
+        $('#frmAgregarBondisRicoteros #Zonas').multiselect(
+                {
+                    selectedText: "# seleccionados",
+                    checkAllText: "Marcar todos",
+                    uncheckAllText: "Desmarcar todos",
+                    noneSelectedText: "Seleccione una Opción"
+                }
+            );
+        $('#frmAgregarBondisRicoteros #LstIdZonas').multiselect("uncheckAll");
     });
 
     function AgregarProvincia() {
@@ -90,7 +126,7 @@ new { id = "frmAgregarBondisRicoteros" }))
             Provincia:
         </td>
         <td>
-            @Html.DropDownList("id_provincia", new SelectList(ViewBag.ListProvincias, "id", "descripcion"), string.Empty, new { style = "width: 300px" }) <img onclick="javascript:AgregarProvincia();" style="cursor:pointer;" src="/Content/img/botones/add_button.jpg" width="16px"/>
+            @Html.DropDownList("id_provincia", new SelectList(ViewBag.ListProvincias, "id", "descripcion"), new { style = "width: 300px" }) <img onclick="javascript:AgregarProvincia();" style="cursor:pointer;" src="/Content/img/botones/add_button.jpg" width="16px"/>
         </td>
     </tr>
     <tr>
@@ -98,7 +134,9 @@ new { id = "frmAgregarBondisRicoteros" }))
             Zona:
         </td>
         <td>
-            @Html.DropDownListFor(x => x.Id_Zona, new SelectList(ViewBag.ListZonas, "id", "descripcion"), string.Empty, new { style = "width: 300px", disabled = "disabled" }) <img onclick="javascript:AgregarZona();" style="cursor:pointer;" src="/Content/img/botones/add_button.jpg" width="16px"/>
+            <div id="divComboZonas">
+                @Html.Partial("ComboZonas", Model)
+            </div>
         </td>
         
     </tr>

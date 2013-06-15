@@ -19,7 +19,7 @@ using System.Runtime.Serialization;
 #region Metadatos de relaciones en EDM
 
 [assembly: EdmRelationshipAttribute("IndioMendoza2013Model", "FK_Zona_Provincia", "Provincia", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(IndioMendoza2013.OrigenesDeDatos.Provincia), "Zona", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IndioMendoza2013.OrigenesDeDatos.Zona), true)]
-[assembly: EdmRelationshipAttribute("IndioMendoza2013Model", "FK_BondiRicotero_Zona", "Zona", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(IndioMendoza2013.OrigenesDeDatos.Zona), "BondiRicotero", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IndioMendoza2013.OrigenesDeDatos.BondiRicotero), true)]
+[assembly: EdmRelationshipAttribute("IndioMendoza2013Model", "BondiRicotero_Zona", "BondiRicotero", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IndioMendoza2013.OrigenesDeDatos.BondiRicotero), "Zona", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IndioMendoza2013.OrigenesDeDatos.Zona))]
 
 #endregion
 
@@ -106,18 +106,18 @@ namespace IndioMendoza2013.OrigenesDeDatos
         /// <summary>
         /// No hay documentación de metadatos disponible.
         /// </summary>
-        public ObjectSet<Zona> Zona
+        public ObjectSet<Contacto> Contacto
         {
             get
             {
-                if ((_Zona == null))
+                if ((_Contacto == null))
                 {
-                    _Zona = base.CreateObjectSet<Zona>("Zona");
+                    _Contacto = base.CreateObjectSet<Contacto>("Contacto");
                 }
-                return _Zona;
+                return _Contacto;
             }
         }
-        private ObjectSet<Zona> _Zona;
+        private ObjectSet<Contacto> _Contacto;
     
         /// <summary>
         /// No hay documentación de metadatos disponible.
@@ -138,18 +138,18 @@ namespace IndioMendoza2013.OrigenesDeDatos
         /// <summary>
         /// No hay documentación de metadatos disponible.
         /// </summary>
-        public ObjectSet<Contacto> Contacto
+        public ObjectSet<Zona> Zona
         {
             get
             {
-                if ((_Contacto == null))
+                if ((_Zona == null))
                 {
-                    _Contacto = base.CreateObjectSet<Contacto>("Contacto");
+                    _Zona = base.CreateObjectSet<Zona>("Zona");
                 }
-                return _Contacto;
+                return _Zona;
             }
         }
-        private ObjectSet<Contacto> _Contacto;
+        private ObjectSet<Zona> _Zona;
 
         #endregion
         #region Métodos AddTo
@@ -171,11 +171,11 @@ namespace IndioMendoza2013.OrigenesDeDatos
         }
     
         /// <summary>
-        /// Método desusado para agregar un nuevo objeto al EntitySet Zona. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// Método desusado para agregar un nuevo objeto al EntitySet Contacto. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
         /// </summary>
-        public void AddToZona(Zona zona)
+        public void AddToContacto(Contacto contacto)
         {
-            base.AddObject("Zona", zona);
+            base.AddObject("Contacto", contacto);
         }
     
         /// <summary>
@@ -187,11 +187,11 @@ namespace IndioMendoza2013.OrigenesDeDatos
         }
     
         /// <summary>
-        /// Método desusado para agregar un nuevo objeto al EntitySet Contacto. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// Método desusado para agregar un nuevo objeto al EntitySet Zona. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
         /// </summary>
-        public void AddToContacto(Contacto contacto)
+        public void AddToZona(Zona zona)
         {
-            base.AddObject("Contacto", contacto);
+            base.AddObject("Zona", zona);
         }
 
         #endregion
@@ -217,13 +217,11 @@ namespace IndioMendoza2013.OrigenesDeDatos
         /// </summary>
         /// <param name="id">Valor inicial de la propiedad id.</param>
         /// <param name="nombre">Valor inicial de la propiedad nombre.</param>
-        /// <param name="id_zona">Valor inicial de la propiedad id_zona.</param>
-        public static BondiRicotero CreateBondiRicotero(global::System.Int32 id, global::System.String nombre, global::System.Int32 id_zona)
+        public static BondiRicotero CreateBondiRicotero(global::System.Int32 id, global::System.String nombre)
         {
             BondiRicotero bondiRicotero = new BondiRicotero();
             bondiRicotero.id = id;
             bondiRicotero.nombre = nombre;
-            bondiRicotero.id_zona = id_zona;
             return bondiRicotero;
         }
 
@@ -328,30 +326,6 @@ namespace IndioMendoza2013.OrigenesDeDatos
         private global::System.String _detalle;
         partial void OndetalleChanging(global::System.String value);
         partial void OndetalleChanged();
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 id_zona
-        {
-            get
-            {
-                return _id_zona;
-            }
-            set
-            {
-                Onid_zonaChanging(value);
-                ReportPropertyChanging("id_zona");
-                _id_zona = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("id_zona");
-                Onid_zonaChanged();
-            }
-        }
-        private global::System.Int32 _id_zona;
-        partial void Onid_zonaChanging(global::System.Int32 value);
-        partial void Onid_zonaChanged();
 
         #endregion
     
@@ -363,34 +337,18 @@ namespace IndioMendoza2013.OrigenesDeDatos
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("IndioMendoza2013Model", "FK_BondiRicotero_Zona", "Zona")]
-        public Zona Zona
+        [EdmRelationshipNavigationPropertyAttribute("IndioMendoza2013Model", "BondiRicotero_Zona", "Zona")]
+        public EntityCollection<Zona> Zona
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Zona>("IndioMendoza2013Model.FK_BondiRicotero_Zona", "Zona").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Zona>("IndioMendoza2013Model.FK_BondiRicotero_Zona", "Zona").Value = value;
-            }
-        }
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Zona> ZonaReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Zona>("IndioMendoza2013Model.FK_BondiRicotero_Zona", "Zona");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Zona>("IndioMendoza2013Model.BondiRicotero_Zona", "Zona");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Zona>("IndioMendoza2013Model.FK_BondiRicotero_Zona", "Zona", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Zona>("IndioMendoza2013Model.BondiRicotero_Zona", "Zona", value);
                 }
             }
         }
@@ -995,18 +953,18 @@ namespace IndioMendoza2013.OrigenesDeDatos
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("IndioMendoza2013Model", "FK_BondiRicotero_Zona", "BondiRicotero")]
+        [EdmRelationshipNavigationPropertyAttribute("IndioMendoza2013Model", "BondiRicotero_Zona", "BondiRicotero")]
         public EntityCollection<BondiRicotero> BondiRicotero
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<BondiRicotero>("IndioMendoza2013Model.FK_BondiRicotero_Zona", "BondiRicotero");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<BondiRicotero>("IndioMendoza2013Model.BondiRicotero_Zona", "BondiRicotero");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<BondiRicotero>("IndioMendoza2013Model.FK_BondiRicotero_Zona", "BondiRicotero", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<BondiRicotero>("IndioMendoza2013Model.BondiRicotero_Zona", "BondiRicotero", value);
                 }
             }
         }

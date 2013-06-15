@@ -9,7 +9,7 @@ namespace IndioMendoza2013.Modelos
 {
     public class modBondiRicotero
     {
-        public BondiRicotero bondiRicoteroDB {get; set;}
+        public BondiRicotero bondiRicoteroDB { get; set; }
 
         public modBondiRicotero()
         {
@@ -46,14 +46,33 @@ namespace IndioMendoza2013.Modelos
             set { this.bondiRicoteroDB.detalle = value; }
         }
 
-        public int Id_Zona
+        public List<modZona> Zonas
         {
-            get { return this.bondiRicoteroDB.id_zona; }
-            set { this.bondiRicoteroDB.id_zona = value; }
+            get { return this.bondiRicoteroDB.Zona.Select(x => new modZona(x)).ToList(); }
+            set
+            {
+                foreach (var item in value)
+                {
+                    this.bondiRicoteroDB.Zona.Add(item.zonaDB);
+                }
+            }
         }
 
-        public string Des_Zona { get; set; }
-        public int Id_Provincia { get; set; }
-        public string Des_Provincia { get; set; }
+        public String ZonasStr
+        {
+            get
+            {
+                var zonas = string.Empty;
+                foreach (var item in Zonas)
+                {
+                    zonas += item.Descripcion + ", ";
+                }
+                return zonas.Substring(0, zonas.Length -2);
+            }
+        }
+
+        public List<int> LstIdZonas { get; set; }
+        public String LstIdZonasStr { get; set; }
+
     }
 }

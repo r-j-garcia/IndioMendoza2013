@@ -7,13 +7,18 @@
     <Schema Namespace="IndioMendoza2013Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="IndioMendoza2013ModelStoreContainer">
           <EntitySet Name="BondiRicotero" EntityType="IndioMendoza2013Model.Store.BondiRicotero" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="BondiRicotero_Zona" EntityType="IndioMendoza2013Model.Store.BondiRicotero_Zona" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Contacto" EntityType="IndioMendoza2013Model.Store.Contacto" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="PosicionRicotera" EntityType="IndioMendoza2013Model.Store.PosicionRicotera" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Provincia" EntityType="IndioMendoza2013Model.Store.Provincia" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Zona" EntityType="IndioMendoza2013Model.Store.Zona" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK_BondiRicotero_Zona" Association="IndioMendoza2013Model.Store.FK_BondiRicotero_Zona">
-            <End Role="Zona" EntitySet="Zona" />
+          <AssociationSet Name="FK_BondiRicotero_Zona_BondiRicotero" Association="IndioMendoza2013Model.Store.FK_BondiRicotero_Zona_BondiRicotero">
             <End Role="BondiRicotero" EntitySet="BondiRicotero" />
+            <End Role="BondiRicotero_Zona" EntitySet="BondiRicotero_Zona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BondiRicotero_Zona_Zona" Association="IndioMendoza2013Model.Store.FK_BondiRicotero_Zona_Zona">
+            <End Role="Zona" EntitySet="Zona" />
+            <End Role="BondiRicotero_Zona" EntitySet="BondiRicotero_Zona" />
           </AssociationSet>
           <AssociationSet Name="FK_Zona_Provincia" Association="IndioMendoza2013Model.Store.FK_Zona_Provincia">
             <End Role="Provincia" EntitySet="Provincia" />
@@ -28,6 +33,13 @@
           <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="descripcion" Type="varchar" MaxLength="400" />
           <Property Name="detalle" Type="varchar" MaxLength="2000" />
+        </EntityType>
+        <EntityType Name="BondiRicotero_Zona">
+          <Key>
+            <PropertyRef Name="id_bondiRicotero" />
+            <PropertyRef Name="id_zona" />
+          </Key>
+          <Property Name="id_bondiRicotero" Type="int" Nullable="false" />
           <Property Name="id_zona" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Contacto">
@@ -40,9 +52,6 @@
           <Property Name="consulta" Type="varchar" Nullable="false" MaxLength="2000" />
           <Property Name="leido" Type="bit" Nullable="false" />
         </EntityType>
-        <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'IndioMendoza2013.dbo.Noticias' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
-      -->
         <EntityType Name="PosicionRicotera">
           <Key>
             <PropertyRef Name="id" />
@@ -69,14 +78,26 @@
           <Property Name="id_provincia" Type="int" Nullable="false" />
           <Property Name="descripcion" Type="varchar" Nullable="false" MaxLength="100" />
         </EntityType>
-        <Association Name="FK_BondiRicotero_Zona">
+        <Association Name="FK_BondiRicotero_Zona_BondiRicotero">
+          <End Role="BondiRicotero" Type="IndioMendoza2013Model.Store.BondiRicotero" Multiplicity="1" />
+          <End Role="BondiRicotero_Zona" Type="IndioMendoza2013Model.Store.BondiRicotero_Zona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BondiRicotero">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="BondiRicotero_Zona">
+              <PropertyRef Name="id_bondiRicotero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BondiRicotero_Zona_Zona">
           <End Role="Zona" Type="IndioMendoza2013Model.Store.Zona" Multiplicity="1" />
-          <End Role="BondiRicotero" Type="IndioMendoza2013Model.Store.BondiRicotero" Multiplicity="*" />
+          <End Role="BondiRicotero_Zona" Type="IndioMendoza2013Model.Store.BondiRicotero_Zona" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Zona">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="BondiRicotero">
+            <Dependent Role="BondiRicotero_Zona">
               <PropertyRef Name="id_zona" />
             </Dependent>
           </ReferentialConstraint>
@@ -100,17 +121,17 @@
         <EntityContainer Name="IndioMendoza2013Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="PosicionRicotera" EntityType="IndioMendoza2013Model.PosicionRicotera" />
           <EntitySet Name="Provincia" EntityType="IndioMendoza2013Model.Provincia" />
+          <EntitySet Name="Contacto" EntityType="IndioMendoza2013Model.Contacto" />
+          <EntitySet Name="BondiRicotero" EntityType="IndioMendoza2013Model.BondiRicotero" />
           <EntitySet Name="Zona" EntityType="IndioMendoza2013Model.Zona" />
           <AssociationSet Name="FK_Zona_Provincia" Association="IndioMendoza2013Model.FK_Zona_Provincia">
             <End Role="Provincia" EntitySet="Provincia" />
             <End Role="Zona" EntitySet="Zona" />
           </AssociationSet>
-          <EntitySet Name="BondiRicotero" EntityType="IndioMendoza2013Model.BondiRicotero" />
-          <AssociationSet Name="FK_BondiRicotero_Zona" Association="IndioMendoza2013Model.FK_BondiRicotero_Zona">
-            <End Role="Zona" EntitySet="Zona" />
+          <AssociationSet Name="BondiRicotero_Zona" Association="IndioMendoza2013Model.BondiRicotero_Zona">
             <End Role="BondiRicotero" EntitySet="BondiRicotero" />
+            <End Role="Zona" EntitySet="Zona" />
           </AssociationSet>
-          <EntitySet Name="Contacto" EntityType="IndioMendoza2013Model.Contacto" />
           </EntityContainer>
         <EntityType Name="PosicionRicotera">
           <Key>
@@ -131,6 +152,26 @@
           <Property Type="String" Name="descripcion" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Zona" Relationship="IndioMendoza2013Model.FK_Zona_Provincia" FromRole="Provincia" ToRole="Zona" />
         </EntityType>
+        <EntityType Name="Contacto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="contacto1" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="consulta" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="leido" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BondiRicotero">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="descripcion" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="detalle" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Zona" Relationship="IndioMendoza2013Model.BondiRicotero_Zona" FromRole="BondiRicotero" ToRole="Zona" />
+        </EntityType>
         <EntityType Name="Zona">
           <Key>
             <PropertyRef Name="id" />
@@ -139,7 +180,7 @@
           <Property Type="Int32" Name="id_provincia" Nullable="false" />
           <Property Type="String" Name="descripcion" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Provincia" Relationship="IndioMendoza2013Model.FK_Zona_Provincia" FromRole="Zona" ToRole="Provincia" />
-          <NavigationProperty Name="BondiRicotero" Relationship="IndioMendoza2013Model.FK_BondiRicotero_Zona" FromRole="Zona" ToRole="BondiRicotero" />
+          <NavigationProperty Name="BondiRicotero" Relationship="IndioMendoza2013Model.BondiRicotero_Zona" FromRole="Zona" ToRole="BondiRicotero" />
         </EntityType>
         <Association Name="FK_Zona_Provincia">
           <End Type="IndioMendoza2013Model.Provincia" Role="Provincia" Multiplicity="1" />
@@ -153,39 +194,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="BondiRicotero">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="nombre" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="descripcion" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="detalle" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="id_zona" Nullable="false" />
-          <NavigationProperty Name="Zona" Relationship="IndioMendoza2013Model.FK_BondiRicotero_Zona" FromRole="BondiRicotero" ToRole="Zona" />
-        </EntityType>
-        <Association Name="FK_BondiRicotero_Zona">
-          <End Type="IndioMendoza2013Model.Zona" Role="Zona" Multiplicity="1" />
+        <Association Name="BondiRicotero_Zona">
           <End Type="IndioMendoza2013Model.BondiRicotero" Role="BondiRicotero" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Zona">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="BondiRicotero">
-              <PropertyRef Name="id_zona" />
-            </Dependent>
-          </ReferentialConstraint>
+          <End Type="IndioMendoza2013Model.Zona" Role="Zona" Multiplicity="*" />
         </Association>
-        <EntityType Name="Contacto">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Type="Int32" Name="id" Nullable="false" />
-          <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="contacto1" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="consulta" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="leido" Nullable="false" />
-        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -212,26 +224,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Zona">
-            <EntityTypeMapping TypeName="IndioMendoza2013Model.Zona">
-              <MappingFragment StoreEntitySet="Zona">
-                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-                <ScalarProperty Name="id_provincia" ColumnName="id_provincia" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="BondiRicotero">
-            <EntityTypeMapping TypeName="IndioMendoza2013Model.BondiRicotero">
-              <MappingFragment StoreEntitySet="BondiRicotero">
-                <ScalarProperty Name="id_zona" ColumnName="id_zona" />
-                <ScalarProperty Name="detalle" ColumnName="detalle" />
-                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Contacto">
             <EntityTypeMapping TypeName="IndioMendoza2013Model.Contacto">
               <MappingFragment StoreEntitySet="Contacto">
@@ -243,6 +235,33 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="BondiRicotero">
+            <EntityTypeMapping TypeName="IndioMendoza2013Model.BondiRicotero">
+              <MappingFragment StoreEntitySet="BondiRicotero">
+                <ScalarProperty Name="detalle" ColumnName="detalle" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zona">
+            <EntityTypeMapping TypeName="IndioMendoza2013Model.Zona">
+              <MappingFragment StoreEntitySet="Zona">
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="id_provincia" ColumnName="id_provincia" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="BondiRicotero_Zona" TypeName="IndioMendoza2013Model.BondiRicotero_Zona" StoreEntitySet="BondiRicotero_Zona">
+            <EndProperty Name="Zona">
+              <ScalarProperty Name="id" ColumnName="id_zona" />
+            </EndProperty>
+            <EndProperty Name="BondiRicotero">
+              <ScalarProperty Name="id" ColumnName="id_bondiRicotero" />
+            </EndProperty>
+          </AssociationSetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -263,20 +282,20 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="IndioMendoza2013">
+      <Diagram Name="IndioMendoza2013" ZoomLevel="81">
         <EntityTypeShape EntityType="IndioMendoza2013Model.PosicionRicotera" Width="1.5" PointX="0.75" PointY="0.75" Height="2.1725878906249996" />
         <EntityTypeShape EntityType="IndioMendoza2013Model.Provincia" Width="1.5" PointX="0.75" PointY="4.25" Height="1.5956835937499996" />
-        <EntityTypeShape EntityType="IndioMendoza2013Model.Zona" Width="1.5" PointX="3" PointY="4" Height="1.9802864583333317" />
+        <EntityTypeShape EntityType="IndioMendoza2013Model.Contacto" Width="1.5" PointX="5.375" PointY="0.75" Height="1.7566536458333317" />
+        <EntityTypeShape EntityType="IndioMendoza2013Model.BondiRicotero" Width="1.5" PointX="7.25" PointY="4.125" Height="1.9802864583333317" />
+        <EntityTypeShape EntityType="IndioMendoza2013Model.Zona" Width="1.5" PointX="4.125" PointY="4.125" Height="1.9802864583333317" />
         <AssociationConnector Association="IndioMendoza2013Model.FK_Zona_Provincia" >
           <ConnectorPoint PointX="2.25" PointY="5.047841796875" />
-          <ConnectorPoint PointX="3" PointY="5.047841796875" />
+          <ConnectorPoint PointX="4.125" PointY="5.047841796875" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="IndioMendoza2013Model.BondiRicotero" Width="1.5" PointX="5.25" PointY="3.875" Height="2.1725878906249996" />
-        <AssociationConnector Association="IndioMendoza2013Model.FK_BondiRicotero_Zona" >
-          <ConnectorPoint PointX="4.5" PointY="4.9901432291666659" />
-          <ConnectorPoint PointX="5.25" PointY="4.9901432291666659" />
+        <AssociationConnector Association="IndioMendoza2013Model.BondiRicotero_Zona" >
+          <ConnectorPoint PointX="7.25" PointY="5.1151432291666659" />
+          <ConnectorPoint PointX="5.625" PointY="5.1151432291666659" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="IndioMendoza2013Model.Contacto" Width="1.5" PointX="5.375" PointY="0.75" Height="1.7566536458333317" />
       </Diagram>
     </Diagrams>
   </Designer>

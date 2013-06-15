@@ -1,0 +1,22 @@
+﻿@using IndioMendoza2013.Modelos
+@model modBondiRicotero
+
+<script language="javascript" type="text/javascript">
+
+    $(function () {
+        $('#frmAgregarBondisRicoteros #Zonas').multiselect(
+                {
+                    selectedText: "# seleccionados",
+                    checkAllText: "Marcar todos",
+                    uncheckAllText: "Desmarcar todos",
+                    noneSelectedText: "Seleccione una Opción"
+                }
+            );
+        $('#frmAgregarBondisRicoteros #Zonas').multiselect("uncheckAll");
+    });
+
+</script>
+<div>
+    @Html.HiddenFor(x => x.LstIdZonasStr)
+    @Html.DropDownListFor(x => x.Zonas, new SelectList(ViewBag.ListZonas, "id", "descripcion"), new { style = "width: 300px", disabled = "disabled" }) <img onclick="javascript:AgregarZona();" style="cursor:pointer;" src="/Content/img/botones/add_button.jpg" width="16px"/>
+</div>

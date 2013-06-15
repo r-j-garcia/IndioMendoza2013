@@ -7,7 +7,7 @@
         $('#id_provincia').change(function () {
             var idProvincia = $(this).val();
             if (idProvincia != null && idProvincia != '') {
-                $.getJSON('@Url.Action("GetZonas")', { idProvincia: idProvincia }, function (zonas) {
+                $.getJSON('@Url.Action("GetZonasByID")', { idProvincia: idProvincia }, function (zonas) {
                     var cboZonas = $('#id_zona');
                     cboZonas.empty();
                     cboZonas.removeAttr("disabled");
