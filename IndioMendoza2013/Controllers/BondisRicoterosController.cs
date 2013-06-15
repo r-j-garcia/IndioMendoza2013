@@ -117,6 +117,7 @@ namespace IndioMendoza2013.Controllers
             {
                 var serv = new BondisRicoterosService();
                 bondi.LstIdZonas = bondi.LstIdZonasStr.Split(',').Select(x => int.Parse(x)).ToList();
+                bondi.Descripcion = bondi.Descripcion.Replace("\n", "<br>");
                 serv.AgregarBondi(bondi);
             }
         }
