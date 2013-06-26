@@ -33,8 +33,8 @@
         var infoWindow = new google.maps.InfoWindow({ content: "Cargando..." });
 
 
-//        var markerIcon = new google.maps.MarkerImage();
-//        markerIcon.size = new google.maps.Size(16, 16);
+        //        var markerIcon = new google.maps.MarkerImage();
+        //        markerIcon.size = new google.maps.Size(16, 16);
 
         $.ajax({
             type: "POST",
@@ -43,10 +43,12 @@
                 $.each(data, function (index, data) {
                     var point = new google.maps.LatLng(data.Latitud, data.Longitud);
 
+                    debugger;
+
                     var marker = new google.maps.Marker({
                         position: point,
                         map: map,
-                        html: "<div style='color: black'><b>" + data.Nombre + "</b>" + "<br>" + data.Comentarios + "</div>",
+                        html: "<div style='color: black'><b>" + data.Nombre + "</b>" + "<br>" + ((data.Comentarios == null) ? '' : data.Comentarios) + "</div>",
                         icon: { url: "/Content/img/PR-ICON.png" }
                     });
 
