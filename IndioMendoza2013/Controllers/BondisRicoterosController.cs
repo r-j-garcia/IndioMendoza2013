@@ -63,7 +63,7 @@ namespace IndioMendoza2013.Controllers
             ViewBag.ResultadosTotales = result.Count();
 
             Double cantPag = ((Double)result.Count()) / longPag;
-            result = result.Skip((filtro.Pagina - 1) * longPag).Take(longPag);
+            
 
             var cantPagReal = Math.Truncate(cantPag);
 
@@ -71,7 +71,9 @@ namespace IndioMendoza2013.Controllers
                 cantPagReal += 1;
 
             ViewBag.CantPaginas = (int)cantPagReal;
-            ViewBag.Pagina = filtro.Pagina == 0? 1 :filtro.Pagina;
+            filtro.Pagina = filtro.Pagina == 0 || cantPagReal < filtro.Pagina ? 1 : filtro.Pagina;
+            ViewBag.Pagina = filtro.Pagina;
+            result = result.Skip((filtro.Pagina - 1) * longPag).Take(longPag);
 
             return PartialView("ResultadosBondisRicoteros", result);
         }
