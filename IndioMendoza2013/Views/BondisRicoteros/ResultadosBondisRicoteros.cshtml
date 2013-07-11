@@ -41,7 +41,7 @@
     });
 
     function irAPagina(pagina) {
-        $("#frmBondisRicoteros #Pagina").val(pagina -1);
+        $("#frmBondisRicoteros #Pagina").val(pagina);
         btnSubmit_click();
     }
 </script>
@@ -51,7 +51,7 @@
 Páginas:
 @for (int i = 0; i < (int)(ViewBag.CantPaginas) ; i++)
 {
-    <a class="aButton@(ViewBag.Pagina == i? " aButtonSelected" : "")" href="javascript:irAPagina(@(i + 1));">@(i + 1)</a>
+    <a class="aButton@(ViewBag.Pagina == (i + 1)? " aButtonSelected" : "")" href="javascript:irAPagina(@(i + 1));">@(i + 1)</a>
 }
 (@ViewBag.ResultadosTotales resultados)
 </div>
@@ -78,7 +78,7 @@ Páginas:
 Páginas:
 @for (int i = 0; i < (int)(ViewBag.CantPaginas) ; i++)
 {
-    <a class="aButton@(ViewBag.Pagina == i? " aButtonSelected" : "")" href="javascript:irAPagina(@(i+1));">@(i+1)</a>
+    <a class="aButton@(ViewBag.Pagina == (i + 1)? " aButtonSelected" : "")" href="javascript:irAPagina(@(i + 1));">@(i + 1)</a>
 }
 (@ViewBag.ResultadosTotales resultados)
 </div>

@@ -71,7 +71,7 @@ namespace IndioMendoza2013.Controllers
                 cantPagReal += 1;
 
             ViewBag.CantPaginas = (int)cantPagReal;
-            ViewBag.Pagina = filtro.Pagina;
+            ViewBag.Pagina = filtro.Pagina == 0? 1 :filtro.Pagina;
 
             return PartialView("ResultadosBondisRicoteros", result);
         }
