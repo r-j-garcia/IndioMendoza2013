@@ -58,6 +58,21 @@ namespace IndioMendoza2013.Controllers
             var serv = new BondisRicoterosService();
             var result = serv.GetBondisRicoteros(filtro);
 
+            var longPag = Int32.Parse(System.Configuration.ConfigurationManager.AppSettings["BondisPorPagina"]);
+
+            ViewBag.ResultadosTotales = result.Count();
+
+            Double cantPag = ((Double)result.Count()) / longPag;
+            result = result.Skip((filtro.Pagina - 1) * longPag).Take(longPag);
+
+            var cantPagReal = Math.Truncate(cantPag);
+
+            if ((cantPag - cantPagReal) > 0)
+                cantPagReal += 1;
+
+            ViewBag.CantPaginas = (int)cantPagReal;
+            ViewBag.Pagina = filtro.Pagina;
+
             return PartialView("ResultadosBondisRicoteros", result);
         }
 
