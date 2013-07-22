@@ -33,33 +33,12 @@ namespace IndioMendoza2013.Controllers
 
         public ActionResult FacebookInfo()
         {
-            modFacebookInfo facInfo = null;
-
-            if (Session["AccessToken"] != null)
-            {
-                try
-                {
-                    facInfo = new modFacebookInfo();
-                    var accessToken = Session["AccessToken"].ToString();
-
-                    var client = new FacebookClient(accessToken);
-                    dynamic result = client.Get("me", new { fields = "name,link" });
-                    facInfo.Nombre = result.name;
-                    facInfo.Link = result.link;
-                }
-                catch (Exception)
-                {
-                    facInfo = null;
-                    Session["AccessToken"] = null;
-                }
-            }
-
-            return PartialView("FacebookInfo", facInfo);
+            return PartialView("FacebookInfo");
         }
 
-        public void SaveFacebookToken(String Token)
-        {
-            Session["AccessToken"] = Token;
-        }
+        //public void SaveFacebookToken(String Token)
+        //{
+        //    Session["AccessToken"] = Token;
+        //}
     }
 }

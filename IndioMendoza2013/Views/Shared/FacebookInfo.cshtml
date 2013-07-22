@@ -1,55 +1,8 @@
 ﻿@using IndioMendoza2013.Modelos
-@model modFacebookInfo
 
 <script language="javascript" type="text/javascript">
 
-    $(function () {
-        FB.XFBML.parse();
-    });
-
-    window.fbAsyncInit = function () {
-        FB.Event.subscribe('auth.login', function (response) {
-            SaveLoginToken(response);
-        });
-        FB.Event.subscribe('auth.authResponseChange', function (response) {
-            SaveLoginToken(response);
-        });
-    };
-
-    function after_login_button() {
-        FB.getLoginStatus(function (response) {
-            if (response.status == "connected") {
-                SaveLoginToken(response);
-            }
-        }, true);
-    }
-
-    function SaveLoginToken(response) {
-        if (response.status === 'connected') {
-            SetConnectionData(response.authResponse.accessToken);
-        } else if (response.status === 'not_authorized') {
-            alert('NO AUTORIZADO');
-        } else {
-            alert('NO LOGGUEADO');
-        }
-    }
-
-    function SetConnectionData(acccessToken) {
-        $.ajax({
-            type: "POST",
-            data: { Token: acccessToken },
-            dataType: "json",
-            url: "/Home/SaveFacebookToken",
-            success: function (data) {
-                $("#divFacebookInfo").load("/Home/FacebookInfo/");
-            }
-        })
-    }
 </script>
 <div>
-    @if(Model == null){
-        <fb:login-button onlogin="after_login_button()" id="facLoginButton" width="200" max-rows="1"></fb:login-button>     
-    }else{
-        <a class="facebookLink" href="@Model.Link" target="_blank"><b><img width="12px" src="/Content/img/facebookLink.png" />@Model.Nombre</b></a>
-    }   
+    <div class="fb-like" data-href="https://www.facebook.com/IndioMendoza2013" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="arial"></div>
 </div>

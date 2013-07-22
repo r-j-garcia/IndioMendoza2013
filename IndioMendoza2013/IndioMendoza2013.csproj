@@ -99,11 +99,13 @@
     <Compile Include="Controllers\ContactoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InfoController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MapaRicoteroController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -136,6 +138,7 @@
     <Content Include="Content\img\Indio-Misa-Ricotera.jpg" />
     <Content Include="Content\img\IndioMendozaSeptiembre2013.jpg" />
     <Content Include="Content\img\indio_mendoza_2013_entradas.jpg" />
+    <Content Include="Content\img\indio_mendoza_2013_entradas_mod.jpg" />
     <Content Include="Content\img\logosbondis\Logo_Andesmar.gif" />
     <Content Include="Content\img\logosbondis\Logo_Cata.gif" />
     <Content Include="Content\img\logosbondis\Logo_Central_Argentino.gif" />
@@ -384,7 +387,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Index.cshtml" />
@@ -474,6 +476,7 @@
     <None Include="Scripts\tinymce\skins\lightgray\fonts\icomoon.ttf" />
     <None Include="Scripts\tinymce\skins\lightgray\fonts\icomoon.woff" />
     <None Include="Scripts\tinymce\skins\lightgray\fonts\readme.md" />
+    <Content Include="Views\Login\Index.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

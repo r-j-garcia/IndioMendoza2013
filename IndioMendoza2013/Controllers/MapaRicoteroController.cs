@@ -27,14 +27,6 @@ namespace IndioMendoza2013.Controllers
         {
             var model = new modPosicionRicotera();
 
-            if (Session["AccessToken"] != null)
-            {
-                var accessToken = Session["AccessToken"].ToString();
-                var client = new FacebookClient(accessToken);
-                dynamic result = client.Get("me", new { fields = "name" });
-                model.Nombre = result.name;
-            }
-
             return View(model);
         }
 

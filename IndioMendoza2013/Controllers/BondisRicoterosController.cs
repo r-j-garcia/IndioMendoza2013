@@ -87,11 +87,7 @@ namespace IndioMendoza2013.Controllers
 
             if (Session["AccessToken"] != null)
             {
-                var accessToken = Session["AccessToken"].ToString();
-                var client = new FacebookClient(accessToken);
-                dynamic result = client.Get("me", new { fields = "id" });
-
-                if (result.id == "100002979715059")
+                if ((int)(Session["AccessToken"]) == ("RRP").GetHashCode())
                 {
                     permiteAcceso = true;
                 }
@@ -121,11 +117,7 @@ namespace IndioMendoza2013.Controllers
 
             if (Session["AccessToken"] != null)
             {
-                var accessToken = Session["AccessToken"].ToString();
-                var client = new FacebookClient(accessToken);
-                dynamic result = client.Get("me", new { fields = "id" });
-
-                if (result.id == "100002979715059")
+                if ((int)(Session["AccessToken"]) == ("RRP").GetHashCode())
                 {
                     permiteAcceso = true;
                 }
@@ -161,11 +153,7 @@ namespace IndioMendoza2013.Controllers
 
             if (Session["AccessToken"] != null)
             {
-                var accessToken = Session["AccessToken"].ToString();
-                var client = new FacebookClient(accessToken);
-                dynamic result = client.Get("me", new { fields = "id" });
-
-                if (result.id == "100002979715059")
+                if ((int)(Session["AccessToken"]) == ("RRP").GetHashCode())
                 {
                     permiteAcceso = true;
                 }
@@ -197,11 +185,7 @@ namespace IndioMendoza2013.Controllers
 
             if (Session["AccessToken"] != null)
             {
-                var accessToken = Session["AccessToken"].ToString();
-                var client = new FacebookClient(accessToken);
-                dynamic result = client.Get("me", new { fields = "id" });
-
-                if (result.id == "100002979715059")
+                if ((int)(Session["AccessToken"]) == ("RRP").GetHashCode())
                 {
                     permiteAcceso = true;
                 }
