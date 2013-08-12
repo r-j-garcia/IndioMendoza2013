@@ -85,9 +85,9 @@ namespace IndioMendoza2013.Controllers
 
             permiteAcceso = debug;
 
-            if (Session["AccessToken"] != null)
+            if (Request.Cookies["AccessToken"] != null)
             {
-                if ((int)(Session["AccessToken"]) == ("RRP").GetHashCode())
+                if (Request.Cookies["AccessToken"].Value == ("RRP").GetHashCode().ToString())
                 {
                     permiteAcceso = true;
                 }
@@ -115,9 +115,9 @@ namespace IndioMendoza2013.Controllers
 
             permiteAcceso = debug;
 
-            if (Session["AccessToken"] != null)
+            if (Request.Cookies["AccessToken"] != null)
             {
-                if ((int)(Session["AccessToken"]) == ("RRP").GetHashCode())
+                if (Request.Cookies["AccessToken"].Value == ("RRP").GetHashCode().ToString())
                 {
                     permiteAcceso = true;
                 }
@@ -151,9 +151,9 @@ namespace IndioMendoza2013.Controllers
 
             permiteAcceso = debug;
 
-            if (Session["AccessToken"] != null)
+            if (Request.Cookies["AccessToken"] != null)
             {
-                if ((int)(Session["AccessToken"]) == ("RRP").GetHashCode())
+                if (Request.Cookies["AccessToken"].Value == ("RRP").GetHashCode().ToString())
                 {
                     permiteAcceso = true;
                 }
@@ -183,9 +183,9 @@ namespace IndioMendoza2013.Controllers
 
             permiteAcceso = debug;
 
-            if (Session["AccessToken"] != null)
+            if (Request.Cookies["AccessToken"] != null)
             {
-                if ((int)(Session["AccessToken"]) == ("RRP").GetHashCode())
+                if (Request.Cookies["AccessToken"].Value == ("RRP").GetHashCode().ToString())
                 {
                     permiteAcceso = true;
                 }

@@ -38,7 +38,7 @@ namespace IndioMendoza2013.Controllers
 
         //public void SaveFacebookToken(String Token)
         //{
-        //    Session["AccessToken"] = Token;
+        //    Request.Cookies["AccessToken"] = Token;
         //}
     }
 }

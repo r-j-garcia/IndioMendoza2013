@@ -44,7 +44,7 @@ new { id = "frmBondisRicoteros" }))
     <tr>
         <td><div class="info">Si queres agregar tu bondi ricotero para ir a Mendoza mandanos un mail a <a href="mailto:bondisricoteros@indiomendoza2013.com.ar">bondisricoteros@indiomendoza2013.com.ar</a></div></td>
     </tr>
-    @if (@Session["AccessToken"] != null)
+    @if (@Request.Cookies["AccessToken"] != null)
     {
         <tr><td>
         <a href="@Url.Action("Agregar", "BondisRicoteros")">AGREGAR BONDI RICOTERO</a>
