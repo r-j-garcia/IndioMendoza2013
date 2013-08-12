@@ -19,6 +19,11 @@ namespace IndioMendoza2013.Controllers
         public ActionResult Index()
         {
             ViewBag.MenuSeleccionado = "MAPA";
+
+            var serv = new PosicionesRicoterasService();
+
+            ViewBag.CantidadDeRicoteros = serv.GetPosicionesRicoteras().Count();
+            
             return View("MapaCompleto");
         }
 

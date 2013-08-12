@@ -68,7 +68,6 @@ textarea
 }
 
 .buttonSearch {
-    background: #DEF0F0 url('/Content/img/search.png') no-repeat 5px center;
     vertical-align:middle; 
     width: 100px;
     height: 25px;

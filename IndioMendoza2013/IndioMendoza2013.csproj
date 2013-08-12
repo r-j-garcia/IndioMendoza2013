@@ -112,6 +112,7 @@
     <Content Include="Content\images\bx_loader.gif" />
     <Content Include="Content\images\controls.png" />
     <Content Include="Content\img\AerolineasArgentinasLogo.png" />
+    <Content Include="Content\img\Autodoromo_Jorge_angel_Pena.jpg" />
     <Content Include="Content\img\Bancos.jpg" />
     <Content Include="Content\img\Boton-AerolineasArgentinas.png" />
     <Content Include="Content\img\Boton-Plataforma10.png" />
@@ -132,6 +133,7 @@
     <Content Include="Content\img\fondoHome.png" />
     <Content Include="Content\img\fondoIndio3.png" />
     <Content Include="Content\img\Hipodromo De Mendoza - Foto.png" />
+    <Content Include="Content\img\Hipodromo de mendoza indio 2013.jpg" />
     <Content Include="Content\img\Indio noticia - aclaraci+¦n.jpg" />
     <Content Include="Content\img\Indio noticia - aclaración.jpg" />
     <Content Include="Content\img\Indio-Contorno.jpg" />
@@ -139,6 +141,7 @@
     <Content Include="Content\img\Indio-Mendoza2013-Header-Negro.png" />
     <Content Include="Content\img\Indio-Misa-Ricotera.jpg" />
     <Content Include="Content\img\IndioMendozaSeptiembre2013.jpg" />
+    <Content Include="Content\img\Indio_Cambio_Autodromo.jpg" />
     <Content Include="Content\img\indio_mendoza_2013_entradas.jpg" />
     <Content Include="Content\img\indio_mendoza_2013_entradas_mod.jpg" />
     <Content Include="Content\img\logosbondis\Logo_Andesmar.gif" />
@@ -469,6 +472,7 @@
     <Content Include="Views\BondisRicoteros\ComboZonas.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.log" />
     <None Include="Scripts\jquery-1.9.1.min.map" />
     <None Include="Scripts\tinymce\langs\readme.md" />
     <None Include="Scripts\tinymce\skins\lightgray\fonts\icomoon-small.eot" />

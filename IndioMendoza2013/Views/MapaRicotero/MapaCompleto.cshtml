@@ -43,8 +43,6 @@
                 $.each(data, function (index, data) {
                     var point = new google.maps.LatLng(data.Latitud, data.Longitud);
 
-                    debugger;
-
                     var marker = new google.maps.Marker({
                         position: point,
                         map: map,
@@ -79,9 +77,16 @@
 <div>
 <table border="0" style="width:100%; height:100%;">
 <tr>
-    <td rowspan="3">
+    <td rowspan="4">
         <div id="mapArgentinaGeneral" style="width:700px; height:600px"></div>
     </td>
+    <td>
+        <div style="text-align: center; font-size:medium;">
+            <b>Ya somos @ViewBag.CantidadDeRicoteros ricoteros!!!</b>
+        </div>
+    </td>
+</tr>
+<tr>
     <td style="height:75px">
         <div style="text-align: center; font-size:medium;">
             <b>Agregá en el mapa tu punto de partida. Mostremos lo que significa una movilización ricotera.</b>
