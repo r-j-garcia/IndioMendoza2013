@@ -8,7 +8,7 @@
     <ProjectGuid>{F3BE9CD1-3123-45E1-A35B-EF3B7D32D740}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OrigenesDeDatosIndioMendoza2013</RootNamespace>
+    <RootNamespace>IndioMendoza2013.OrigenesDeDatos</RootNamespace>
     <AssemblyName>OrigenesDeDatosIndioMendoza2013</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

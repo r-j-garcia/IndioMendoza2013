@@ -1,0 +1,97 @@
+﻿@using IndioMendoza2013.Modelos
+@model IEnumerable<modAlojamiento>
+<script language="javascript" type="text/javascript">
+
+    function CompartirAlojamiento(nombre, tipo, descripcion) {
+        FB.ui(
+          {
+              method: 'feed',
+              name: 'Alojamiento en Gualeguaychú: ' + nombre,
+              caption: tipo,
+              description: descripcion,
+              link: '@(System.Configuration.ConfigurationManager.AppSettings["URLPag"])/Alojamiento',
+              picture: 'http://3.bp.blogspot.com/-P9x_PtQGHso/UaaFm5TwRaI/AAAAAAAAHwM/yRNI2SFkFZo/s320/BondiRicotero_2.png'
+          },
+          function (response) {
+              if (response && response.post_id) {
+                  alert('El alojamiento ha sido compartido correctamente.');
+                  self.close();
+              }
+          }
+        );
+    }
+
+    function MostrarUbicacionAlojamiento(id) {
+
+        $('#modalUbicacionAlojamiento').load('/Alojamiento/UbicacionAlojamiento/' + id, function () {
+            $("#modalUbicacionAlojamiento").dialog({
+                title: 'Alojamiento',
+                resizable: false,
+                height: 600,
+                width: 500,
+                modal: true,
+                close: function (event, ui) { modalUbicacionAlojamiento_close() }
+            });
+        });
+
+    }
+
+    function modalUbicacionAlojamiento_close() {
+        $('#modalUbicacionAlojamiento').find("#modalUbicacionAlojamiento #mapGualeguaychu").remove();
+        $('#modalUbicacionAlojamiento').find(":first").remove();
+        $('#modalUbicacionAlojamiento').dialog('destroy');
+        map = null;
+        initialize = undefined;
+    }
+
+    $(function () {
+        $(".fbButton, .UbicacionBondi, .aButton").button();
+        $(".aButtonSelected span").css("background-color", "#ccc");
+    });
+
+    function irAPagina(pagina) {
+        $("#Pagina").val(pagina);
+        btnSubmit_click();
+    }
+</script>
+
+<div>
+Páginas:
+@for (int i = 0; i < (int)(ViewBag.CantPaginas) ; i++)
+{
+    <a class="aButton@(ViewBag.Pagina == (i + 1) ? " aButtonSelected" : "")" href="javascript:irAPagina(@(i + 1));">@(i + 1)</a>
+}
+</div>
+<div>
+<table>
+    <tr><td colspan="2"><hr /></td></tr>
+@foreach (var item in Model)
+{
+    <tr >
+       <td style="width: 875px">
+            <b style="font-size:medium;">@item.Nombre</b><br />
+            <i>@item.DesTipo</i><br /><br />
+            @Html.Raw(item.Descripcion.Replace("\n", "</br>"))<br />
+            @(Html.Raw(String.IsNullOrEmpty(item.Telefono) ? String.Empty : "<br /><b>Teléfono:</b> " + item.Telefono))
+            @(Html.Raw(String.IsNullOrEmpty(item.Mail) ? String.Empty : "<br /><b>Mail</b>: <a href='mailto:" + item.Mail + "'>" + item.Mail + "</a>"))
+            @(Html.Raw(String.IsNullOrEmpty(item.Pagina) ? String.Empty : "<br /><b>Web</b>: <a href='" + item.Pagina + "'>" + item.Pagina + "</a>"))
+            <br /><br />
+            <a style="width: 110px;" class="UbicacionBondi" href="javascript:MostrarUbicacionAlojamiento(@item.ID);"><img width="16px" src="/Content/img/lupa.gif"  /> Ubicación</a> <a style="width: 110px;" class="fbButton" href="javascript:CompartirAlojamiento('@item.Nombre', '@item.DesTipo' , '@item.Descripcion');"><img width="12px" src="/Content/img/facebookLink.png" /> Compartir</a><br >
+        </td>
+    </tr>
+    <tr><td colspan="2">
+        <hr />
+    </td></tr>
+}
+</table>
+</div>
+<div>
+Páginas:
+@for (int i = 0; i < (int)(ViewBag.CantPaginas); i++)
+{
+    <a class="aButton@(ViewBag.Pagina == (i + 1) ? " aButtonSelected" : "")" href="javascript:irAPagina(@(i + 1));">@(i + 1)</a>
+}
+</div>
+
+
+<div id="modalUbicacionAlojamiento"></div>

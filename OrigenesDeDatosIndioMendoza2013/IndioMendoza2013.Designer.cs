@@ -20,6 +20,7 @@ using System.Runtime.Serialization;
 
 [assembly: EdmRelationshipAttribute("IndioMendoza2013Model", "FK_Zona_Provincia", "Provincia", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(IndioMendoza2013.OrigenesDeDatos.Provincia), "Zona", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IndioMendoza2013.OrigenesDeDatos.Zona), true)]
 [assembly: EdmRelationshipAttribute("IndioMendoza2013Model", "BondiRicotero_Zona", "BondiRicotero", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IndioMendoza2013.OrigenesDeDatos.BondiRicotero), "Zona", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IndioMendoza2013.OrigenesDeDatos.Zona))]
+[assembly: EdmRelationshipAttribute("IndioMendoza2013Model", "FK_alojamiento_tipo_alojamiento", "Tipo_Alojamiento", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(IndioMendoza2013.OrigenesDeDatos.Tipo_Alojamiento), "Alojamiento", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IndioMendoza2013.OrigenesDeDatos.Alojamiento), true)]
 
 #endregion
 
@@ -150,6 +151,38 @@ namespace IndioMendoza2013.OrigenesDeDatos
             }
         }
         private ObjectSet<Zona> _Zona;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        public ObjectSet<Tipo_Alojamiento> Tipo_Alojamiento
+        {
+            get
+            {
+                if ((_Tipo_Alojamiento == null))
+                {
+                    _Tipo_Alojamiento = base.CreateObjectSet<Tipo_Alojamiento>("Tipo_Alojamiento");
+                }
+                return _Tipo_Alojamiento;
+            }
+        }
+        private ObjectSet<Tipo_Alojamiento> _Tipo_Alojamiento;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        public ObjectSet<Alojamiento> Alojamiento
+        {
+            get
+            {
+                if ((_Alojamiento == null))
+                {
+                    _Alojamiento = base.CreateObjectSet<Alojamiento>("Alojamiento");
+                }
+                return _Alojamiento;
+            }
+        }
+        private ObjectSet<Alojamiento> _Alojamiento;
 
         #endregion
         #region Métodos AddTo
@@ -193,6 +226,22 @@ namespace IndioMendoza2013.OrigenesDeDatos
         {
             base.AddObject("Zona", zona);
         }
+    
+        /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet Tipo_Alojamiento. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToTipo_Alojamiento(Tipo_Alojamiento tipo_Alojamiento)
+        {
+            base.AddObject("Tipo_Alojamiento", tipo_Alojamiento);
+        }
+    
+        /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet Alojamiento. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToAlojamiento(Alojamiento alojamiento)
+        {
+            base.AddObject("Alojamiento", alojamiento);
+        }
 
         #endregion
     }
@@ -201,6 +250,382 @@ namespace IndioMendoza2013.OrigenesDeDatos
     #endregion
     
     #region Entidades
+    
+    /// <summary>
+    /// No hay documentación de metadatos disponible.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="IndioMendoza2013Model", Name="Alojamiento")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Alojamiento : EntityObject
+    {
+        #region Método de generador
+    
+        /// <summary>
+        /// Crear un nuevo objeto Alojamiento.
+        /// </summary>
+        /// <param name="id">Valor inicial de la propiedad id.</param>
+        /// <param name="nombre">Valor inicial de la propiedad nombre.</param>
+        /// <param name="descripcion">Valor inicial de la propiedad descripcion.</param>
+        /// <param name="id_tipo">Valor inicial de la propiedad id_tipo.</param>
+        /// <param name="center_lat">Valor inicial de la propiedad center_lat.</param>
+        /// <param name="center_long">Valor inicial de la propiedad center_long.</param>
+        /// <param name="zoom">Valor inicial de la propiedad zoom.</param>
+        /// <param name="latitud">Valor inicial de la propiedad latitud.</param>
+        /// <param name="longitud">Valor inicial de la propiedad longitud.</param>
+        public static Alojamiento CreateAlojamiento(global::System.Int32 id, global::System.String nombre, global::System.String descripcion, global::System.Int32 id_tipo, global::System.Double center_lat, global::System.Double center_long, global::System.Int32 zoom, global::System.Double latitud, global::System.Double longitud)
+        {
+            Alojamiento alojamiento = new Alojamiento();
+            alojamiento.id = id;
+            alojamiento.nombre = nombre;
+            alojamiento.descripcion = descripcion;
+            alojamiento.id_tipo = id_tipo;
+            alojamiento.center_lat = center_lat;
+            alojamiento.center_long = center_long;
+            alojamiento.zoom = zoom;
+            alojamiento.latitud = latitud;
+            alojamiento.longitud = longitud;
+            return alojamiento;
+        }
+
+        #endregion
+        #region Propiedades primitivas
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (_id != value)
+                {
+                    OnidChanging(value);
+                    ReportPropertyChanging("id");
+                    _id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("id");
+                    OnidChanged();
+                }
+            }
+        }
+        private global::System.Int32 _id;
+        partial void OnidChanging(global::System.Int32 value);
+        partial void OnidChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String nombre
+        {
+            get
+            {
+                return _nombre;
+            }
+            set
+            {
+                OnnombreChanging(value);
+                ReportPropertyChanging("nombre");
+                _nombre = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("nombre");
+                OnnombreChanged();
+            }
+        }
+        private global::System.String _nombre;
+        partial void OnnombreChanging(global::System.String value);
+        partial void OnnombreChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String descripcion
+        {
+            get
+            {
+                return _descripcion;
+            }
+            set
+            {
+                OndescripcionChanging(value);
+                ReportPropertyChanging("descripcion");
+                _descripcion = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("descripcion");
+                OndescripcionChanged();
+            }
+        }
+        private global::System.String _descripcion;
+        partial void OndescripcionChanging(global::System.String value);
+        partial void OndescripcionChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String pagina
+        {
+            get
+            {
+                return _pagina;
+            }
+            set
+            {
+                OnpaginaChanging(value);
+                ReportPropertyChanging("pagina");
+                _pagina = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("pagina");
+                OnpaginaChanged();
+            }
+        }
+        private global::System.String _pagina;
+        partial void OnpaginaChanging(global::System.String value);
+        partial void OnpaginaChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String mail
+        {
+            get
+            {
+                return _mail;
+            }
+            set
+            {
+                OnmailChanging(value);
+                ReportPropertyChanging("mail");
+                _mail = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("mail");
+                OnmailChanged();
+            }
+        }
+        private global::System.String _mail;
+        partial void OnmailChanging(global::System.String value);
+        partial void OnmailChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String telefono
+        {
+            get
+            {
+                return _telefono;
+            }
+            set
+            {
+                OntelefonoChanging(value);
+                ReportPropertyChanging("telefono");
+                _telefono = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("telefono");
+                OntelefonoChanged();
+            }
+        }
+        private global::System.String _telefono;
+        partial void OntelefonoChanging(global::System.String value);
+        partial void OntelefonoChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 id_tipo
+        {
+            get
+            {
+                return _id_tipo;
+            }
+            set
+            {
+                Onid_tipoChanging(value);
+                ReportPropertyChanging("id_tipo");
+                _id_tipo = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("id_tipo");
+                Onid_tipoChanged();
+            }
+        }
+        private global::System.Int32 _id_tipo;
+        partial void Onid_tipoChanging(global::System.Int32 value);
+        partial void Onid_tipoChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double center_lat
+        {
+            get
+            {
+                return _center_lat;
+            }
+            set
+            {
+                Oncenter_latChanging(value);
+                ReportPropertyChanging("center_lat");
+                _center_lat = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("center_lat");
+                Oncenter_latChanged();
+            }
+        }
+        private global::System.Double _center_lat;
+        partial void Oncenter_latChanging(global::System.Double value);
+        partial void Oncenter_latChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double center_long
+        {
+            get
+            {
+                return _center_long;
+            }
+            set
+            {
+                Oncenter_longChanging(value);
+                ReportPropertyChanging("center_long");
+                _center_long = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("center_long");
+                Oncenter_longChanged();
+            }
+        }
+        private global::System.Double _center_long;
+        partial void Oncenter_longChanging(global::System.Double value);
+        partial void Oncenter_longChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 zoom
+        {
+            get
+            {
+                return _zoom;
+            }
+            set
+            {
+                OnzoomChanging(value);
+                ReportPropertyChanging("zoom");
+                _zoom = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("zoom");
+                OnzoomChanged();
+            }
+        }
+        private global::System.Int32 _zoom;
+        partial void OnzoomChanging(global::System.Int32 value);
+        partial void OnzoomChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double latitud
+        {
+            get
+            {
+                return _latitud;
+            }
+            set
+            {
+                OnlatitudChanging(value);
+                ReportPropertyChanging("latitud");
+                _latitud = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("latitud");
+                OnlatitudChanged();
+            }
+        }
+        private global::System.Double _latitud;
+        partial void OnlatitudChanging(global::System.Double value);
+        partial void OnlatitudChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double longitud
+        {
+            get
+            {
+                return _longitud;
+            }
+            set
+            {
+                OnlongitudChanging(value);
+                ReportPropertyChanging("longitud");
+                _longitud = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("longitud");
+                OnlongitudChanged();
+            }
+        }
+        private global::System.Double _longitud;
+        partial void OnlongitudChanging(global::System.Double value);
+        partial void OnlongitudChanged();
+
+        #endregion
+    
+        #region Propiedades de navegación
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("IndioMendoza2013Model", "FK_alojamiento_tipo_alojamiento", "Tipo_Alojamiento")]
+        public Tipo_Alojamiento Tipo_Alojamiento
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Tipo_Alojamiento>("IndioMendoza2013Model.FK_alojamiento_tipo_alojamiento", "Tipo_Alojamiento").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Tipo_Alojamiento>("IndioMendoza2013Model.FK_alojamiento_tipo_alojamiento", "Tipo_Alojamiento").Value = value;
+            }
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Tipo_Alojamiento> Tipo_AlojamientoReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Tipo_Alojamiento>("IndioMendoza2013Model.FK_alojamiento_tipo_alojamiento", "Tipo_Alojamiento");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Tipo_Alojamiento>("IndioMendoza2013Model.FK_alojamiento_tipo_alojamiento", "Tipo_Alojamiento", value);
+                }
+            }
+        }
+
+        #endregion
+    }
     
     /// <summary>
     /// No hay documentación de metadatos disponible.
@@ -795,6 +1220,112 @@ namespace IndioMendoza2013.OrigenesDeDatos
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Zona>("IndioMendoza2013Model.FK_Zona_Provincia", "Zona", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No hay documentación de metadatos disponible.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="IndioMendoza2013Model", Name="Tipo_Alojamiento")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Tipo_Alojamiento : EntityObject
+    {
+        #region Método de generador
+    
+        /// <summary>
+        /// Crear un nuevo objeto Tipo_Alojamiento.
+        /// </summary>
+        /// <param name="id">Valor inicial de la propiedad id.</param>
+        /// <param name="descripcion">Valor inicial de la propiedad descripcion.</param>
+        public static Tipo_Alojamiento CreateTipo_Alojamiento(global::System.Int32 id, global::System.String descripcion)
+        {
+            Tipo_Alojamiento tipo_Alojamiento = new Tipo_Alojamiento();
+            tipo_Alojamiento.id = id;
+            tipo_Alojamiento.descripcion = descripcion;
+            return tipo_Alojamiento;
+        }
+
+        #endregion
+        #region Propiedades primitivas
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (_id != value)
+                {
+                    OnidChanging(value);
+                    ReportPropertyChanging("id");
+                    _id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("id");
+                    OnidChanged();
+                }
+            }
+        }
+        private global::System.Int32 _id;
+        partial void OnidChanging(global::System.Int32 value);
+        partial void OnidChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String descripcion
+        {
+            get
+            {
+                return _descripcion;
+            }
+            set
+            {
+                OndescripcionChanging(value);
+                ReportPropertyChanging("descripcion");
+                _descripcion = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("descripcion");
+                OndescripcionChanged();
+            }
+        }
+        private global::System.String _descripcion;
+        partial void OndescripcionChanging(global::System.String value);
+        partial void OndescripcionChanged();
+
+        #endregion
+    
+        #region Propiedades de navegación
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("IndioMendoza2013Model", "FK_alojamiento_tipo_alojamiento", "Alojamiento")]
+        public EntityCollection<Alojamiento> Alojamiento
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Alojamiento>("IndioMendoza2013Model.FK_alojamiento_tipo_alojamiento", "Alojamiento");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Alojamiento>("IndioMendoza2013Model.FK_alojamiento_tipo_alojamiento", "Alojamiento", value);
                 }
             }
         }

@@ -1,0 +1,27 @@
+﻿@using IndioMendoza2013.Modelos
+@model FiltroAlojamiento
+
+<script type="text/javascript">
+
+    $(function () {
+        $("#btnSubmit").button();
+    });
+
+    function btnSubmit_click() {
+        $("#frmAlojamientos").submit();
+    }
+
+</script>
+<fieldset style="height 40px;border: 1px solid Black;">
+<legend>Búsqueda</legend>
+    <table width="100%" border="0" >
+    <tr>
+        <td width="5%" style="vertical-align:middle !important; font-weight: bold;">Nombre:</td>
+        <td width="35%" style="vertical-align:middle !important;">@Html.TextBoxFor(x => x.Nombre, new { style = "width: 250px" })</td>
+        <td width="10%" nowrap="nowrap" style="vertical-align:middle !important;font-weight: bold;">Tipo de Alojamiento:</td>
+        <td width="35%" style="vertical-align:middle !important;">@Html.DropDownListFor(x => x.IdTipo, new SelectList(ViewBag.ListTipos, "id", "descripcion"),string.Empty, new { style = "width: 175px" })</td>
+        <td width="15%" style="vertical-align:middle !important; padding-left:10px;"><input style="width: 100px;" id="btnSubmit" type="button" value="Buscar" onclick="javascript: return btnSubmit_click();" /></td>
+    </tr>
+    </table>
+    @Html.HiddenFor(X => X.Pagina)
+</fieldset>

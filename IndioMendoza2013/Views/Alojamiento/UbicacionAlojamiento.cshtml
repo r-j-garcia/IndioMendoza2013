@@ -1,0 +1,79 @@
+﻿@using IndioMendoza2013.Modelos
+@model modAlojamiento
+<script language="javascript" type="text/javascript">
+
+    var map = null;
+
+    function initialize() {
+        map = null;
+        $("#divUbicacionAlojamiento #mapGualeguaychu").html("<span></span>");
+        $("#divUbicacionAlojamiento #mapGualeguaychu").find(":first:").remove();
+
+        var myLatlng = new google.maps.LatLng(@(Model.CenterLat.ToString().Replace(",", ".")), @(Model.CenterLong.ToString().Replace(",", ".")));
+
+        var myOptions = {
+            zoom: @(Model.Zoom) ,
+            center: myLatlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+
+        map = new google.maps.Map(document.getElementById("mapGualeguaychu"), myOptions);
+
+        var ubicacion = new google.maps.LatLng(@(Model.Latitud.ToString().Replace(",", ".")), @(Model.Longitud.ToString().Replace(",", ".")));
+
+        var marker = new google.maps.Marker({
+            position: ubicacion,
+            map: map,
+            html: "<div style='color: black'><b>@(Model.Nombre)</b>" + "<br></div>"
+        });
+
+        google.maps.event.addListener(marker, "click", function () {
+            infoWindow.setContent(this.html);
+            infoWindow.open(map, marker);
+        });
+    }
+
+    function CerrarVentanaModal() {
+        $("#modalUbicacionAlojamiento").dialog('close');
+    }
+
+    $(function () {
+        $("#divUbicacionAlojamiento #btnCerrarModal, #divUbicacionAlojamiento .fbButton").button();
+        initialize();
+
+         setTimeout(function (){
+            google.maps.event.trigger(map, 'resize');
+            map.setCenter(new google.maps.LatLng(@(Model.CenterLat.ToString().Replace(",", ".")), @(Model.CenterLong.ToString().Replace(",", "."))));
+
+         }, 100);
+
+    });
+
+</script>
+<div id="divUbicacionAlojamiento">
+<table border="0" width="100%">
+<tr>
+    <td style="text-align: center; padding-bottom:10px;">
+        <div style="font-size:x-large; font-weight:bold">@Model.Nombre</div>
+        <div><i>@Model.DesTipo</i></div>
+     </td>
+</tr>
+<tr>
+    <td style="text-align:center">
+        <div id="mapGualeguaychu" style="width:300px; height:300px; margin:auto;"></div>
+    </td>
+</tr>
+<tr>
+    <td>
+        <br /><div style="text-align:justify;text-justify:inter-word;">@Html.Raw(Model.Descripcion.Replace("\n", "</br>"))</div>
+        @(Html.Raw(String.IsNullOrEmpty(Model.Telefono) ? String.Empty : "<br /><b>Teléfono:</b> " + Model.Telefono))
+        @(Html.Raw(String.IsNullOrEmpty(Model.Mail) ? String.Empty : "<br /><b>Mail</b>: <a href='mailto:" + Model.Mail + "'>" + Model.Mail +"</a>"))
+        @(Html.Raw(String.IsNullOrEmpty(Model.Pagina) ? String.Empty : "<br /><b>Web</b>: <a href='" + Model.Pagina + "'>" + Model.Pagina + "</a>"))
+    </td>
+</tr>
+<tr><td style="text-align: right">
+<a style="width: 110px;" class="fbButton" href="javascript:CompartirAlojamiento('@Model.Nombre');"><img width="12px" src="/Content/img/facebookLink.png" /> Compartir</a>
+<button id="btnCerrarModal" onclick="javascript:CerrarVentanaModal();">Cerrar</button>
+</td></tr>
+</table>
+</div>

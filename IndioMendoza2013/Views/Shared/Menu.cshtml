@@ -22,7 +22,7 @@
         <ul class="menu-horizontal botonera">
             <li>@Html.ActionLink("Inicio", "Index", "Home", null, new { @class = "botonInicio " + (ViewBag.MenuSeleccionado == "HOME" ? "botoneraSelected" : string.Empty) })</li>
             <li>@Html.ActionLink("¿Dónde es?", "DondeEs", "Info", null, new { @class = "botonDondeEs " + (ViewBag.MenuSeleccionado == "DONDEES" ? "botoneraSelected" : string.Empty) })</li>
-            <li>@Html.ActionLink("¿Cómo llegar?", "ComoLlegar", "Info", null, new { @class = "botonComoLlegar " + (ViewBag.MenuSeleccionado == "COMOLLEGAR" ? "botoneraSelected" : string.Empty) })</li>
+            <li>@Html.ActionLink("¿Cómo llegar?", "Index", "Alojamiento", null, new { @class = "botonComoLlegar " + (ViewBag.MenuSeleccionado == "ALOJAMIENTO" ? "botoneraSelected" : string.Empty) })</li>
             <li>@Html.ActionLink("¿Dónde comprar?", "DondeComprar", "Info", null, new { @class = "botonDondeComprar " + (ViewBag.MenuSeleccionado == "DONDECOMPRAR" ? "botoneraSelected" : string.Empty) })</li>
             <li>@Html.ActionLink("Mapa Ricotero", "Index", "MapaRicotero", null, new { @class = "botonMapaRicotero " + (ViewBag.MenuSeleccionado == "MAPA" ? "botoneraSelected" : string.Empty) })</li>
             <li>@Html.ActionLink("Bondis Ricoteros", "Index", "BondisRicoteros", null, new { @class = "botonBondisRicoteros " + (ViewBag.MenuSeleccionado == "BONDI" ? "botoneraSelected" : string.Empty) })</li>

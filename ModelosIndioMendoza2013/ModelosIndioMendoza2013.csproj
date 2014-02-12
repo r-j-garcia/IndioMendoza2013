@@ -44,12 +44,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\ParDeValores.cs" />
+    <Compile Include="Filtros\FiltroAlojamiento.cs" />
     <Compile Include="Filtros\FiltroBondisRicoteros.cs" />
     <Compile Include="Filtros\FiltroContacto.cs" />
+    <Compile Include="Modelos\modAlojamiento.cs" />
     <Compile Include="Modelos\modBondiRicotero.cs" />
     <Compile Include="Modelos\modContacto.cs" />
     <Compile Include="Modelos\modFacebookInfo.cs" />
     <Compile Include="Modelos\modProvincia.cs" />
+    <Compile Include="Modelos\modTipoAlojamiento.cs" />
     <Compile Include="Modelos\modZona.cs" />
     <Compile Include="Modelos\PosicionRicotera.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

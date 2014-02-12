@@ -6,12 +6,18 @@
     <edmx:StorageModels>
     <Schema Namespace="IndioMendoza2013Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="IndioMendoza2013ModelStoreContainer">
+          <EntitySet Name="Alojamiento" EntityType="IndioMendoza2013Model.Store.Alojamiento" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="BondiRicotero" EntityType="IndioMendoza2013Model.Store.BondiRicotero" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="BondiRicotero_Zona" EntityType="IndioMendoza2013Model.Store.BondiRicotero_Zona" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Contacto" EntityType="IndioMendoza2013Model.Store.Contacto" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="PosicionRicotera" EntityType="IndioMendoza2013Model.Store.PosicionRicotera" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Provincia" EntityType="IndioMendoza2013Model.Store.Provincia" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tipo_Alojamiento" EntityType="IndioMendoza2013Model.Store.Tipo_Alojamiento" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Zona" EntityType="IndioMendoza2013Model.Store.Zona" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_alojamiento_tipo_alojamiento" Association="IndioMendoza2013Model.Store.FK_alojamiento_tipo_alojamiento">
+            <End Role="Tipo_Alojamiento" EntitySet="Tipo_Alojamiento" />
+            <End Role="Alojamiento" EntitySet="Alojamiento" />
+          </AssociationSet>
           <AssociationSet Name="FK_BondiRicotero_Zona_BondiRicotero" Association="IndioMendoza2013Model.Store.FK_BondiRicotero_Zona_BondiRicotero">
             <End Role="BondiRicotero" EntitySet="BondiRicotero" />
             <End Role="BondiRicotero_Zona" EntitySet="BondiRicotero_Zona" />
@@ -25,14 +31,31 @@
             <End Role="Zona" EntitySet="Zona" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Alojamiento">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="descripcion" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="pagina" Type="varchar" MaxLength="256" />
+          <Property Name="mail" Type="varchar" MaxLength="256" />
+          <Property Name="telefono" Type="varchar" MaxLength="256" />
+          <Property Name="id_tipo" Type="int" Nullable="false" />
+          <Property Name="center_lat" Type="float" Nullable="false" />
+          <Property Name="center_long" Type="float" Nullable="false" />
+          <Property Name="zoom" Type="int" Nullable="false" />
+          <Property Name="latitud" Type="float" Nullable="false" />
+          <Property Name="longitud" Type="float" Nullable="false" />
+        </EntityType>
         <EntityType Name="BondiRicotero">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="descripcion" Type="varchar" MaxLength="400" />
-          <Property Name="detalle" Type="varchar" MaxLength="2000" />
+          <Property Name="descripcion" Type="varchar" MaxLength="1000" />
+          <Property Name="detalle" Type="varchar" MaxLength="4000" />
         </EntityType>
         <EntityType Name="BondiRicotero_Zona">
           <Key>
@@ -70,6 +93,13 @@
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="descripcion" Type="varchar" Nullable="false" MaxLength="50" />
         </EntityType>
+        <EntityType Name="Tipo_Alojamiento">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
         <EntityType Name="Zona">
           <Key>
             <PropertyRef Name="id" />
@@ -78,6 +108,18 @@
           <Property Name="id_provincia" Type="int" Nullable="false" />
           <Property Name="descripcion" Type="varchar" Nullable="false" MaxLength="100" />
         </EntityType>
+        <Association Name="FK_alojamiento_tipo_alojamiento">
+          <End Role="Tipo_Alojamiento" Type="IndioMendoza2013Model.Store.Tipo_Alojamiento" Multiplicity="1" />
+          <End Role="Alojamiento" Type="IndioMendoza2013Model.Store.Alojamiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Alojamiento">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Alojamiento">
+              <PropertyRef Name="id_tipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_BondiRicotero_Zona_BondiRicotero">
           <End Role="BondiRicotero" Type="IndioMendoza2013Model.Store.BondiRicotero" Multiplicity="1" />
           <End Role="BondiRicotero_Zona" Type="IndioMendoza2013Model.Store.BondiRicotero_Zona" Multiplicity="*" />
@@ -131,6 +173,12 @@
           <AssociationSet Name="BondiRicotero_Zona" Association="IndioMendoza2013Model.BondiRicotero_Zona">
             <End Role="BondiRicotero" EntitySet="BondiRicotero" />
             <End Role="Zona" EntitySet="Zona" />
+          </AssociationSet>
+          <EntitySet Name="Tipo_Alojamiento" EntityType="IndioMendoza2013Model.Tipo_Alojamiento" />
+          <EntitySet Name="Alojamiento" EntityType="IndioMendoza2013Model.Alojamiento" />
+          <AssociationSet Name="FK_alojamiento_tipo_alojamiento" Association="IndioMendoza2013Model.FK_alojamiento_tipo_alojamiento">
+            <End Role="Tipo_Alojamiento" EntitySet="Tipo_Alojamiento" />
+            <End Role="Alojamiento" EntitySet="Alojamiento" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="PosicionRicotera">
@@ -198,6 +246,44 @@
           <End Type="IndioMendoza2013Model.BondiRicotero" Role="BondiRicotero" Multiplicity="*" />
           <End Type="IndioMendoza2013Model.Zona" Role="Zona" Multiplicity="*" />
         </Association>
+        <EntityType Name="Tipo_Alojamiento">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="descripcion" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Alojamiento" Relationship="IndioMendoza2013Model.FK_alojamiento_tipo_alojamiento" FromRole="Tipo_Alojamiento" ToRole="Alojamiento" />
+        </EntityType>
+        <EntityType Name="Alojamiento">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="descripcion" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="pagina" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="mail" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="telefono" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="id_tipo" Nullable="false" />
+          <Property Type="Double" Name="center_lat" Nullable="false" />
+          <Property Type="Double" Name="center_long" Nullable="false" />
+          <Property Type="Int32" Name="zoom" Nullable="false" />
+          <Property Type="Double" Name="latitud" Nullable="false" />
+          <Property Type="Double" Name="longitud" Nullable="false" />
+          <NavigationProperty Name="Tipo_Alojamiento" Relationship="IndioMendoza2013Model.FK_alojamiento_tipo_alojamiento" FromRole="Alojamiento" ToRole="Tipo_Alojamiento" />
+        </EntityType>
+        <Association Name="FK_alojamiento_tipo_alojamiento">
+          <End Type="IndioMendoza2013Model.Tipo_Alojamiento" Role="Tipo_Alojamiento" Multiplicity="1" />
+          <End Type="IndioMendoza2013Model.Alojamiento" Role="Alojamiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Alojamiento">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Alojamiento">
+              <PropertyRef Name="id_tipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -262,6 +348,32 @@
               <ScalarProperty Name="id" ColumnName="id_bondiRicotero" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Tipo_Alojamiento">
+            <EntityTypeMapping TypeName="IndioMendoza2013Model.Tipo_Alojamiento">
+              <MappingFragment StoreEntitySet="Tipo_Alojamiento">
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Alojamiento">
+            <EntityTypeMapping TypeName="IndioMendoza2013Model.Alojamiento">
+              <MappingFragment StoreEntitySet="Alojamiento">
+                <ScalarProperty Name="longitud" ColumnName="longitud" />
+                <ScalarProperty Name="latitud" ColumnName="latitud" />
+                <ScalarProperty Name="zoom" ColumnName="zoom" />
+                <ScalarProperty Name="center_long" ColumnName="center_long" />
+                <ScalarProperty Name="center_lat" ColumnName="center_lat" />
+                <ScalarProperty Name="id_tipo" ColumnName="id_tipo" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
+                <ScalarProperty Name="pagina" ColumnName="pagina" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -295,6 +407,12 @@
         <AssociationConnector Association="IndioMendoza2013Model.BondiRicotero_Zona" >
           <ConnectorPoint PointX="7.25" PointY="5.1151432291666659" />
           <ConnectorPoint PointX="5.625" PointY="5.1151432291666659" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="IndioMendoza2013Model.Tipo_Alojamiento" Width="1.5" PointX="0.75" PointY="8.75" Height="1.5956835937499996" />
+        <EntityTypeShape EntityType="IndioMendoza2013Model.Alojamiento" Width="1.5" PointX="3" PointY="7.875" Height="3.0714322916666674" />
+        <AssociationConnector Association="IndioMendoza2013Model.FK_alojamiento_tipo_alojamiento" >
+          <ConnectorPoint PointX="2.25" PointY="9.4639794921875" />
+          <ConnectorPoint PointX="3" PointY="9.4639794921875" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

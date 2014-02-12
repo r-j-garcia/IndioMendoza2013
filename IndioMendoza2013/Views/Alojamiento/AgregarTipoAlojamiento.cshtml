@@ -1,0 +1,41 @@
+﻿@using IndioMendoza2013.Modelos
+@model modTipoAlojamiento
+
+<script language="javascript" type="text/javascript">
+
+    function btnSubmit_click() {
+        $("#frmTipoAlojamiento").submit();
+    }
+
+    function frmTipoAlojamiento_success() {
+        alert('Tipo de Alojamiento agregado correctamente');
+        document.location = '@Url.Action( "Agregar", "Alojamiento" )';
+    }
+
+    function frmTipoAlojamiento_failure(error) {
+        alert($(error.response)[1].innerHTML);
+    }
+
+</script>
+@using (Ajax.BeginForm("GuardarTipoAlojamiento", "Alojamiento", new AjaxOptions
+{
+    UpdateTargetId = "divResultados",
+    InsertionMode = System.Web.Mvc.Ajax.InsertionMode.Replace,
+    OnSuccess = "frmTipoAlojamiento_success",
+    OnFailure = "frmTipoAlojamiento_failure"
+},
+new { id = "frmTipoAlojamiento" }))
+{
+    <table width="100%">
+    <tr>
+        <td>Nombre:</td>
+        <td>@Html.TextBoxFor(x => x.Descripcion)</td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <input id="btnSubmit" type="button" style="font-size:large; font-weight:bold;" value="Enviar" onclick="javascript: return btnSubmit_click();" />
+        </td>
+    </tr>
+    </table>
+    <div id="divResultados"></div>
+}

@@ -1,0 +1,175 @@
+﻿@using IndioMendoza2013.Modelos
+@model modAlojamiento
+
+<script language="javascript" type="text/javascript">
+
+    function btnSubmit_click() {
+        if (marker != null) {
+            $("#frmAgregarAlojamiento #Latitud").val(parseFloat(marker.position.lat()));
+            $("#frmAgregarAlojamiento #Longitud").val(parseFloat(marker.position.lng()));
+            $("#frmAgregarAlojamiento #Zoom").val(map.getZoom());
+            $("#frmAgregarAlojamiento #CenterLat").val(parseFloat(map.getCenter().lat()));
+            $("#frmAgregarAlojamiento #CenterLong").val(parseFloat(map.getCenter().lng()));
+            $("#frmAgregarAlojamiento").submit();
+        }
+        else {
+            alert('Debe seleccionar una ubicación.');
+        }
+        return false;
+    }
+
+    function frmAgregarAlojamiento_success() {
+        alert('Alojamiento Agregado Correctamente');
+        document.location = '@Url.Action( "Agregar", "Alojamiento" )';
+    }
+
+    function frmAgregarAlojamiento_failure(error) {
+        alert($(error.response)[1].innerHTML);
+    }
+
+
+    $(function () {
+
+    });
+
+    function AgregarTipo() {
+        $('#modalAgregarTipo').load('/Alojamiento/AgregarTipoAlojamiento/', function () {
+            $("#modalAgregarTipo").dialog({
+                title: 'Agregar Tipo de Alojamiento',
+                resizable: false,
+                height: 200,
+                width: 400,
+                modal: true
+            });
+        });
+    }
+
+    var map = null;
+    var marker = null;
+
+    // Clear all overlays, reset the array of points, and hide the chart
+    function reset() {
+        if (marker)
+            marker.setMap(null);
+    }
+
+    // Add a marker and trigger recalculation of the path and elevation
+    function addMarker(latlng) {
+        reset();
+        marker = new google.maps.Marker({
+            position: latlng,
+            map: map,
+            draggable: true
+        })
+    }
+
+    // Set a callback to run when the Google Visualization API is loaded.
+    google.setOnLoadCallback(initialize);
+
+    function initialize() {
+        var myLatlng = new google.maps.LatLng(-33.021335, -58.525549);
+        var myOptions = {
+            zoom: 13,
+            center: myLatlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+
+        map = new google.maps.Map(document.getElementById("mapGualeguaychu"), myOptions);
+
+        google.maps.event.addListener(map, 'click', function (event) {
+            addMarker(event.latLng);
+        });
+    }
+
+    $(function () {
+        initialize();
+        $("#btnSubmit").button();
+    });
+
+</script>
+
+     
+@using (Ajax.BeginForm("AgregarAlojamiento", "Alojamiento", new AjaxOptions
+{
+    UpdateTargetId = "divResultados",
+    InsertionMode = System.Web.Mvc.Ajax.InsertionMode.Replace,
+    OnSuccess = "frmAgregarAlojamiento_success",
+    OnFailure = "frmAgregarAlojamiento_failure"
+},
+new { id = "frmAgregarAlojamiento" }))
+{
+    <div style="width:100%; height:100%; min-height: 800px;">
+    <table width="100%" cellpadding="5px">
+    <tr>
+        <td width="20%">
+            Nombre:
+        </td>
+        <td width="80%">
+            @Html.TextBoxFor(x => x.Nombre, new { style = "width: 100%;" })
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Tipo:
+        </td>
+        <td>
+            @Html.DropDownList("IdTipo", new SelectList(ViewBag.ListTipos, "id", "descripcion"), String.Empty, new { style = "width: 300px" }) <img onclick="javascript:AgregarTipo();" style="cursor:pointer;" src="/Content/img/botones/add_button.jpg" width="16px"/>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Descripción:
+        </td>
+        <td>
+            @Html.TextAreaFor(x => x.Descripcion, new { style = "width: 100%; height: 100px;" })
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Mail:
+        </td>
+        <td>
+            @Html.TextBoxFor(x => x.Mail, new { style = "width: 100%;" })
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Página Web:
+        </td>
+        <td>
+            @Html.TextBoxFor(x => x.Pagina, new { style = "width: 100%;" })
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Teléfono:
+        </td>
+        <td>
+            @Html.TextBoxFor(x => x.Telefono, new { style = "width: 100%;" })
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Ubicación:
+        </td>
+        <td>
+            @Html.HiddenFor(x => x.Latitud)
+            @Html.HiddenFor(x => x.Longitud)
+            @Html.HiddenFor(x => x.CenterLat)
+            @Html.HiddenFor(x => x.CenterLong)
+            @Html.HiddenFor(x => x.Zoom)
+            <div id="mapGualeguaychu" style="width:300px; height:300px"></div>
+        </td>
+    </tr>
+    <tr>
+        <td style="text-align:center;" colspan="2">
+            <input id="btnSubmit" type="button" style="font-size:large; font-weight:bold;" value="Agregar" onclick="javascript: return btnSubmit_click();" />
+        </td>
+    </tr>
+    </table>
+    </div>
+    <div id="divResultados"></div>
+}
+<div id="modalAgregarTipo">
+
+</div>
