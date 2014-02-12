@@ -18,7 +18,6 @@
     (function () { function $MPBR_load() { window.$MPBR_loaded !== true && (function () { var s = document.createElement("script"); s.type = "text/javascript"; s.async = true; s.src = ("https:" == document.location.protocol ? "https://www.mercadopago.com/org-img/jsapi/mptools/buttons/" : "http://mp-tools.mlstatic.com/buttons/") + "render.js"; var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x); window.$MPBR_loaded = true; })(); } window.$MPBR_loaded !== true ? (window.attachEvent ? window.attachEvent('onload', $MPBR_load) : window.addEventListener('load', $MPBR_load, false)) : null; })();
 
 </script>
-<div style="width:100%; min-height: 640px;" id="contactoContent">
 @using (Ajax.BeginForm("Enviar", "Contacto", new AjaxOptions
 {
     UpdateTargetId = "divResultados",
@@ -28,7 +27,9 @@
 },
 new { id = "frmContacto" }))
 {
+    <div style="width:100%; min-height: 640px;" id="contactoContent">
     <table width="100%" border="0">
+
     <tr>
         <th rowspan="11" style="width: 50%;">&nbsp;</th>
     </tr>
@@ -58,84 +59,12 @@ new { id = "frmContacto" }))
     <tr>
         <td colspan="2" style="text-align:center;  font-size:14px; width: 30%;">O si preferís escribirnos un email hacelo a <b>consultas@indiogualeguaychu.com.ar</b></td>
     </tr>
-    </table>
-    <div id="divResultados"></div>
-}
-<div>
-<table width="100%" border="0">
-    <tr>
-        <th rowspan="11" style="width: 50%;">&nbsp;</th>
-    </tr>
     <tr  style="height: 60px;"><td colspan="2" style="text-align:center; vertical-align:bottom;"><img  src="../../Content/img/Separador.jpg" /><br />Si querés podés colaborar con nosotros. El pago es mínimo y sólo para mantener el alojamiento del sitio. Esta página no tiene fines de lucro.</td></tr>
     <tr> <td colspan="2">
-        <form action="https://checkout.dineromail.com/CheckOut" method="post" >
-        <!-- Variables Obligatorias -->
-        <input type="hidden" name="merchant" value="3681424"/>
-        <input type="hidden" name="country_id" value="1" />
-        <input type="hidden" name="payment_method_available" value="all" />
-        <input type="hidden" name="item_name_1" value="Nombre de item" />
-        <input type="hidden" name="item_quantity_1" value="1" />
-        Donar: <br>
-        <input type="radio" id="item_ammount_1" name="item_ammount_1" value="1000" /> $10<br />
-        <input type="radio" id="item_ammount_2" name="item_ammount_1" value="5000" /> $50<br />
-        <input type="radio" id="item_ammount_3" name="item_ammount_1" value="10000" /> $100<br />
-        <input type="radio" id="item_ammount_4" name="item_ammount_1" value="" /> Otro $ 
-        <input type="text" id="montovariable" onKeyPress="return SoloNumerico(event, this);" Onblur="AplicoFormato(this)">
-        <br>
-
-         
-
-        <!--Javascript para insertar automaticamente los decimales-->
-            <script language="javascript">
-                function SoloNumerico(e, obj) {
-                    var sKey = -1;
-                    var bResult = true;
-                    var bPunto = (obj.value.indexOf(".") != -1);
-                    var lCantChars = obj.value.length;
-                    if (window.event) {
-                        sKey = e.keyCode;
-                    }
-                    else if (e.which) {
-                        sKey = e.which;
-                    }
-                    if (sKey > 10) {
-                        if (((sKey < 48 || sKey > 57) && (sKey != 46 || bPunto)) || (!bPunto &&
-            lCantChars > 6 && sKey != 46)) {
-                            bResult = false;
-                        }
-                    }
-                    return bResult;
-                }
-                function AplicoFormato(oText) {
-                    var aDec = oText.value.split('.');
-                    if (aDec.length > 1) {
-                        if (aDec[1].length == 1) {
-                            oText.value = aDec[0] + '.' + aDec[1].split('.')[0] + '0';
-                        }
-                        if (aDec[1].length == 0) {
-                            oText.value = aDec[0] + '.00';
-                        }
-                        if (aDec[1].length >= 2) {
-                            oText.value = aDec[0] + '.' + aDec[1].substr(0, 2);
-                        }
-                    }
-                    else {
-                        oText.value = aDec + '.00';
-                    }
-                }
-                // trabaja el envio de datos al checkout
-                function enviarDatos(dato) {
-                    if (document.getElementById('item_ammount_4').checked) {
-                        document.getElementById('item_ammount_4').value = document.getElementById('montovariable').value;
-                    }
-                }
-            </script>
-
-
-
-        <!-- Boton -->
-        <input type='image' src='https://argentina.dineromail.com/imagenes/botones/pagar-medios_c.gif' border='0' name='submit' alt='Pagar con DineroMail' OnClick="javascript: enviarDatos(this);" >
-        </form>
+        <table border="0">
+        <tr><th rowspan="2"><img  src="../../Content/img/Mercado-Pago.png" /></th></tr>
+        <tr><td style="text-align:center; vertical-align:middle;"><a href="https://www.mercadopago.com/mla/checkout/pay?pref_id=48312465-fc61fcc7-a8fb-4132-992d-0bd7f1730d7d" name="MP-payButton" class="blue-l-rn-ar">Donar</a></td></tr>
+        </table></td>
     </tr>
     <tr> <td colspan="2">
         <table border="0">
@@ -144,8 +73,8 @@ new { id = "frmContacto" }))
                 <td style="width: 65%;"><img  src="../../Content/img/Bancos.jpg" /></td>
             </tr>
         </table>
-    </td>
-    </tr>
-</table>
-</div>
-</div>
+    </td></tr>
+    </table>
+    </div>
+    <div id="divResultados"></div>
+}

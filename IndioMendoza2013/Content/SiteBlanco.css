@@ -39,62 +39,64 @@
 }
 .botonera a
 {
-    background: url('/Content/img/botones/Botonera-Completa.jpg') no-repeat top left;
+    background: url('/Content/img/botones/Botonera-Completa2.jpg') no-repeat top left;
     display: block;
     text-indent: -9999px; /* hides the link text */
 }
 .botonera a:hover
 {
-    background: url('/Content/img/botones/Botonera-Completa-hover.jpg') no-repeat top left;
+    background: url('/Content/img/botones/Botonera-Completa2-hover.jpg') no-repeat top left;
     text-indent: -9999px; /* hides the link text */
 }
 
 .botoneraSelected
 {
-    background: url('/Content/img/botones/Botonera-Completa-Selected.jpg') no-repeat top left !important;
+    background: url('/Content/img/botones/Botonera-Completa2-Selected.jpg') no-repeat top left !important;
     text-indent: -9999px; /* hides the link text */
 }
 
 .botonInicio
 {
     background-position: 0px 0px;
-    width: 65px;
+    width: 67px;
     height: 45px;
 }
 .botonDondeEs
 {
-    background-position: -70px 0px !important;
-    width: 125px;
+    background-position: -68px 0px !important;
+    width: 130px;
+    height: 45px;
+}
+
+.botonDondeComprar
+{
+    background-position: -199px 0px !important;
+    width: 191px;
     height: 45px;
 }
 .botonComoLlegar
 {
-    background-position: -197px 0px !important;
-    width: 152px;
+    background-position: -391px 0px !important;
+    width: 145px;
     height: 45px;
 }
-.botonDondeComprar
-{
-    background-position: -353px 0px !important;
-    width: 182px;
-    height: 45px;
-}
+
 .botonMapaRicotero
 {
-    background-position: -535px 0px !important;
-    width: 166px;
+    background-position: -537px 0px !important;
+    width: 162px;
     height: 45px;
 }
 .botonBondisRicoteros
 {
-    background-position: -704px 0px !important;
-    width: 182px;
+    background-position: -699px 0px !important;
+    width: 183px;
     height: 45px;
 }
 .botonContacto
 {
-    background-position: -890px 0px !important;
-    width: 105px;
+    background-position: -884px 0px !important;
+    width: 109px;
     height: 45px;
 }
 .titular_zona 
