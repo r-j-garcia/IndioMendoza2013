@@ -18,9 +18,9 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region Metadatos de relaciones en EDM
 
+[assembly: EdmRelationshipAttribute("IndioMendoza2013Model", "FK_alojamiento_tipo_alojamiento", "Tipo_Alojamiento", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(IndioMendoza2013.OrigenesDeDatos.Tipo_Alojamiento), "Alojamiento", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IndioMendoza2013.OrigenesDeDatos.Alojamiento), true)]
 [assembly: EdmRelationshipAttribute("IndioMendoza2013Model", "FK_Zona_Provincia", "Provincia", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(IndioMendoza2013.OrigenesDeDatos.Provincia), "Zona", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IndioMendoza2013.OrigenesDeDatos.Zona), true)]
 [assembly: EdmRelationshipAttribute("IndioMendoza2013Model", "BondiRicotero_Zona", "BondiRicotero", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IndioMendoza2013.OrigenesDeDatos.BondiRicotero), "Zona", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IndioMendoza2013.OrigenesDeDatos.Zona))]
-[assembly: EdmRelationshipAttribute("IndioMendoza2013Model", "FK_alojamiento_tipo_alojamiento", "Tipo_Alojamiento", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(IndioMendoza2013.OrigenesDeDatos.Tipo_Alojamiento), "Alojamiento", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(IndioMendoza2013.OrigenesDeDatos.Alojamiento), true)]
 
 #endregion
 
@@ -91,22 +91,6 @@ namespace IndioMendoza2013.OrigenesDeDatos
         /// <summary>
         /// No hay documentación de metadatos disponible.
         /// </summary>
-        public ObjectSet<Provincia> Provincia
-        {
-            get
-            {
-                if ((_Provincia == null))
-                {
-                    _Provincia = base.CreateObjectSet<Provincia>("Provincia");
-                }
-                return _Provincia;
-            }
-        }
-        private ObjectSet<Provincia> _Provincia;
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
         public ObjectSet<Contacto> Contacto
         {
             get
@@ -119,38 +103,6 @@ namespace IndioMendoza2013.OrigenesDeDatos
             }
         }
         private ObjectSet<Contacto> _Contacto;
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        public ObjectSet<BondiRicotero> BondiRicotero
-        {
-            get
-            {
-                if ((_BondiRicotero == null))
-                {
-                    _BondiRicotero = base.CreateObjectSet<BondiRicotero>("BondiRicotero");
-                }
-                return _BondiRicotero;
-            }
-        }
-        private ObjectSet<BondiRicotero> _BondiRicotero;
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        public ObjectSet<Zona> Zona
-        {
-            get
-            {
-                if ((_Zona == null))
-                {
-                    _Zona = base.CreateObjectSet<Zona>("Zona");
-                }
-                return _Zona;
-            }
-        }
-        private ObjectSet<Zona> _Zona;
     
         /// <summary>
         /// No hay documentación de metadatos disponible.
@@ -183,6 +135,54 @@ namespace IndioMendoza2013.OrigenesDeDatos
             }
         }
         private ObjectSet<Alojamiento> _Alojamiento;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        public ObjectSet<BondiRicotero> BondiRicotero
+        {
+            get
+            {
+                if ((_BondiRicotero == null))
+                {
+                    _BondiRicotero = base.CreateObjectSet<BondiRicotero>("BondiRicotero");
+                }
+                return _BondiRicotero;
+            }
+        }
+        private ObjectSet<BondiRicotero> _BondiRicotero;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        public ObjectSet<Provincia> Provincia
+        {
+            get
+            {
+                if ((_Provincia == null))
+                {
+                    _Provincia = base.CreateObjectSet<Provincia>("Provincia");
+                }
+                return _Provincia;
+            }
+        }
+        private ObjectSet<Provincia> _Provincia;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        public ObjectSet<Zona> Zona
+        {
+            get
+            {
+                if ((_Zona == null))
+                {
+                    _Zona = base.CreateObjectSet<Zona>("Zona");
+                }
+                return _Zona;
+            }
+        }
+        private ObjectSet<Zona> _Zona;
 
         #endregion
         #region Métodos AddTo
@@ -196,35 +196,11 @@ namespace IndioMendoza2013.OrigenesDeDatos
         }
     
         /// <summary>
-        /// Método desusado para agregar un nuevo objeto al EntitySet Provincia. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
-        /// </summary>
-        public void AddToProvincia(Provincia provincia)
-        {
-            base.AddObject("Provincia", provincia);
-        }
-    
-        /// <summary>
         /// Método desusado para agregar un nuevo objeto al EntitySet Contacto. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
         /// </summary>
         public void AddToContacto(Contacto contacto)
         {
             base.AddObject("Contacto", contacto);
-        }
-    
-        /// <summary>
-        /// Método desusado para agregar un nuevo objeto al EntitySet BondiRicotero. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
-        /// </summary>
-        public void AddToBondiRicotero(BondiRicotero bondiRicotero)
-        {
-            base.AddObject("BondiRicotero", bondiRicotero);
-        }
-    
-        /// <summary>
-        /// Método desusado para agregar un nuevo objeto al EntitySet Zona. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
-        /// </summary>
-        public void AddToZona(Zona zona)
-        {
-            base.AddObject("Zona", zona);
         }
     
         /// <summary>
@@ -241,6 +217,30 @@ namespace IndioMendoza2013.OrigenesDeDatos
         public void AddToAlojamiento(Alojamiento alojamiento)
         {
             base.AddObject("Alojamiento", alojamiento);
+        }
+    
+        /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet BondiRicotero. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToBondiRicotero(BondiRicotero bondiRicotero)
+        {
+            base.AddObject("BondiRicotero", bondiRicotero);
+        }
+    
+        /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet Provincia. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToProvincia(Provincia provincia)
+        {
+            base.AddObject("Provincia", provincia);
+        }
+    
+        /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet Zona. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToZona(Zona zona)
+        {
+            base.AddObject("Zona", zona);
         }
 
         #endregion
@@ -642,11 +642,13 @@ namespace IndioMendoza2013.OrigenesDeDatos
         /// </summary>
         /// <param name="id">Valor inicial de la propiedad id.</param>
         /// <param name="nombre">Valor inicial de la propiedad nombre.</param>
-        public static BondiRicotero CreateBondiRicotero(global::System.Int32 id, global::System.String nombre)
+        /// <param name="prioridad">Valor inicial de la propiedad prioridad.</param>
+        public static BondiRicotero CreateBondiRicotero(global::System.Int32 id, global::System.String nombre, global::System.Int32 prioridad)
         {
             BondiRicotero bondiRicotero = new BondiRicotero();
             bondiRicotero.id = id;
             bondiRicotero.nombre = nombre;
+            bondiRicotero.prioridad = prioridad;
             return bondiRicotero;
         }
 
@@ -751,6 +753,30 @@ namespace IndioMendoza2013.OrigenesDeDatos
         private global::System.String _detalle;
         partial void OndetalleChanging(global::System.String value);
         partial void OndetalleChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 prioridad
+        {
+            get
+            {
+                return _prioridad;
+            }
+            set
+            {
+                OnprioridadChanging(value);
+                ReportPropertyChanging("prioridad");
+                _prioridad = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("prioridad");
+                OnprioridadChanged();
+            }
+        }
+        private global::System.Int32 _prioridad;
+        partial void OnprioridadChanging(global::System.Int32 value);
+        partial void OnprioridadChanged();
 
         #endregion
     

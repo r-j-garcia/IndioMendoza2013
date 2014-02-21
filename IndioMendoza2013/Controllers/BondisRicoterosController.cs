@@ -56,13 +56,13 @@ namespace IndioMendoza2013.Controllers
         public ActionResult Buscar(FiltroBondisRicoteros filtro)
         {
             var serv = new BondisRicoterosService();
-            var result = serv.GetBondisRicoteros(filtro);
+            var resultOrd = serv.GetBondisRicoteros(filtro).OrderByDescending(x => x.Prioridad).ThenBy(x => x.Nombre);
 
             var longPag = Int32.Parse(System.Configuration.ConfigurationManager.AppSettings["BondisPorPagina"]);
 
-            ViewBag.ResultadosTotales = result.Count();
+            ViewBag.ResultadosTotales = resultOrd.Count();
 
-            Double cantPag = ((Double)result.Count()) / longPag;
+            Double cantPag = ((Double)resultOrd.Count()) / longPag;
             
 
             var cantPagReal = Math.Truncate(cantPag);
@@ -73,7 +73,7 @@ namespace IndioMendoza2013.Controllers
             ViewBag.CantPaginas = (int)cantPagReal;
             filtro.Pagina = filtro.Pagina == 0 || cantPagReal < filtro.Pagina ? 1 : filtro.Pagina;
             ViewBag.Pagina = filtro.Pagina;
-            result = result.Skip((filtro.Pagina - 1) * longPag).Take(longPag);
+            var result = resultOrd.Skip((filtro.Pagina - 1) * longPag).Take(longPag);
 
             return PartialView("ResultadosBondisRicoteros", result);
         }

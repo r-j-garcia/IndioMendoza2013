@@ -46,6 +46,12 @@ namespace IndioMendoza2013.Modelos
             set { this.bondiRicoteroDB.detalle = value; }
         }
 
+        public int Prioridad
+        {
+            get { return this.bondiRicoteroDB.prioridad; }
+            set { this.bondiRicoteroDB.prioridad = value; }
+        }
+
         public List<modZona> Zonas
         {
             get { return this.bondiRicoteroDB.Zona.Select(x => new modZona(x)).ToList(); }
